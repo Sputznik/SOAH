@@ -1,9 +1,10 @@
 <?php
-include('Contact-Form/sp-form.php');
+include( 'lib/lib.php' );
 add_theme_support( 'post-thumbnails' );
 //Load child stylesheet after parent stylesheet
 add_action('wp_enqueue_scripts', function(){
-  wp_enqueue_style( 'soah-child-style', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), time() );
+  wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), time() );
+  wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), time() );
   wp_enqueue_script( 'contact-form-js', get_stylesheet_directory_uri().'/assets/js/form.js', array('jquery'), time(), true );
 });
 //Add google crimson text font

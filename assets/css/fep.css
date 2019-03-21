@@ -1,0 +1,68 @@
+form.soah-fep{
+	width: 100%;
+	max-width:600px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+form.soah-fep .form-field{
+	margin-bottom: 30px;
+}
+
+form.soah-fep label{
+	display: block;
+}
+
+form.soah-fep input[type=text], form.soah-fep textarea, form.soah-fep select{
+	width: 100%;
+	padding: 10px 15px;
+}
+form.soah-fep input[type=date]{
+	padding: 5px 15px;
+}
+
+form.soah-fep h3{
+	margin-bottom: 20px;
+}
+
+form.soah-fep .section-desc{
+	margin-bottom: 30px;
+}
+
+form.soah-fep .box{
+	border: #eee solid 1px;
+	padding: 20px;
+	margin-bottom: 30px;
+	background: #fcfcfc;
+}
+
+form.soah-fep .form-categories ul li{
+	
+	background: #eee;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	padding: 10px;
+	width: 100%;
+}
+
+form.soah-fep .form-multi-fields{
+	max-width: 400px;
+}
+
+form.soah-fep .form-multi-fields .add-btn{ float: right; }
+
+form.soah-fep .form-multi-fields .multi-text-wrapper{
+	margin-bottom: 15px;
+}
+
+form.soah-fep .form-multi-fields .multi-text-wrapper input[type=text]{
+	width: 90%;
+}
+
+@media( min-width: 768px ){
+	form.soah-fep .grid-2 .section-fields{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 20px;
+	}
+}
