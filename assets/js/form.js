@@ -123,5 +123,14 @@ jQuery('#phone , #email').closest('div').hide();
     // console.log($el.val());
   });
 
+  //Check whether the captcha is selected or not
+  jQuery('.soah-fep').on('submit',function(event){
+    var response = grecaptcha.getResponse();
+    var responseLength = response.length;
+    if(responseLength == 0){
+      event.preventDefault();
+      alert('Please check the Captcha');
+    }
+  });
 
 });

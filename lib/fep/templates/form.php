@@ -1,7 +1,7 @@
 <?php
 
 $contact_form = new FEP_FORM;
-
+define( 'SITE_KEY','6LflSJkUAAAAAO3sN5cTk_-a5d_0O1v3qzQRDN3W' );
 
 if(isset($_POST['submit'])){
 
@@ -96,13 +96,13 @@ $victims = $contact_form->getOptionsFromTaxonomy( 'victims' );
 /* REPORT TYPES FROM THE DB */
 
 $form_sections = array(
-  
 
-  
 
-  
 
-  
+
+
+
+
 
   'report'  => array(
     'fields' => array(
@@ -123,8 +123,8 @@ $form_sections = array(
 		'placeholder'	=> '',
         'name'  => 'description'
       ),
-	  
-      
+
+
     )
   ),
   'address' => array(
@@ -170,8 +170,8 @@ $form_sections = array(
       ),
     ),
   ),
-  
-  
+
+
   'extra' => array(
     'class'	=> 'grid-2',
     'fields' => array(
@@ -189,7 +189,7 @@ $form_sections = array(
       ),
     ),
   ),
-  
+
   'contact-info'  => array(
 	'class'		=> 'box',
 	'title'		=> 'Contact Information',
@@ -234,5 +234,7 @@ $form_sections = array(
     $contact_form->display_section( $section );
   }
 ?>
+  <div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>
   <input class="btn btn-primary sub" name="submit" type="submit" value="Upload Report" />
+  
 </form>
