@@ -155,7 +155,7 @@ $form_sections = array(
     ),
   ),
   'categories' => array(
-    'class' 	=> 'grid-2',
+    'class' 	=> '',
     'fields' 	=> array(
       'report-type'  => array(
 		'class' => 'form-categories',
