@@ -1,5 +1,9 @@
 .submit{
 	margin: 20px 0px ;
+	padding: 10px 15px;
+	background: #eee;
+	border: #ddd solid 1px;
+	min-width: 200px;
 }
 form.soah-fep{
 	width: 100%;
