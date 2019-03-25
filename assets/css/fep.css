@@ -1,5 +1,9 @@
 .submit{
 	margin: 20px 0px ;
+	padding: 10px 15px;
+	background: #eee;
+	border: #ddd solid 1px;
+	min-width: 200px;
 }
 form.soah-fep{
 	width: 100%;
@@ -41,11 +45,22 @@ form.soah-fep .box{
 	background: #fcfcfc;
 }
 
+form.soah-fep .form-categories ul{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+
 form.soah-fep .form-categories ul li{
 
 	background: #eee;
+	/*
 	margin-right: 20px;
 	margin-bottom: 20px;
+	*/
+	margin: 0;
+	display: block;
+	min-height: 30px;
 	padding: 10px;
 	width: 100%;
 }
