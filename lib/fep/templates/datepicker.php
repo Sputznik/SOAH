@@ -1,1 +1,1 @@
-<input type="date" name="<?php _e( $field['name'] );?>" />
+<input type="date" name="<?php _e( $field['name'] );?>" required />
