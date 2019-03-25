@@ -105,6 +105,8 @@ $form_sections = array(
 
 
   'report'  => array(
+    'title' => 'Report an incident',
+    'desc'  => 'Please use the form below to report an incident of violence and discrimination',
     'fields' => array(
       'title'  => array(
         'type'  => 'text',
@@ -173,6 +175,7 @@ $form_sections = array(
 
 
   'extra' => array(
+    'title'	=> 'Additional information',
     'class'	=> 'grid-2',
     'fields' => array(
       'images'  => array(
@@ -210,12 +213,12 @@ $form_sections = array(
         )
       ),
       'phone'  => array(
-        'type'  => 'text',
+        'type'  => 'number',
         'label' => 'Contact Phone Number',
         'name'  => 'phone'
       ),
       'email'  => array(
-        'type'  => 'text',
+        'type'  => 'email',
         'label' => 'Contact Email',
         'name'  => 'email'
       ),
@@ -227,14 +230,12 @@ $form_sections = array(
 ?>
 
 <form class="soah-fep" id="featured_upload" method="post" action="#" enctype="multipart/form-data" class="">
-	<h2>Report an incident</h2>
-	<p>Please use the form below to report an incident of violence and discrimination</p>
+
 <?php
   foreach ($form_sections as $section) {
     $contact_form->display_section( $section );
   }
 ?>
   <div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>
-  <input class="btn btn-primary sub" name="submit" type="submit" value="Upload Report" />
-  
+  <input class="sub" name="submit" type="submit" value="Upload Report" />
 </form>

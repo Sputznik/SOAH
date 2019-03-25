@@ -32,18 +32,28 @@ jQuery('#phone , #email').closest('div').hide();
   //Add multiple image fields
   jQuery('[data-behaviour~=multiple-image]').each( function(){
     var imageCount = 0;//imagecounter
-    var $el = jQuery( this );
+
+    var $wrapperImage = jQuery( document.createElement('div') );
+    $wrapperImage.addClass('wrapperImage');
+    $wrapperImage.appendTo( this );
+
+    var $wrapperButton = jQuery( document.createElement('div') );
+    $wrapperButton.addClass('wrapperButton');
+    $wrapperButton.appendTo( this );
+
+    var $el = jQuery( $wrapperImage );
+    var $el2 = jQuery( '[data-behaviour~=multiple-image]' );
 
     function createImageField(){
 
       var $parent = jQuery( document.createElement('div') );
-      $parent.addClass('multi-text-wrapper');
+      $parent.addClass('multi-image-wrapper');
       $parent.appendTo( $el );
 
       var $input = jQuery( document.createElement('input') );
       $input.attr( 'type', 'file' );
-      $input.attr( 'placeholder', $el.attr('data-label') );
-      $input.attr( 'name', $el.attr('data-name') + imageCount);
+      $input.attr( 'placeholder', $el2.attr('data-label') );
+      $input.attr( 'name', $el2.attr('data-name') + imageCount);
       $input.appendTo( $parent );
 
     };
@@ -54,11 +64,16 @@ jQuery('#phone , #email').closest('div').hide();
       $btn.html( '+' );
       $btn.attr( 'type', 'button' );
       $btn.addClass('add-btn');
-      $btn.appendTo( $el );
+      $btn.html('Add Another');
+      $btn.appendTo( $wrapperButton );
 
       $btn.click( function(){
         imageCount++;
-        createImageField();
+        //checks the total number of file fields
+        var countImage = jQuery('.multi-image-wrapper').length;
+          if(countImage <= 4 ){
+              createImageField();
+          }
       });
 
     };
@@ -72,8 +87,16 @@ jQuery('#phone , #email').closest('div').hide();
   //For adding multiple textfield for links
   jQuery('[data-behaviour~=multiple-text]').each( function(){
 
-    var $el = jQuery( this );
+    var $wrapperLink = jQuery( document.createElement('div') );
+    $wrapperLink.addClass('wrapperLink');
+    $wrapperLink.appendTo( this );
 
+    var $linkButton = jQuery( document.createElement('div') );
+    $linkButton.addClass('linkButton');
+    $linkButton.appendTo( this );
+
+    var $el = jQuery( $wrapperLink );
+    var $el2 = jQuery('[data-behaviour~=multiple-text]');
     function createTextBox(){
 
       var $parent = jQuery( document.createElement('div') );
@@ -82,8 +105,8 @@ jQuery('#phone , #email').closest('div').hide();
 
       var $input = jQuery( document.createElement('input') );
       $input.attr( 'type', 'text' );
-      $input.attr( 'placeholder', $el.attr('data-label') );
-      $input.attr( 'name', $el.attr('data-name') );
+      $input.attr( 'placeholder', $el2.attr('data-label') );
+      $input.attr( 'name', $el2.attr('data-name') );
       $input.appendTo( $parent );
 
     };
@@ -94,10 +117,15 @@ jQuery('#phone , #email').closest('div').hide();
       $btn.html( '+' );
       $btn.attr( 'type', 'button' );
       $btn.addClass('add-btn');
-      $btn.appendTo( $el );
+      $btn.html('Add Another');
+      $btn.appendTo( $linkButton );
 
       $btn.click( function(){
-        createTextBox();
+        //checks the total number of file fields
+        var countLink = jQuery('.multi-text-wrapper').length;
+          if(countLink <= 4 ){
+              createTextBox();
+          }
       });
 
     };

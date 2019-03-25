@@ -1,3 +1,8 @@
+form-links form-multi-fields form-field
+
+.sub{
+	margin: 20px 0px ;
+}
 form.soah-fep{
 	width: 100%;
 	max-width:600px;
@@ -13,7 +18,7 @@ form.soah-fep label{
 	display: block;
 }
 
-form.soah-fep input[type=text], form.soah-fep textarea, form.soah-fep select{
+form.soah-fep input[type=text], input[type=number], input[type=email], form.soah-fep textarea, form.soah-fep select{
 	width: 100%;
 	padding: 10px 15px;
 }
@@ -37,7 +42,7 @@ form.soah-fep .box{
 }
 
 form.soah-fep .form-categories ul li{
-	
+
 	background: #eee;
 	margin-right: 20px;
 	margin-bottom: 20px;
@@ -49,14 +54,19 @@ form.soah-fep .form-multi-fields{
 	max-width: 400px;
 }
 
-form.soah-fep .form-multi-fields .add-btn{ float: right; }
+form.soah-fep .form-multi-fields .add-btn{ float: left; margin-top: 4px;}
+
+form.soah-fep .form-multi-fields .multi-image-wrapper{
+	margin-bottom: 8px;
+}
 
 form.soah-fep .form-multi-fields .multi-text-wrapper{
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 }
 
 form.soah-fep .form-multi-fields .multi-text-wrapper input[type=text]{
 	width: 90%;
+	padding: 0;
 }
 
 @media( min-width: 768px ){
