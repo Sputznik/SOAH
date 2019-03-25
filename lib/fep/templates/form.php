@@ -237,5 +237,5 @@ $form_sections = array(
   }
 ?>
   <div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>
-  <input class="submit" name="submit" type="submit" value="Upload Report" />
+  <input class="submit" name="submit" type="submit" value="Submit Report" />
 </form>
