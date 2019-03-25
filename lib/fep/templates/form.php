@@ -116,7 +116,7 @@ $form_sections = array(
       ),
 	  'date'  => array(
         'type'    => 'datepicker',
-        'label'   => 'Incident Date',
+        'label'   => 'Incident Date (required)',
         'name'    => 'incident-date'
       ),
       'description'  => array(
@@ -130,20 +130,21 @@ $form_sections = array(
     )
   ),
   'address' => array(
-	'title'	=> 'Where did this incident happen?',
+    'title'	=> 'Where did this incident happen?',
+    'desc'  => 'Please give us accurate information',
     'class' => 'grid-2 box',
     'fields' => array(
       'state' => array(
         'type'    => 'dropdown',
         'options' => $states,
-        'label'   => 'Select State',
+        'label'   => 'Select State (required)',
         'name'    => 'state'
       ),
 
       'district'  => array(
         'type'    => 'dropdown',
         'options' => $districts,
-        'label'   => 'Select District',
+        'label'   => 'Select District (required)',
         'name'    => 'district'
       ),
       'address' => array(
@@ -176,6 +177,7 @@ $form_sections = array(
 
   'extra' => array(
     'title'	=> 'Additional information',
+    'desc'  => 'This information would help us to verify the incident',
     'class'	=> 'grid-2',
     'fields' => array(
       'images'  => array(
