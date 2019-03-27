@@ -7,7 +7,7 @@
 }
 form.soah-fep{
 	width: 100%;
-	max-width:600px;
+	max-width:650px;
 	margin-left:auto;
 	margin-right:auto;
 	padding: 50px 30px;
@@ -76,7 +76,7 @@ form.soah-fep .form-multi-fields{
 	max-width: 400px;
 }
 
-form.soah-fep .form-multi-fields .add-btn{ float: left; margin-top: 4px;}
+form.soah-fep .form-multi-fields .add-btn{ margin-top: 4px;}
 
 form.soah-fep .form-multi-fields .multi-image-wrapper{
 	margin-bottom: 8px;
@@ -86,10 +86,7 @@ form.soah-fep .form-multi-fields .multi-text-wrapper{
 	margin-bottom: 5px;
 }
 
-form.soah-fep .form-multi-fields .multi-text-wrapper input[type=text]{
-	width: 90%;
-	padding: 0;
-}
+
 
 
 

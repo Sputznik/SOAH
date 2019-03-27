@@ -6,9 +6,12 @@ class FEP_FORM extends SOAH_BASE{
 		add_shortcode( 'soah_fep', array( $this, 'shortcode' ) );
 	}
 
-	function getOptionsFromTaxonomy( $taxonomy, $args = array( 'hide_empty' => false ) ){
+	function getOptionsFromTaxonomy( $taxonomy, $args = array( 'hide_empty' => false, 'orderby' => 'term_id' ) ){
+
+		$args['taxonomy'] = $taxonomy;
+
 		$options = array();
-		$terms  =   get_terms( $taxonomy, $args );
+		$terms  =   get_terms( $args );
 		foreach( $terms as $term ){
 			$temp = array(
 				'slug'  => $term->term_id,

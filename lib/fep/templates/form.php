@@ -131,6 +131,7 @@ $form_sections = array(
     'class' => 'form-address box',
     'fields' => array(
       'state' => array(
+        'placeholder' => 'State',
         'type'    => 'dropdown',
         'options' => $states,
         'label'   => 'Select State (required)',
@@ -139,6 +140,7 @@ $form_sections = array(
       ),
 
       'district'  => array(
+        'placeholder' => 'District',
         'type'    => 'dropdown',
         'options' => $districts,
         'label'   => 'Select District (required)',
@@ -205,8 +207,9 @@ $form_sections = array(
         'name'  => 'contact-name',
       ),
       'contact-type'  => array(
+        'class' => 'form-required',
         'type'  => 'checkbox',
-        'label' => 'How should we contact you?',
+        'label' => 'How should we contact you? (required)',
         'name'  => 'contact-type',
         'options' => array(
           array( 'slug' => 'contact-phone', 'title' => 'Phone' ),

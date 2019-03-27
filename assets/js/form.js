@@ -154,11 +154,18 @@ jQuery(document).ready(function(){
     }
 
     function checkForEmpty( $el, el_type ){
-      if( ( $el.val() == 0 && el_type == 'select' ) || ( $el.val() == "" && el_type == 'input' ) ){
-        console.log( $el );
-        console.log( $el.val() );
+      if( ( $el.val() == 0 && el_type == 'select' ) || ( $el.val() == "" && el_type == 'text' ) ){
         errorMessage( "Required fields are empty." );
       }
+      if( el_type == 'checkbox' ){
+        var $parent = $el.closest('.form-required');
+        var num_checked = $parent.find('input[type="checkbox"]:checked').length;
+
+        if( num_checked <= 0 ){
+          errorMessage( "Required fields are empty. Checkbox" );
+        }
+      }
+
     }
     jQuery( '.form-required select' ).each( function( i, el ){
       checkForEmpty( jQuery( el ), 'select' );
@@ -166,7 +173,8 @@ jQuery(document).ready(function(){
 
     jQuery( '.form-required input' ).each( function( i, el ){
       if( !jQuery( el ).closest('div').hasClass('hide') ){
-        checkForEmpty( jQuery( el ), 'input' );
+        var type = jQuery( el ).attr('type');
+        checkForEmpty( jQuery( el ), type );
       }
     });
 
