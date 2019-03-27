@@ -1,11 +1,11 @@
-Category
-Intimidation and threats
-Physical assault
-Mob violence
-Murder
-Sexual assault
-Damage or desecration of religious property or symbols
-Restricting access to public spaces and utilities (Social ostracism) 
-Charged under Freedom of Religion Acts (Anti-conversion laws)
-Charged under non-bailable blasphemy provisions (like IPC sections 153A, 295A and 505)
-Complicity of police and authorities
+Category,Parent,Category Description
+Intimidation and threats,,
+Physical assault,,
+Mob violence,,
+Murder,,
+Sexual assault,,
+Damage to Religious Property,,including desecration of religious symbols
+Social Ostracism,,Restricting access to public spaces and utilities
+Anti-Conversion Laws,,Charged under Freedom of Religion Acts
+Blasphemy Laws,,"Charged under non-bailable IPC provisions like Sections 153A, 295A and 505"
+Complicity of Authorities,,including police and other law enforcement agencies
