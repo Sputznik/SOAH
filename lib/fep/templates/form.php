@@ -1,77 +1,80 @@
 <?php
 
 $contact_form = new FEP_FORM;
+
 define( 'SITE_KEY','6LflSJkUAAAAAO3sN5cTk_-a5d_0O1v3qzQRDN3W' );
 
-if(isset($_POST['submit'])){
+$required_fields = array('incident-date', 'state', 'district');
 
-  require_once( ABSPATH . 'wp-admin/includes/image.php' );
-  require_once( ABSPATH . 'wp-admin/includes/file.php' );
-  require_once( ABSPATH . 'wp-admin/includes/media.php' );
+$form_success_flag = 1;
 
+if( isset( $_POST['submit'] ) ){
 
-  // Add the content of the form to $post as an array
-  $new_post = array(
-    'post_title'    => isset( $_POST['title'] ) ? $_POST['title'] :  "",
-    'post_content'  => isset( $_POST['description'] ) ? $_POST['description'] :  "",
-    'post_date'     => isset($_POST['incident-date'] ) ? $_POST['incident-date'] :  "",
-    'post_status'   => 'publish',           // Choose: publish, preview, future, draft, etc.
-    'post_type'     =>  'reports'  // Use a custom post type if you want to
-  );
-  //save the new post and return its ID
-  $post_id = wp_insert_post($new_post);
-
-  // echo "<pre>";
-  // print_r( $_POST );
-  // echo "</pre>";
-
-  // SAVE TAXONOMIES
-  $taxonomies = array( 'report-type', 'victims', 'locations' );
-  if( isset( $_POST['state'] ) && isset( $_POST['district'] ) ){
-    $_POST['locations'] = array( $_POST['state'], $_POST['district'] );
-  }
-  foreach( $taxonomies as $taxonomy ){
-    if( is_array( $_POST[ $taxonomy ] ) ){
-      wp_set_post_terms( $post_id, $_POST[ $taxonomy ], $taxonomy );
+  foreach( $required_fields as $field ){
+    if( !isset( $_POST[ $field ] ) || !$_POST[ $field ] ){
+      $form_success_flag = 0;
     }
   }
 
+  if( $form_success_flag ){
+
+    //echo "<pre>";
+    //print_r( $_POST );
+    //echo "</pre>";
 
 
-  // IMAGE UPLOAD
-  $upload_overrides = array('test_form'=> false);
-  foreach($_FILES as $key => $value){
-    $movefile = media_handle_upload($key,$post_id,$upload_overrides);
-  }
+    // Add the content of the form to $post as an array
+    $new_post = array(
+      'post_title'    => isset( $_POST['title'] ) ? $_POST['title'] :  "",
+      'post_content'  => isset( $_POST['description'] ) ? $_POST['description'] :  "",
+      'post_date'     => $_POST['incident-date'],
+      'post_status'   => 'pending',           // Choose: publish, preview, future, draft, etc.
+      'post_type'     => 'reports'            // Use a custom post type if you want to
+    );
 
-  // INSERTION OF CUSTOM FIELDS
-  if( isset( $_POST['links'] ) ){
-    $_POST['incident-links'] = implode( '\r\n', $_POST['links'] );
-  }
-  $metafields = array( 'contact-name', 'phone', 'email', 'incident-address', 'incident-links' );
-  foreach( $metafields as $metafield ){
-    if( isset( $_POST[ $metafield ] ) ){
-      update_post_meta( $post_id, $metafield, $_POST[ $metafield ] );
+    //save the new post and return its ID
+    $post_id = wp_insert_post($new_post);
+
+    //echo $post_id;
+
+    // SAVE TAXONOMIES
+    $taxonomies = array( 'report-type', 'victims', 'locations' );
+    if( isset( $_POST['state'] ) && isset( $_POST['district'] ) ){
+      $_POST['locations'] = array( $_POST['state'], $_POST['district'] );
+    }
+    foreach( $taxonomies as $taxonomy ){
+      if( is_array( $_POST[ $taxonomy ] ) ){
+        wp_set_post_terms( $post_id, $_POST[ $taxonomy ], $taxonomy );
+      }
+    }
+
+    // INSERTION OF CUSTOM FIELDS
+    if( isset( $_POST['links'] ) ){
+      $_POST['incident-links'] = implode( '\r\n', $_POST['links'] );
+    }
+    $metafields = array( 'contact-name', 'contact-phone', 'contact-email', 'incident-address', 'incident-links' );
+    foreach( $metafields as $metafield ){
+      if( isset( $_POST[ $metafield ] ) ){
+        update_post_meta( $post_id, $metafield, $_POST[ $metafield ] );
+      }
+    }
+
+    // IMAGE UPLOAD
+    if( $_FILES && is_array( $_FILES ) ){
+      require_once( ABSPATH . 'wp-admin/includes/image.php' );
+      require_once( ABSPATH . 'wp-admin/includes/file.php' );
+      require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+      foreach($_FILES as $key => $value){
+        $movefile = media_handle_upload( $key, $post_id, array( 'test_form'=> false ) );
+      }
     }
   }
-
-  if( $movefile ){
-    echo "<h3 style='color:green'>File was uploaded successfully</h3>";
-  }
-  else{
-    echo 'error';
-  }
-
 }
 
 
 /* GETTING STATES AND DISTRICTS FROM THE DB */
-$locations  =   get_terms('locations',array(
-  'hide_empty' => false
-));
-
-
-
+$locations  =   get_terms('locations',array( 'hide_empty' => false ));
 $states = array();
 $districts = array();
 foreach( $locations as $location ){
@@ -96,14 +99,6 @@ $victims = $contact_form->getOptionsFromTaxonomy( 'victims' );
 /* REPORT TYPES FROM THE DB */
 
 $form_sections = array(
-
-
-
-
-
-
-
-
   'report'  => array(
     'title' => 'Report an incident',
     'desc'  => 'Please use the form below to report an incident of violence and discrimination',
@@ -116,7 +111,7 @@ $form_sections = array(
       ),
 	  'date'  => array(
         'type'    => 'datepicker',
-        'label'   => 'Incident Date(required)',
+        'label'   => 'Incident Date (required)',
         'name'    => 'incident-date',
         'class' => 'form-required'
       ),
@@ -137,7 +132,7 @@ $form_sections = array(
       'state' => array(
         'type'    => 'dropdown',
         'options' => $states,
-        'label'   => 'Select State(required)',
+        'label'   => 'Select State (required)',
         'name'    => 'state',
         'class'   => 'form-required form-state'
       ),
@@ -145,7 +140,7 @@ $form_sections = array(
       'district'  => array(
         'type'    => 'dropdown',
         'options' => $districts,
-        'label'   => 'Select District(required)',
+        'label'   => 'Select District (required)',
         'name'    => 'district',
         'class'   => 'form-required form-district'
       ),
@@ -210,22 +205,22 @@ $form_sections = array(
       'contact-type'  => array(
         'type'  => 'checkbox',
         'label' => 'How should we contact you?',
-        'name'  => '',
+        'name'  => 'contact-type',
         'options' => array(
-          array( 'slug' => 'phone', 'title' => 'Phone' ),
-          array( 'slug' => 'email', 'title' => 'Email' )
+          array( 'slug' => 'contact-phone', 'title' => 'Phone' ),
+          array( 'slug' => 'contact-email', 'title' => 'Email' )
         )
       ),
       'phone'  => array(
         'type'  => 'number',
-        'label' => 'Contact Phone Number(required)',
-        'name'  => 'phone',
+        'label' => 'Contact Phone Number (required)',
+        'name'  => 'contact-phone',
         'class' => 'form-required'
       ),
       'email'  => array(
         'type'  => 'email',
-        'label' => 'Contact Email(required)',
-        'name'  => 'email',
+        'label' => 'Contact Email (required)',
+        'name'  => 'contact-email',
         'class' => 'form-required'
       ),
     ),
@@ -233,15 +228,20 @@ $form_sections = array(
 
 );
 
-?>
+echo "<form class='soah-fep' id='featured_upload' method='post' enctype='multipart/form-data'>";
+if( !$_POST ){
 
-<form class="soah-fep" id="featured_upload" method="post" action="#" enctype="multipart/form-data" class="">
-
-<?php
   foreach ($form_sections as $section) {
     $contact_form->display_section( $section );
   }
-?>
-  <div class="g-recaptcha" data-sitekey="<?php echo SITE_KEY; ?>"></div>
-  <input class="submit" name="submit" type="submit" value="Submit Report" />
-</form>
+  echo "<div class='g-recaptcha' data-sitekey='".SITE_KEY."'></div>";
+  echo "<div class='form-alert error'></div>";
+  echo "<input class='submit' name='submit' type='submit' value='Submit Report' />";
+
+}
+else{
+  if( $form_success_flag ){ $message = "Report has been submitted successfully"; }
+  else{ $message = "Report could not be submitted. The required fields were missing. Please try again."; }
+  echo "<div style='margin-top:50px;' class='form-alert'>".$message."</div>";
+}
+echo "</form>";

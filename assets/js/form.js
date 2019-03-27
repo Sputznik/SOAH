@@ -1,15 +1,21 @@
 jQuery(document).ready(function(){
-  //hide the the div containing #phone and #email
-  jQuery('#phone , #email').closest('div').hide();
 
-  //toggle if checkbox is checked
-  jQuery('input[type="checkbox"]').click(function(){
+  jQuery( 'input[name="contact-type"]' ).each( function(){
 
-    var $checkValue = jQuery(this).val();
-        if( $checkValue=='phone' || $checkValue=='email' )
-      jQuery('#'+$checkValue).parent('.form-field').toggle();
+    var $el = jQuery( this ),
+      value = $el.val(),
+      $text = jQuery( 'input[name="' + value + '"]' );
+
+    // HIDE THE TEXTFIELDS
+    $text.closest('div').addClass('hide');
+
+    // CLICKING ON THE CHECKBOXES - TOGGLE THE TEXT FIELDS
+    $el.click( function(){
+      $text.closest('div').toggleClass('hide');
+    });
 
   });
+
 
 
   //Add multiple image fields
@@ -134,30 +140,42 @@ jQuery(document).ready(function(){
     // console.log($el.val());
   });
 
-  //Check whether the captcha is selected or not
+  jQuery('.form-alert.error').hide();
+
+  // VALIDATION ON THE FORM
   jQuery('.soah-fep').on('submit',function(event){
 
-    // Check whether the required fields are empty or not
-    jQuery('.form-required input').each(function(i,el){
-      if(jQuery( el ).val()==""){
-        jQuery(this).after('<span style="color:red">Field Required</span>');
-      }
-    });
+    jQuery('.form-alert').hide();
 
-
-    jQuery('.form-required select').each(function(i,el){
-      if(jQuery( el ).val()==0){
-        jQuery(this).after('<span style="color:red">Field Required</span>');
-      }
-
-    });
-
-    var response = grecaptcha.getResponse();
-    var responseLength = response.length;
-    if(responseLength == 0){
+    function errorMessage( message ){
       event.preventDefault();
-      alert('Please check the Captcha');
+      jQuery('.form-alert').html( message );
+      jQuery('.form-alert').show();
     }
+
+    function checkForEmpty( $el, el_type ){
+      if( ( $el.val() == 0 && el_type == 'select' ) || ( $el.val() == "" && el_type == 'input' ) ){
+        console.log( $el );
+        console.log( $el.val() );
+        errorMessage( "Required fields are empty." );
+      }
+    }
+    jQuery( '.form-required select' ).each( function( i, el ){
+      checkForEmpty( jQuery( el ), 'select' );
+    });
+
+    jQuery( '.form-required input' ).each( function( i, el ){
+      if( !jQuery( el ).closest('div').hasClass('hide') ){
+        checkForEmpty( jQuery( el ), 'input' );
+      }
+    });
+
+    var response      = grecaptcha.getResponse(),
+      responseLength  = response.length;
+    if( responseLength == 0 ){
+      errorMessage( "Please check the captcha to determine you are human" );
+    }
+
   });
 
 });
