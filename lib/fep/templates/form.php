@@ -102,31 +102,32 @@ $form_sections = array(
   'report'  => array(
     'title' => 'Report an incident',
     'desc'  => 'Please use the form below to report an incident of violence and discrimination',
-    'fields' => array(
-      'title'  => array(
-        'type'  => 'text',
-        'label' 		=> 'Give your report a title',
-		'placeholder'	=> 'This is optional',
-        'name'  => 'title'
+    'fields'    => array(
+      'title'   => array(
+        'type'        => 'text',
+        'label' 		  => 'Give your report a title',
+		    'placeholder'	=> 'This is optional',
+        'name'        => 'title'
       ),
-	  'date'  => array(
+	    'date'  => array(
         'type'    => 'datepicker',
         'label'   => 'Incident Date (required)',
         'name'    => 'incident-date',
         'class' => 'form-required'
       ),
       'description'  => array(
-        'type'  => 'textarea',
-        'label' => 'Describe the incident in as much detail as possible',
-		'placeholder'	=> '',
-        'name'  => 'description'
+        'type'        => 'textarea',
+        'label'       => 'Describe the incident in as much detail as possible',
+		    'placeholder'	=> 'This is optional',
+        'name'        => 'description'
       ),
 
 
     )
   ),
   'address' => array(
-	'title'	=> 'Where did this incident happen?',
+	  'title'	=> 'Where did this incident happen?',
+    'desc'  => 'Please give as accurate details as possible',
     'class' => 'form-address box',
     'fields' => array(
       'state' => array(
@@ -175,7 +176,8 @@ $form_sections = array(
 
   'extra' => array(
     'title'	=> 'Additional information',
-    'class'	=> 'grid-2',
+    'desc'  => 'Provides context and authenticity to the incident',
+    'class'	=> 'grid-2 box',
     'fields' => array(
       'images'  => array(
 		'class' => 'form-images form-multi-fields',
@@ -193,11 +195,11 @@ $form_sections = array(
   ),
 
   'contact-info'  => array(
-	'class'		=> 'box',
-	'title'		=> 'Contact Information',
-	'desc'		=> 'This information will be kept private and will only be needed for verification',
+    'class'		=> 'box',
+	  'title'		=> 'Contact Information',
+	  'desc'		=> 'This information will be kept private and will only be needed for verification',
     'fields'  => array(
-      'name'  => array(
+        'name'  => array(
         'type'  => 'text',
         'label' => 'Contact Name',
         'name'  => 'contact-name',
