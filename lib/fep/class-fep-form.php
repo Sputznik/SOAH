@@ -1,19 +1,25 @@
 <?php
 
 class FEP_FORM extends SOAH_BASE{
-	
+
 	function __construct(){
 		add_shortcode( 'soah_fep', array( $this, 'shortcode' ) );
 	}
-	
+
 	function getOptionsFromTaxonomy( $taxonomy, $args = array( 'hide_empty' => false ) ){
 		$options = array();
 		$terms  =   get_terms( $taxonomy, $args );
 		foreach( $terms as $term ){
-			array_push( $options, array(
+			$temp = array(
 				'slug'  => $term->term_id,
 				'title' => $term->name
-			) );
+			);
+
+			if( isset( $term->description ) && $term->description ){
+				$temp['title'] = $temp['title']." <small>(".$term->description.")</small>";
+			}
+
+			array_push( $options, $temp );
 		}
 		return $options;
 	}
@@ -39,13 +45,13 @@ class FEP_FORM extends SOAH_BASE{
 		echo "</div>";
 		echo "</section>";
 	}
-	
+
 	function shortcode( $atts ){
 		ob_start();
 		include( 'templates/form.php' );
 		return ob_get_clean();
 	}
-	
+
 }
 
 
