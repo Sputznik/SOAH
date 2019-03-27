@@ -243,5 +243,7 @@ else{
   if( $form_success_flag ){ $message = "Report has been submitted successfully"; }
   else{ $message = "Report could not be submitted. The required fields were missing. Please try again."; }
   echo "<div style='margin-top:50px;' class='form-alert'>".$message."</div>";
+  echo "<script>function refreshPage(){ window.location.href = window.location.href;} setTimeout( refreshPage, 1000 );</script>";
 }
+
 echo "</form>";
