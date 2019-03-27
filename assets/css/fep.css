@@ -84,11 +84,32 @@ form.soah-fep .form-multi-fields .multi-text-wrapper input[type=text]{
 	padding: 0;
 }
 
+form.soah-fep .form-address .form-field{
+	margin-bottom: 0;
+}
+
 @media( min-width: 768px ){
 	form.soah-fep .grid-2 .section-fields{
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 20px;
+	}
+
+	form.soah-fep .form-address .section-fields{
+		display: grid;
+		grid-gap: 20px;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "state district" "address address";
+	}
+
+	form.soah-fep .form-address .form-state{
+		grid-area: state;
+	}
+	form.soah-fep .form-address .form-district{
+		grid-area: district;
+	}
+	form.soah-fep .form-address .form-address-text{
+		grid-area: address;
 	}
 }
 

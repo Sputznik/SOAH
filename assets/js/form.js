@@ -1,24 +1,6 @@
 jQuery(document).ready(function(){
-//hide the the div containing #phone and #email
-jQuery('#phone , #email').closest('div').hide();
-
-
-
-  //check whether the fields are empty or not
-  // jQuery('.sub').click(function(){
-  //   var $title = jQuery('.title').val();
-  //   var $description = jQuery('.des').val();
-  //
-  //   if($title == ""){
-  //     alert('Title cannot be empty ');
-  //     return false;
-  //   }
-  //
-  //   if($description == ""){
-  //     alert('Description cannot be empty');
-  //     return false;
-  //   }
-  // });
+  //hide the the div containing #phone and #email
+  jQuery('#phone , #email').closest('div').hide();
 
   //toggle if checkbox is checked
   jQuery('input[type="checkbox"]').click(function(){
@@ -28,6 +10,7 @@ jQuery('#phone , #email').closest('div').hide();
       jQuery('#'+$checkValue).parent('.form-field').toggle();
 
   });
+
 
   //Add multiple image fields
   jQuery('[data-behaviour~=multiple-image]').each( function(){
@@ -153,6 +136,22 @@ jQuery('#phone , #email').closest('div').hide();
 
   //Check whether the captcha is selected or not
   jQuery('.soah-fep').on('submit',function(event){
+
+    // Check whether the required fields are empty or not
+    jQuery('.form-required input').each(function(i,el){
+      if(jQuery( el ).val()==""){
+        jQuery(this).after('<span style="color:red">Field Required</span>');
+      }
+    });
+
+
+    jQuery('.form-required select').each(function(i,el){
+      if(jQuery( el ).val()==0){
+        jQuery(this).after('<span style="color:red">Field Required</span>');
+      }
+
+    });
+
     var response = grecaptcha.getResponse();
     var responseLength = response.length;
     if(responseLength == 0){

@@ -116,8 +116,9 @@ $form_sections = array(
       ),
 	  'date'  => array(
         'type'    => 'datepicker',
-        'label'   => 'Incident Date',
-        'name'    => 'incident-date'
+        'label'   => 'Incident Date(required)',
+        'name'    => 'incident-date',
+        'class' => 'form-required'
       ),
       'description'  => array(
         'type'  => 'textarea',
@@ -131,25 +132,28 @@ $form_sections = array(
   ),
   'address' => array(
 	'title'	=> 'Where did this incident happen?',
-    'class' => 'grid-2 box',
+    'class' => 'form-address box',
     'fields' => array(
       'state' => array(
         'type'    => 'dropdown',
         'options' => $states,
-        'label'   => 'Select State',
-        'name'    => 'state'
+        'label'   => 'Select State(required)',
+        'name'    => 'state',
+        'class'   => 'form-required form-state'
       ),
 
       'district'  => array(
         'type'    => 'dropdown',
         'options' => $districts,
-        'label'   => 'Select District',
-        'name'    => 'district'
+        'label'   => 'Select District(required)',
+        'name'    => 'district',
+        'class'   => 'form-required form-district'
       ),
       'address' => array(
         'type'  => 'text',
         'label' => 'Incident Address',
-        'name'  => 'incident-address'
+        'name'  => 'incident-address',
+        'class' => 'form-address-text'
       ),
     ),
   ),
@@ -201,7 +205,7 @@ $form_sections = array(
       'name'  => array(
         'type'  => 'text',
         'label' => 'Contact Name',
-        'name'  => 'contact-name'
+        'name'  => 'contact-name',
       ),
       'contact-type'  => array(
         'type'  => 'checkbox',
@@ -214,13 +218,15 @@ $form_sections = array(
       ),
       'phone'  => array(
         'type'  => 'number',
-        'label' => 'Contact Phone Number',
-        'name'  => 'phone'
+        'label' => 'Contact Phone Number(required)',
+        'name'  => 'phone',
+        'class' => 'form-required'
       ),
       'email'  => array(
         'type'  => 'email',
-        'label' => 'Contact Email',
-        'name'  => 'email'
+        'label' => 'Contact Email(required)',
+        'name'  => 'email',
+        'class' => 'form-required'
       ),
     ),
   ),
