@@ -162,7 +162,7 @@ jQuery(document).ready(function(){
         var num_checked = $parent.find('input[type="checkbox"]:checked').length;
 
         if( num_checked <= 0 ){
-          errorMessage( "Required fields are empty. Checkbox" );
+          errorMessage( "Required checkbox fields are empty." );
         }
       }
 
