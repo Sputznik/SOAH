@@ -110,10 +110,11 @@ $form_sections = array(
         'name'        => 'title'
       ),
 	    'date'  => array(
-        'type'    => 'datepicker',
-        'label'   => 'Incident Date (required)',
-        'name'    => 'incident-date',
-        'class' => 'form-required'
+        'type'        => 'input',
+        'input_type'  => 'date',
+        'label'       => 'Incident Date (required)',
+        'name'        => 'incident-date',
+        'class'       => 'form-required'
       ),
       'description'  => array(
         'type'        => 'textarea',
@@ -148,7 +149,8 @@ $form_sections = array(
         'class'   => 'form-required form-district'
       ),
       'address' => array(
-        'type'  => 'text',
+        'type'        => 'input',
+        'input_type'  => 'text',
         'label' => 'Incident Address',
         'name'  => 'incident-address',
         'class' => 'form-address-text'
@@ -182,16 +184,18 @@ $form_sections = array(
     'class'	=> 'box',
     'fields' => array(
       'images'  => array(
-		'class' => 'form-images form-multi-fields',
-        'type'  => 'file',
-        'label' => 'Upload Images',
-        'name'  => 'files'
+		    'class'       => 'form-images form-multi-fields',
+        'type'        => 'multiple-fields',
+        'fields_type' => 'multiple-image',
+        'label'       => 'Upload Images',
+        'name'        => 'files'
       ),
       'links'  => array(
-		'class' => 'form-links form-multi-fields',
-        'type'  => 'multiple-text',
-        'label' => 'Links to news article',
-        'name'  => 'links[]'
+		    'class'       => 'form-links form-multi-fields',
+        'type'        => 'multiple-fields',
+        'fields_type' => 'multiple-text',
+        'label'       => 'Links to news article',
+        'name'        => 'links[]'
       ),
     ),
   ),
@@ -202,9 +206,10 @@ $form_sections = array(
 	  'desc'		=> 'This information will be kept private and will only be needed for verification',
     'fields'  => array(
         'name'  => array(
-        'type'  => 'text',
-        'label' => 'Contact Name',
-        'name'  => 'contact-name',
+        'type'        => 'input',
+        'input_type'  => 'text',
+        'label'       => 'Contact Name',
+        'name'        => 'contact-name',
       ),
       'contact-type'  => array(
         'class' => 'form-required',
@@ -217,16 +222,18 @@ $form_sections = array(
         )
       ),
       'phone'  => array(
-        'type'  => 'number',
-        'label' => 'Contact Phone Number (required)',
-        'name'  => 'contact-phone',
-        'class' => 'form-required'
+        'type'        => 'input',
+        'input_type'  => 'number',
+        'label'       => 'Contact Phone Number (required)',
+        'name'        => 'contact-phone',
+        'class'       => 'form-required'
       ),
       'email'  => array(
-        'type'  => 'email',
-        'label' => 'Contact Email (required)',
-        'name'  => 'contact-email',
-        'class' => 'form-required'
+        'type'        => 'input',
+        'input_type'  => 'email',
+        'label'       => 'Contact Email (required)',
+        'name'        => 'contact-email',
+        'class'       => 'form-required'
       ),
     ),
   ),

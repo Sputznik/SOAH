@@ -1,0 +1,1 @@
+<input type="<?php _e( $field['input_type'] );?>" id="<?php _e( $field['name'] );?>" placeholder="<?php _e( isset( $field['placeholder'] ) ? $field['placeholder'] : '' );?>" name="<?php _e( $field['name'] );?>" />
