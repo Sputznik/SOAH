@@ -50,7 +50,7 @@ if( isset( $_POST['submit'] ) ){
 
     // INSERTION OF CUSTOM FIELDS
     if( isset( $_POST['links'] ) ){
-      $_POST['incident-links'] = implode( '\r\n', $_POST['links'] );
+      $_POST['incident-links'] = implode( "\r\n", $_POST['links'] );
     }
     $metafields = array( 'contact-name', 'contact-phone', 'contact-email', 'incident-address', 'incident-links' );
     foreach( $metafields as $metafield ){
