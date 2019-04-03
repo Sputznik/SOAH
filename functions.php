@@ -35,3 +35,40 @@ add_filter( 'sp_list_google_fonts', function( $fonts ){
   );
 
 } );
+
+//add new column to the admin dashboard
+add_filter('manage_reports_posts_columns','details_column');
+function details_column( $columns ){
+    $columns['details']  = 'Form Details';
+  return $columns;
+}
+add_filter('manage_reports_posts_custom_column', function( $columns ){
+  global $post;
+  switch( $columns ){
+    case 'details':
+      $meta_fields = array( 'contact-name', 'contact-phone', 'contact-email', 'incident-links' );
+      foreach ( $meta_fields as $meta_field ) {
+          if( $meta_field != 'incident-links' ){
+            echo get_post_meta( $post->ID, $meta_field, true )."<br>";
+          }
+
+          else{
+
+            $links = get_post_meta( $post->ID, $meta_field, true );
+              if( $links ){
+                  $links = explode("\r\n", $links );
+              }
+
+          if( is_array( $links ) ){
+            echo "<p><br><br><b>Additional Links</b></p>";
+            $link_i = 1;
+            foreach( $links as $link ){
+              echo "<a target='_blank' href='$link'>Link $link_i</a><br>";
+              $link_i++;
+            }
+          }
+        }
+      }
+      break;
+    }
+});
