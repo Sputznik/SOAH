@@ -45,73 +45,73 @@ add_filter( 'soah-fep-labels', function( $labels ){
     ),
     'district-title' => array(
       'en'  => 'Select District (required)',
-      'hi'  => ''
+      'hi'  => 'जिला चुनें (आवश्यक)'
     ),
     'district-placeholder' => array(
       'en'  => 'District',
-      'hi'  => ''
+      'hi'  => 'जिला'
     ),
     'address-title' => array(
       'en'  => 'Incident Address',
-      'hi'  => ''
+      'hi'  => 'घटना का पता'
     ),
     'report-type-title' => array(
       'en'  => 'Categorize the incident as',
-      'hi'  => ''
+      'hi'  => 'घटना को वर्गीकृत करें'
     ),
     'victims-title' => array(
       'en'  => 'Who all were the victims',
-      'hi'  => ''
+      'hi'  => 'जो सभी पीड़ित थे'
     ),
     'extra-form-title'  => array(
       'en'  => 'Additional information',
-      'hi'  => ''
+      'hi'  => 'अतिरिक्त जानकारी'
     ),
     'extra-form-desc'  => array(
       'en'  => 'Provides context and authenticity to the incident',
-      'hi'  => ''
+      'hi'  => 'घटना को संदर्भ और प्रामाणिकता प्रदान करता है'
     ),
     'images-title'  => array(
       'en'  => 'Upload Images',
-      'hi'  => ''
+      'hi'  => 'तश्वीरें अपलोड करो'
     ),
     'links-title'  => array(
       'en'  => 'Links to news article',
-      'hi'  => ''
+      'hi'  => 'समाचार लेख के लिंक'
     ),
     'contact-form-title'  => array(
       'en'  => 'Contact Information',
-      'hi'  => ''
+      'hi'  => 'संपर्क जानकारी'
     ),
     'contact-form-desc'  => array(
       'en'  => 'This information will be kept private and will only be needed for verification',
-      'hi'  => ''
+      'hi'  => 'यह जानकारी निजी रखी जाएगी और केवल सत्यापन के लिए आवश्यक होगी'
     ),
     'contact-name-title'  => array(
       'en'  => 'Contact Name',
-      'hi'  => ''
+      'hi'  => 'संपर्क नाम'
     ),
     'contact-type-title'  => array(
       'en'  => 'How should we contact you? (required)',
-      'hi'  => ''
+      'hi'  => 'हमें कैसे आप से संपर्क करना चाहिए? (आवश्यक)'
     ),
     'option-phone'  => array(
       'en'  => 'Phone',
-      'hi'  => ''
+      'hi'  => 'फ़ोन'
     ),
     'option-email'  => array(
       'en'  => 'Email',
-      'hi'  => ''
+      'hi'  => 'ईमेल'
     ),
     'contact-phone-title'  => array(
       'en'  => 'Contact Phone Number (required)',
-      'hi'  => ''
+      'hi'  => 'संपर्क फ़ोन नंबर (आवश्यक)'
     ),
     'contact-email-title'  => array(
       'en'  => 'Contact Email (required)',
-      'hi'  => ''
+      'hi'  => 'संपर्क ईमेल (आवश्यक)'
     ),
   );
 
-  return $labels;
 });
+  return $labels;
