@@ -98,7 +98,7 @@ $report_types = $contact_form->getOptionsFromTaxonomy( 'report-type' );
 $victims = $contact_form->getOptionsFromTaxonomy( 'victims' );
 /* REPORT TYPES FROM THE DB */
 
-$lang = "en";
+$lang = "hi";
 
 $labels = $this->getLabels();
 

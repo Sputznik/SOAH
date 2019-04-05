@@ -5,43 +5,43 @@ add_filter( 'soah-fep-labels', function( $labels ){
   $labels = array(
     'report-form' => array(
       'en'  => 'Report an incident',
-      'hi'  => ''
+      'hi'  => 'किसी घटना की रिपोर्ट करें'
     ),
     'report-form-desc'  => array(
       'en'  => 'Please use the form below to report an incident of violence and discrimination',
-      'hi'  => ''
+      'hi'  => 'हिंसा और भेदभाव की घटना की रिपोर्ट करने के लिए कृपया नीचे दिए गए फॉर्म का उपयोग करें'
     ),
     'report-title' => array(
       'en'  => 'Give your report a title',
-      'hi'  => ''
+      'hi'  => 'अपनी रिपोर्ट को एक शीर्षक दें'
     ),
     'report-desc' => array(
       'en'  => 'Describe the incident in as much detail as possible',
-      'hi'  => ''
+      'hi'  => 'घटना का यथासंभव वर्णन करें'
     ),
     'report-date' => array(
       'en'  => 'Incident Date (required)',
-      'hi'  => ''
+      'hi'  => 'घटना दिनांक (आवश्यक)'
     ),
     'optional'  => array(
       'en'  => 'This is optional',
-      'hi'  => ''
+      'hi'  => 'यह वैकल्पिक है'
     ),
     'address-form'  => array(
       'en'  => 'Where did this incident happen?',
-      'hi'  => ''
+      'hi'  => 'यह घटना कहां हुई?'
     ),
     'address-form-desc' => array(
       'en'  => 'Please give as accurate details as possible',
-      'hi'  => ''
+      'hi'  => 'कृपया यथासंभव सटीक विवरण दें'
     ),
     'state-title' => array(
       'en'  => 'Select State (required)',
-      'hi'  => ''
+      'hi'  => 'राज्य चुनें (आवश्यक)'
     ),
     'state-placeholder' => array(
       'en'  => 'State',
-      'hi'  => ''
+      'hi'  => 'राज्य'
     ),
     'district-title' => array(
       'en'  => 'Select District (required)',
