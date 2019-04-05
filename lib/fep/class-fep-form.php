@@ -65,5 +65,3 @@ class FEP_FORM extends SOAH_BASE{
 
 
 FEP_FORM::getInstance();
-
-include( 'vars.php' );
