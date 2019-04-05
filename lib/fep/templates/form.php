@@ -98,29 +98,35 @@ $report_types = $contact_form->getOptionsFromTaxonomy( 'report-type' );
 $victims = $contact_form->getOptionsFromTaxonomy( 'victims' );
 /* REPORT TYPES FROM THE DB */
 
+$lang = "en";
+
+$labels = $this->getLabels();
+
+
+
 $form_sections = array(
   'report'  => array(
-    'title' => 'Report an incident',
-    'desc'  => 'Please use the form below to report an incident of violence and discrimination',
+    'title' => $labels[ 'report-form' ][ $lang ],
+    'desc'  => $labels[ 'report-form-desc' ][ $lang ],
     'fields'    => array(
       'title'   => array(
         'type'        => 'input',
         'input_type'  => 'text',
-        'label' 		  => 'Give your report a title',
-		    'placeholder'	=> 'This is optional',
+        'label' 		  => $labels[ 'report-title' ][ $lang ],
+		    'placeholder'	=> $labels[ 'optional' ][ $lang ],
         'name'        => 'title'
       ),
 	    'date'  => array(
         'type'        => 'input',
         'input_type'  => 'date',
-        'label'       => 'Incident Date (required)',
+        'label'       => $labels[ 'report-date' ][ $lang ],
         'name'        => 'incident-date',
         'class'       => 'form-required'
       ),
       'description'  => array(
         'type'        => 'textarea',
-        'label'       => 'Describe the incident in as much detail as possible',
-		    'placeholder'	=> 'This is optional',
+        'label'       => $labels[ 'report-desc' ][ $lang ],
+		    'placeholder'	=> $labels[ 'optional' ][ $lang ],
         'name'        => 'description'
       ),
 
@@ -128,33 +134,35 @@ $form_sections = array(
     )
   ),
   'address' => array(
-	  'title'	=> 'Where did this incident happen?',
-    'desc'  => 'Please give as accurate details as possible',
+	  'title'	=> $labels[ 'address-form' ][ $lang ],
+    'desc'  => $labels[ 'address-form-desc' ][ $lang ],
     'class' => 'form-address box',
     'fields' => array(
       'state' => array(
-        'placeholder' => 'State',
-        'type'    => 'dropdown',
-        'options' => $states,
-        'label'   => 'Select State (required)',
-        'name'    => 'state',
-        'class'   => 'form-required form-state'
+        'type'        => 'dropdown',
+        'options'     => $states,
+        'label'       => $labels[ 'state-title' ][ $lang ],
+        'name'        => 'state',
+        'class'       => 'form-required form-state',
+        'placeholder' => $labels[ 'state-placeholder' ][ $lang ],
       ),
 
       'district'  => array(
-        'placeholder' => 'District',
-        'type'    => 'dropdown',
-        'options' => $districts,
-        'label'   => 'Select District (required)',
-        'name'    => 'district',
-        'class'   => 'form-required form-district'
+        'type'        => 'dropdown',
+        'options'     => $districts,
+        'label'       => $labels[ 'district-title' ][ $lang ],
+        'name'        => 'district',
+        'class'       => 'form-required form-district',
+        'placeholder' => $labels[ 'district-placeholder' ][ $lang ],
+
       ),
       'address' => array(
         'type'        => 'input',
         'input_type'  => 'text',
-        'label' => 'Incident Address',
-        'name'  => 'incident-address',
-        'class' => 'form-address-text'
+        'label'       => $labels[ 'address-title' ][ $lang ],
+        'name'        => 'incident-address',
+        'class'       => 'form-address-text',
+        'placeholder' => $labels[ 'optional' ][ $lang ]
       ),
     ),
   ),
@@ -162,16 +170,16 @@ $form_sections = array(
     'class' 	=> '',
     'fields' 	=> array(
       'report-type'  => array(
-		'class' => 'form-categories',
-        'type'  => 'checkbox',
-        'label' => 'Categorize the incident as',
+		    'class'   => 'form-categories',
+        'type'    => 'checkbox',
+        'label'   => $labels[ 'report-type-title' ][ $lang ],
         'options' => $report_types,
         'name'    => 'report-type[]'
       ),
       'victims'  => array(
-        'class' => 'form-categories',
-		'type'  => 'checkbox',
-        'label' => 'Who all were the victims',
+        'class'   => 'form-categories',
+		    'type'    => 'checkbox',
+        'label'   => $labels[ 'victims-title' ][ $lang ],
         'options' => $victims,
         'name'    => 'victims[]'
       ),
@@ -180,22 +188,22 @@ $form_sections = array(
 
 
   'extra' => array(
-    'title'	=> 'Additional information',
-    'desc'  => 'Provides context and authenticity to the incident',
-    'class'	=> 'box',
-    'fields' => array(
+    'title'	  => $labels[ 'extra-form-title' ][ $lang ],
+    'desc'    => $labels[ 'extra-form-title' ][ $lang ],
+    'class'	  => 'box',
+    'fields'  => array(
       'images'  => array(
 		    'class'       => 'form-images form-multi-fields',
         'type'        => 'multiple-fields',
         'fields_type' => 'multiple-image',
-        'label'       => 'Upload Images',
+        'label'       => $labels[ 'images-title' ][ $lang ],
         'name'        => 'files'
       ),
       'links'  => array(
 		    'class'       => 'form-links form-multi-fields',
         'type'        => 'multiple-fields',
         'fields_type' => 'multiple-text',
-        'label'       => 'Links to news article',
+        'label'       => $labels[ 'links-title' ][ $lang ],
         'name'        => 'links[]'
       ),
     ),
@@ -203,36 +211,37 @@ $form_sections = array(
 
   'contact-info'  => array(
     'class'		=> 'box',
-	  'title'		=> 'Contact Information',
-	  'desc'		=> 'This information will be kept private and will only be needed for verification',
+	  'title'		=> $labels[ 'contact-form-title' ][ $lang ],
+	  'desc'		=> $labels[ 'contact-form-desc' ][ $lang ],
     'fields'  => array(
         'name'  => array(
         'type'        => 'input',
         'input_type'  => 'text',
-        'label'       => 'Contact Name',
+        'label'       => $labels[ 'contact-name-title' ][ $lang ],
         'name'        => 'contact-name',
+        'placeholder' => $labels[ 'optional' ][ $lang ]
       ),
       'contact-type'  => array(
-        'class' => 'form-required',
-        'type'  => 'checkbox',
-        'label' => 'How should we contact you? (required)',
-        'name'  => 'contact-type',
+        'class'   => 'form-required',
+        'type'    => 'checkbox',
+        'label'   => $labels[ 'contact-type-title' ][ $lang ],
+        'name'    => 'contact-type',
         'options' => array(
-          array( 'slug' => 'contact-phone', 'title' => 'Phone' ),
-          array( 'slug' => 'contact-email', 'title' => 'Email' )
+          array( 'slug' => 'contact-phone', 'title' => $labels[ 'option-phone' ][ $lang ] ),
+          array( 'slug' => 'contact-email', 'title' => $labels[ 'option-email' ][ $lang ] )
         )
       ),
       'phone'  => array(
         'type'        => 'input',
         'input_type'  => 'number',
-        'label'       => 'Contact Phone Number (required)',
+        'label'       => $labels[ 'contact-phone-title' ][ $lang ],
         'name'        => 'contact-phone',
         'class'       => 'form-required'
       ),
       'email'  => array(
         'type'        => 'input',
         'input_type'  => 'email',
-        'label'       => 'Contact Email (required)',
+        'label'       => $labels[ 'contact-email-title' ][ $lang ],
         'name'        => 'contact-email',
         'class'       => 'form-required'
       ),

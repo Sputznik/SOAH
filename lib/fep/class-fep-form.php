@@ -3,6 +3,7 @@
 class FEP_FORM extends SOAH_BASE{
 
 	function __construct(){
+
 		add_shortcode( 'soah_fep', array( $this, 'shortcode' ) );
 	}
 
@@ -55,7 +56,14 @@ class FEP_FORM extends SOAH_BASE{
 		return ob_get_clean();
 	}
 
+	function getLabels(){
+		$labels = apply_filters( 'soah-fep-labels', array() );
+		return $labels;
+	}
+
 }
 
 
 FEP_FORM::getInstance();
+
+include( 'vars.php' );
