@@ -6,7 +6,7 @@ add_action('wp_enqueue_scripts', function(){
   wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), '1.0.0' );
   wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), time() );
   wp_enqueue_script( 'contact-form-js', get_stylesheet_directory_uri().'/assets/js/form.js', array('jquery'), time(), true );
-  wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js', array(), '1.0.0', true );
+  // wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?hl=hi', array(), '1.0.0', true );
 });
 
 //Add asyn defer for ReCaptcha
