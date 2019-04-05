@@ -72,7 +72,7 @@ if( isset( $_POST['submit'] ) ){
   }
 }
 
-$lang = "en";
+$lang = "hi";
 
 /* GETTING STATES AND DISTRICTS FROM THE DB */
 $locations  =   get_terms( 'locations', array( 'hide_empty' => false ) );

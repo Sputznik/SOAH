@@ -112,6 +112,5 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'संपर्क ईमेल (आवश्यक)'
     ),
   );
-
-});
   return $labels;
+});
