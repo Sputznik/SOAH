@@ -7,7 +7,21 @@ class FEP_FORM extends SOAH_BASE{
 		add_shortcode( 'soah_fep', array( $this, 'shortcode' ) );
 	}
 
-	function getOptionsFromTaxonomy( $taxonomy, $args = array( 'hide_empty' => false, 'orderby' => 'term_id' ) ){
+	function getTranslatedValue( $key, $lang, $slug ){
+
+		$value = "";
+
+		if( class_exists('ORBIT_TRANSLATIONS') ){
+			$orbit_translation = ORBIT_TRANSLATIONS::getInstance();
+
+			$value = $orbit_translation->getValue( $key, $lang, $slug );
+
+		}
+
+		return $value;
+	}
+
+	function getOptionsFromTaxonomy( $taxonomy, $lang, $args = array( 'hide_empty' => false, 'orderby' => 'term_id' ) ){
 
 		$args['taxonomy'] = $taxonomy;
 
@@ -19,9 +33,17 @@ class FEP_FORM extends SOAH_BASE{
 				'title' => $term->name
 			);
 
-			if( isset( $term->description ) && $term->description ){
-				$temp['title'] = $temp['title']." <small>(".$term->description.")</small>";
+			if( $lang != 'en' ){
+				$temp['title']	= $this->getTranslatedValue( $taxonomy, $lang, $term->term_id );
 			}
+			else{
+				// ONLY FOR ENGLISH TRANSLATION
+				if( isset( $term->description ) && $term->description ){
+					$temp['title'] = $temp['title']." <small>(".$term->description.")</small>";
+				}
+			}
+
+
 
 			array_push( $options, $temp );
 		}

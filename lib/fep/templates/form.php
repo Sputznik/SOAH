@@ -72,9 +72,10 @@ if( isset( $_POST['submit'] ) ){
   }
 }
 
+$lang = "en";
 
 /* GETTING STATES AND DISTRICTS FROM THE DB */
-$locations  =   get_terms('locations',array( 'hide_empty' => false ));
+$locations  =   get_terms( 'locations', array( 'hide_empty' => false ) );
 $states = array();
 $districts = array();
 foreach( $locations as $location ){
@@ -84,6 +85,12 @@ foreach( $locations as $location ){
     'title' => $location->name,
     'parent'  =>  $location->parent
   );
+
+  if( $lang != 'en' ){
+    $temp['title']	= $this->getTranslatedValue( 'locations', $lang, $location->term_id );
+  }
+
+
   if( $location->parent == 0 ){
     array_push( $states, $temp );
   }
@@ -94,11 +101,11 @@ foreach( $locations as $location ){
 /* GETTING STATES AND DISTRICTS FROM THE DB */
 
 /* REPORT TYPES FROM THE DB */
-$report_types = $contact_form->getOptionsFromTaxonomy( 'report-type' );
-$victims = $contact_form->getOptionsFromTaxonomy( 'victims' );
+$report_types = $contact_form->getOptionsFromTaxonomy( 'report-type', $lang );
+$victims = $contact_form->getOptionsFromTaxonomy( 'victims', $lang );
 /* REPORT TYPES FROM THE DB */
 
-$lang = "hi";
+
 
 $labels = $this->getLabels();
 
