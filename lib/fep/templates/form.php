@@ -72,7 +72,7 @@ if( isset( $_POST['submit'] ) ){
   }
 }
 
-$lang = "hi";
+$lang = "en";
 
 /* GETTING STATES AND DISTRICTS FROM THE DB */
 $locations  =   get_terms( 'locations', array( 'hide_empty' => false ) );
@@ -256,6 +256,8 @@ $form_sections = array(
   ),
 
 );
+
+echo '<script src="https://www.google.com/recaptcha/api.js?hl='.$lang.'"></script>';
 
 echo "<form class='soah-fep' id='featured_upload' method='post' enctype='multipart/form-data'>";
 if( !$_POST ){
