@@ -1,5 +1,8 @@
 jQuery(document).ready(function(){
 
+  // Clones all districts from select
+  var cloneDistrictElements = jQuery('select[name=district]').clone();
+
   jQuery( 'input[name="contact-type"]' ).each( function(){
 
     var $el = jQuery( this ),
@@ -132,13 +135,21 @@ jQuery(document).ready(function(){
 
     var currentState = $el.val();
 
-    jQuery('select[name=district] option').hide();
-    jQuery('select[name=district] option[data-state~=' + currentState + ']').show();
+    jQuery('select[name=district] option').remove();
+
+    //Clones districts from cloneDistrictElements
+    var options = cloneDistrictElements.find('option[data-state~=' + currentState + ']').clone();
+
+    var defaultOption = cloneDistrictElements.find('option[value~=0]').clone()
+
+    defaultOption.appendTo('select[name=district]');
+
+    options.appendTo('select[name=district]');
 
     jQuery('select[name=district]').val(0);
 
-    // console.log($el.val());
   });
+
 
   jQuery('.form-alert.error').hide();
 
