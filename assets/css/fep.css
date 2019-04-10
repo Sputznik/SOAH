@@ -1,4 +1,6 @@
-.submit{
+form[data-behaviour~=meteor-slides] input[type=submit],
+form[data-behaviour~=meteor-slides] input[type=button],
+form[data-behaviour~=meteor-slides] button{
 	margin: 20px 0px ;
 	padding: 10px 15px;
 	background: #eee;
@@ -126,4 +128,26 @@ form.soah-fep .form-multi-fields .multi-text-wrapper{
 	form.soah-fep .form-categories ul{
 		grid-template-columns: 1fr;
 	}
+}
+
+
+form[data-behaviour~=meteor-slides] .meteor-slide{
+	display: none;
+}
+form[data-behaviour~=meteor-slides] .meteor-slide.active{
+	display: block;
+}
+
+form[data-behaviour~=meteor-slides] .meteor-list{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+form[data-behaviour~=meteor-slides] .meteor-list li{
+	display: inline-block;
+	margin-right: 20px;
+}
+
+form[data-behaviour~=meteor-slides] .hide-label label{
+	display: none;
 }

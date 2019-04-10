@@ -4,8 +4,11 @@ add_theme_support( 'post-thumbnails' );
 //Load child stylesheet after parent stylesheet
 add_action('wp_enqueue_scripts', function(){
   wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), '1.0.0' );
-  wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), '1.0.3' );
-  wp_enqueue_script( 'contact-form-js', get_stylesheet_directory_uri().'/assets/js/form.js', array('jquery'), '1.0.1', true );
+  wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), '1.0.5' );
+
+  wp_enqueue_script( 'meteor-slides', get_stylesheet_directory_uri().'/assets/js/meteor-slides.js', array('jquery'), '1.0.0', true );
+
+  wp_enqueue_script( 'soah-main', get_stylesheet_directory_uri().'/assets/js/form.js', array('meteor-slides'), '1.0.2', true );
   // wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?hl=hi', array(), '1.0.0', true );
 });
 
