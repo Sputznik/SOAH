@@ -153,44 +153,87 @@ jQuery(document).ready(function(){
 
   jQuery('.form-alert.error').hide();
 
+  function errorMessage( message ){
+    event.preventDefault();
+    jQuery('.form-alert').html( message );
+    jQuery('.form-alert').show();
+    return false;
+  }
+  /*
+  function checkForEmpty( $el, el_type ){
+    if( ( $el.val() == 0 && el_type == 'select' ) || ( $el.val() == "" && el_type == 'text' ) ){
+      console.log('text');
+      var temp = errorMessage( "Required fields are empty." );
+      console.log( temp );
+      return temp;
+    }
+    if( el_type == 'checkbox' ){
+      var $parent = $el.closest('.form-required');
+      var num_checked = $parent.find('input[type="checkbox"]:checked').length;
+
+      if( num_checked <= 0 ){
+        return errorMessage( "Required checkbox fields are empty." );
+      }
+    }
+    return true;
+  }
+  */
+
+  function formCheck( $slide ){
+
+    var flag 	= true,
+			fields 	= $slide.find(".form-required:not(.hide) input, .form-required select").serializeArray();
+
+    //console.log( fields );
+
+    $.each( fields, function( i, field ){
+			if( !field.value || field.value == "0" ){
+				errorMessage( "You have missed some required fields." );
+				flag = false;
+      }
+		});
+
+    // SEPERATE CASE FOR CHECKBOXES
+    $slide.find( '.form-required input[type=checkbox]' ).each( function( i, el ){
+      var $el       = jQuery( el ),
+        $parent     = $el.closest('.form-required'),
+        num_checked = $parent.find('input[type="checkbox"]:checked').length;
+
+      if( num_checked <= 0 ){
+        errorMessage( "You have missed some required fields." );
+        flag = false;
+      }
+
+    });
+
+    return flag;
+  }
+
+  // PARTIAL FORM VALIDATION EACH TIME THE NEXT BUTTON IS CLICKED
+  jQuery('.soah-fep').on('meteor:beforeNextTransition', function( ev ){
+
+    jQuery('.form-alert').hide();
+
+    var $slide = jQuery( ev.target ),
+					flag = formCheck( $slide );
+
+
+
+		$slide.data('slide-disable', '1');
+
+		if( flag ){ $slide.data('slide-disable', '0'); }
+
+
+	});
+
   // VALIDATION ON THE FORM
   jQuery('.soah-fep').on('submit',function(event){
 
     jQuery('.form-alert').hide();
 
-    function errorMessage( message ){
-      event.preventDefault();
-      jQuery('.form-alert').html( message );
-      jQuery('.form-alert').show();
-    }
-
-    function checkForEmpty( $el, el_type ){
-      if( ( $el.val() == 0 && el_type == 'select' ) || ( $el.val() == "" && el_type == 'text' ) ){
-        errorMessage( "Required fields are empty." );
-      }
-      if( el_type == 'checkbox' ){
-        var $parent = $el.closest('.form-required');
-        var num_checked = $parent.find('input[type="checkbox"]:checked').length;
-
-        if( num_checked <= 0 ){
-          errorMessage( "Required checkbox fields are empty." );
-        }
-      }
-
-    }
-    jQuery( '.form-required select' ).each( function( i, el ){
-      checkForEmpty( jQuery( el ), 'select' );
-    });
-
-    jQuery( '.form-required input' ).each( function( i, el ){
-      if( !jQuery( el ).closest('div').hasClass('hide') ){
-        var type = jQuery( el ).attr('type');
-        checkForEmpty( jQuery( el ), type );
-      }
-    });
-
     var response      = grecaptcha.getResponse(),
       responseLength  = response.length;
+
     if( responseLength == 0 ){
       errorMessage( "Please check the captcha to determine you are human" );
     }

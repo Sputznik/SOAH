@@ -1,10 +1,9 @@
 <?php
 
-
 // HANDLES POST SUBMISSION
 $form_success_flag = $this->save();
 
-$lang = "en";
+$lang = $atts['lang'];
 
 /* REPORT TYPES, VICTIMS AND LOCATIONS FROM THE DB */
 $report_types = $this->getOptionsFromTaxonomy( 'report-type', $lang );
@@ -15,12 +14,8 @@ $locations    = $this->getOptionsFromTaxonomy( 'locations', $lang );
 $states = array();
 $districts = array();
 foreach ( $locations as $location ) {
-  if( $location['parent'] ){
-    array_push( $districts, $location );
-  }
-  else{
-    array_push( $states, $location );
-  }
+  if( $location['parent'] ){ array_push( $districts, $location ); }
+  else{ array_push( $states, $location ); }
 }
 /* REPORT TYPES, VICTIMS AND LOCATIONS FROM THE DB */
 
@@ -35,7 +30,7 @@ $form_sections = array(
 	    'date'  => array(
         'type'        => 'input',
         'input_type'  => 'date',
-        'label'       => $labels[ 'report-date' ][ $lang ],
+        'label'       => $labels['report-date'][ $lang ],
         'name'        => 'incident-date',
         'class'       => 'form-required'
       ),
@@ -51,10 +46,10 @@ $form_sections = array(
           'state' => array(
             'type'        => 'dropdown',
             'options'     => $states,
-            'label'       => $labels[ 'state-title' ][ $lang ],
+            'label'       => $labels['state-title'][ $lang ],
             'name'        => 'state',
             'class'       => 'form-required form-state',
-            'placeholder' => $labels[ 'state-placeholder' ][ $lang ],
+            'placeholder' => $labels['state-placeholder'][ $lang ],
           ),
           'district'  => array(
             'type'        => 'dropdown',
@@ -207,7 +202,11 @@ if( !$_POST ){
 else{
   if( $form_success_flag ){ $message = "Report has been submitted successfully"; }
   else{ $message = "Report could not be submitted. The required fields were missing. Please try again."; }
-  echo "<div style='margin-top:50px;' class='form-alert'>".$message."</div>";
+
+  // DISPLAY MESSAGE ON FORM SUBMISSION
+  echo "<div style='margin-top:50px;' class='form-alert'>" . $message . "</div>";
+
+  // REDIRECT AFTER A DELAY
   echo "<script>function refreshPage(){ window.location.href = window.location.href;} setTimeout( refreshPage, 5000 );</script>";
 }
 

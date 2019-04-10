@@ -9,7 +9,7 @@ class FEP_FORM extends SOAH_BASE{
 
 	function save(){
 
-		if( isset( $_POST['submit'] ) ){
+		if( $_POST ){
 
 			// IF REQUIRED FIELDS ARE NOT PRESENT IN $_POST THE RETURN ERROR
 		  $required_fields = array('incident-date', 'state', 'district');
@@ -17,7 +17,7 @@ class FEP_FORM extends SOAH_BASE{
 		    if( !isset( $_POST[ $field ] ) || !$_POST[ $field ] ){ return 0; }
 		  }
 
-		  //echo "<pre>";
+		 // echo "<pre>";
 		 	//print_r( $_POST );
 		  //echo "</pre>";
 
@@ -143,7 +143,7 @@ class FEP_FORM extends SOAH_BASE{
 			);
 
 			if( $lang != 'en' ){
-				$temp['title']	= $this->getTranslatedValue( $taxonomy, $lang, $term->term_id );
+				$temp['title']	= $this->getTranslatedValue( $taxonomy, $lang, $term->term_id, $term->name );
 			}
 			else{
 				// ONLY FOR ENGLISH TRANSLATION
@@ -181,13 +181,6 @@ class FEP_FORM extends SOAH_BASE{
 		switch( $field['type'] ){
 			case 'nested-fields':
 				$this->display_inline_section( $field );
-				/*
-				echo "<div class='".$field['class']."'>";
-				foreach( $field['fields'] as $field ){
-					$this->display_field( $field );
-				}
-				echo "</div>";
-				*/
 				break;
 			default:
 				$field['class'] = isset( $field['class'] ) ? $field['class']." form-field" : "form-field";
@@ -204,7 +197,7 @@ class FEP_FORM extends SOAH_BASE{
 		echo "<section class='meteor-slide'>";
 		$this->display_inline_section( $section );
 
-		
+
 		_e( "<ul class='meteor-list meteor-list-inline'>" );
 
 		// HIDE IN THE FIRST PAGE OF THE FORM
@@ -224,6 +217,11 @@ class FEP_FORM extends SOAH_BASE{
 	}
 
 	function shortcode( $atts ){
+
+		$atts = shortcode_atts( array(
+			'lang'	=> 'en'
+		), $atts, 'soah_fep' );
+
 		ob_start();
 		include( 'templates/form.php' );
 		return ob_get_clean();
