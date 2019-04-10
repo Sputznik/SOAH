@@ -217,16 +217,13 @@ jQuery(document).ready(function(){
     var $slide = jQuery( ev.target ),
 					flag = formCheck( $slide );
 
-
-
-		$slide.data('slide-disable', '1');
+    $slide.data('slide-disable', '1');
 
 		if( flag ){ $slide.data('slide-disable', '0'); }
 
+  });
 
-	});
-
-  // VALIDATION ON THE FORM
+  // VALIDATION ON THE FORM - CHECK FOR CAPTCHA
   jQuery('.soah-fep').on('submit',function(event){
 
     jQuery('.form-alert').hide();
