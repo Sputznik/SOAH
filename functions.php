@@ -8,7 +8,7 @@ add_action('wp_enqueue_scripts', function(){
 
   wp_enqueue_script( 'meteor-slides', get_stylesheet_directory_uri().'/assets/js/meteor-slides.js', array('jquery'), '1.0.0', true );
 
-  wp_enqueue_script( 'soah-main', get_stylesheet_directory_uri().'/assets/js/form.js', array('meteor-slides'), '1.0.3', true );
+  wp_enqueue_script( 'soah-main', get_stylesheet_directory_uri().'/assets/js/form.js', array('meteor-slides'), '1.0.4', true );
   // wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?hl=hi', array(), '1.0.0', true );
 });
 

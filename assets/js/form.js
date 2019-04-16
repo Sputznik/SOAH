@@ -184,12 +184,26 @@ jQuery(document).ready(function(){
     var flag 	= true,
 			fields 	= $slide.find(".form-required:not(.hide) input, .form-required select").serializeArray();
 
-    //console.log( fields );
+    // console.log( fields );
 
     $.each( fields, function( i, field ){
 			if( !field.value || field.value == "0" ){
+        // if(".form-required:not(.hide) input[type='number']" )
 				errorMessage( "You have missed some required fields." );
 				flag = false;
+      }
+      //Phone Number validation
+      else if( field.name === 'contact-phone' ){
+        numberField = field.value;
+        numberLength = numberField.length;
+        if(numberLength !=10){
+          errorMessage( "Contact number must be a 10 digit number." );
+  				flag = false;
+        }
+        else if( !( numberField>=6000000000 && numberField<=9999999999 ) ){
+          errorMessage( "Contact number must be between 6000000000 and 9999999999." );
+  				flag = false;
+        }
       }
 		});
 
