@@ -7,8 +7,35 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 		add_shortcode( 'soah_map', array( $this, 'shortcode' ) );
 
     /** TO LOAD THE ASSETS - SCRIPTS AND STYLES */
-		add_action('the_posts', array( $this, 'assets') );
+		add_action( 'the_posts', array( $this, 'assets' ) );
+
+    add_action( 'wp_ajax_map_data', array( $this, 'map_data' ) );
+    add_action( 'wp_ajax_nopriv_map_data', array( $this, 'map_data' ) );
+
 	}
+
+  function map_data(){
+
+    $data = array();
+    $terms = get_terms( 'locations', array( 'hide_empty' => false ) );
+    foreach( $terms as $term ){
+      $temp = array(
+        'district'  => $term->name,
+        'reports'   => rand( 0, 100 )
+      );
+      array_push( $data, $temp );
+
+    }
+
+
+    //echo "<pre>";
+    //print_r( $data );
+    //echo "</pre>";
+
+    print_r( wp_json_encode( $data ) );
+
+    wp_die();
+  }
 
   /** CHECK IF THE CONTENT HAS THE SHORTCODE */
 	function has_shortcode( $content, $tag ) {
@@ -68,8 +95,34 @@ class CHOROPLETH_MAP extends SOAH_BASE{
   function shortcode( $atts ){
 
 		$atts = shortcode_atts( array(
-			'title'	=> 'A Simple Choropleth Map'
+			'title'	=> 'A Simple Choropleth Map',
+      'url'   => admin_url('admin-ajax.php?action=map_data')
 		), $atts, 'soah_map' );
+
+    $atts['color_rules'] = array(
+      'default' => '#EDE7F6',
+      'min'	=> array(
+        'value'	=> 30,
+        'color'	=> '#B39DDB'
+      ),
+      'max'	=> array(
+        'value'	=> 85,
+        'color'	=> '#311B92'
+      ),
+      'ranges'  => array(
+        array(
+          'min_value' => 60,
+          'max_value'	=> 85,
+          'color'			=> '#5E35B1'
+        ),
+        array(
+          'min_value' => 30,
+          'max_value'	=> 59,
+          'color'			=> '#7E57C2'
+        ),
+      )
+    );
+
 
 		ob_start();
 		_e( "<div data-atts='".wp_json_encode( $atts )."' style='margin-top:80px;' data-behaviour='choropleth-map'></div>" );
