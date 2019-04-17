@@ -23,7 +23,7 @@ jQuery(document).ready(function(){
 
   //Add multiple image fields
   jQuery('[data-behaviour~=multiple-image]').each( function(){
-    var imageCount = 0;//imagecounter
+    var imageCount = 0;     //imagecounter
 
     var $wrapperImage = jQuery( document.createElement('div') );
     $wrapperImage.addClass('wrapperImage');
@@ -159,7 +159,7 @@ jQuery(document).ready(function(){
     jQuery('.form-alert').show();
     return false;
   }
-  
+
 
   function formCheck( $slide ){
 
