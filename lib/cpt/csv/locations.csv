@@ -1,50 +1,54 @@
 District,State
-North Middle Andaman,Andaman Nicobar
-South Andaman,Andaman Nicobar
+Nicobar,Andaman & Nicobar Island
+North & Middle Andaman,Andaman & Nicobar Island
+South Andaman,Andaman & Nicobar Island
+Kadapa,Andhra Pradesh
+Nellore,Andhra Pradesh
 Anantapur,Andhra Pradesh
 Chittoor,Andhra Pradesh
 East Godavari,Andhra Pradesh
 Guntur,Andhra Pradesh
-Kadapa,Andhra Pradesh
 Krishna,Andhra Pradesh
 Kurnool,Andhra Pradesh
-Nellore,Andhra Pradesh
 Prakasam,Andhra Pradesh
 Srikakulam,Andhra Pradesh
 Visakhapatnam,Andhra Pradesh
 Vizianagaram,Andhra Pradesh
 West Godavari,Andhra Pradesh
-Anjaw,Arunachal Pradesh
 Central Siang,Arunachal Pradesh
+Kamle,Arunachal Pradesh
+Kra Daadi,Arunachal Pradesh
+Lepa Rada,Arunachal Pradesh
+Longding,Arunachal Pradesh
+Lower Siang,Arunachal Pradesh
+Namsai,Arunachal Pradesh
+Pakke Kessang,Arunachal Pradesh
+Shi Yomi,Arunachal Pradesh
+Anjaw,Arunachal Pradesh
 Changlang,Arunachal Pradesh
 Dibang Valley,Arunachal Pradesh
 East Kameng,Arunachal Pradesh
 East Siang,Arunachal Pradesh
-Kamle,Arunachal Pradesh
-Kra Daadi,Arunachal Pradesh
 Kurung Kumey,Arunachal Pradesh
-Lepa Rada,Arunachal Pradesh
 Lohit,Arunachal Pradesh
-Longding,Arunachal Pradesh
 Lower Dibang Valley,Arunachal Pradesh
-Lower Siang,Arunachal Pradesh
 Lower Subansiri,Arunachal Pradesh
-Namsai,Arunachal Pradesh
-Pakke Kessang,Arunachal Pradesh
 Papum Pare,Arunachal Pradesh
-Shi Yomi,Arunachal Pradesh
 Tawang,Arunachal Pradesh
 Tirap,Arunachal Pradesh
 Upper Siang,Arunachal Pradesh
 Upper Subansiri,Arunachal Pradesh
 West Kameng,Arunachal Pradesh
 West Siang,Arunachal Pradesh
+Biswanath,Assam
+Charaideo,Assam
+Hojai,Assam
+Majuli,Assam
+South Salmara-Mankachar,Assam
 Baksa,Assam
 Barpeta,Assam
-Biswanath,Assam
 Bongaigaon,Assam
 Cachar,Assam
-Charaideo,Assam
 Chirang,Assam
 Darrang,Assam
 Dhemaji,Assam
@@ -54,7 +58,6 @@ Dima Hasao,Assam
 Goalpara,Assam
 Golaghat,Assam
 Hailakandi,Assam
-Hojai,Assam
 Jorhat,Assam
 Kamrup,Assam
 Kamrup Metropolitan,Assam
@@ -62,16 +65,13 @@ Karbi Anglong,Assam
 Karimganj,Assam
 Kokrajhar,Assam
 Lakhimpur,Assam
-Majuli,Assam
 Morigaon,Assam
 Nagaon,Assam
 Nalbari,Assam
 Sivasagar,Assam
 Sonitpur,Assam
-South Salmara-Mankachar,Assam
 Tinsukia,Assam
 Udalguri,Assam
-West Karbi Anglong,Assam
 Araria,Bihar
 Arwal,Bihar
 Aurangabad,Bihar
@@ -113,86 +113,86 @@ West Champaran,Bihar
 Chandigarh,Chandigarh
 Balod,Chhattisgarh
 Baloda Bazar,Chhattisgarh
+Bemetara,Chhattisgarh
+Dantewada,Chhattisgarh
+Gariaband,Chhattisgarh
+Kanker,Chhattisgarh
+Kondagaon,Chhattisgarh
+Mungeli,Chhattisgarh
+Sukma,Chhattisgarh
+Surajpur,Chhattisgarh
 Balrampur,Chhattisgarh
 Bastar,Chhattisgarh
-Bemetara,Chhattisgarh
 Bijapur,Chhattisgarh
 Bilaspur,Chhattisgarh
-Dantewada,Chhattisgarh
 Dhamtari,Chhattisgarh
 Durg,Chhattisgarh
-Gariaband,Chhattisgarh
 Janjgir Champa,Chhattisgarh
 Jashpur,Chhattisgarh
 Kabirdham,Chhattisgarh
-Kanker,Chhattisgarh
-Kondagaon,Chhattisgarh
 Korba,Chhattisgarh
 Koriya,Chhattisgarh
 Mahasamund,Chhattisgarh
-Mungeli,Chhattisgarh
 Narayanpur,Chhattisgarh
 Raigarh,Chhattisgarh
 Raipur,Chhattisgarh
 Rajnandgaon,Chhattisgarh
-Sukma,Chhattisgarh
-Surajpur,Chhattisgarh
 Surguja,Chhattisgarh
 Dadra Nagar Haveli,Dadra Nagar Haveli
 Daman,Daman Diu
 Diu,Daman Diu
-Central Delhi,Delhi
-East Delhi,Delhi
-New Delhi,Delhi
-North Delhi,Delhi
-North East Delhi,Delhi
-North West Delhi,Delhi
-Shahdara,Delhi
-South Delhi,Delhi
-South East Delhi,Delhi
-South West Delhi,Delhi
-West Delhi,Delhi
+Central Delhi,NCT of Delhi
+East Delhi,NCT of Delhi
+North Delhi,NCT of Delhi
+North East Delhi,NCT of Delhi
+North West Delhi,NCT of Delhi
+Shahdara,NCT of Delhi
+South Delhi,NCT of Delhi
+South East Delhi,NCT of Delhi
+South West Delhi,NCT of Delhi
+West Delhi,NCT of Delhi
+New Delhi,NCT of Delhi
 North Goa,Goa
 South Goa,Goa
 Ahmedabad,Gujarat
-Amreli,Gujarat
-Anand,Gujarat
 Aravalli,Gujarat
 Banaskantha,Gujarat
-Bharuch,Gujarat
-Bhavnagar,Gujarat
 Botad,Gujarat
 Chhota Udaipur,Gujarat
 Dahod,Gujarat
-Dang,Gujarat
+Dangs,Gujarat
 Devbhoomi Dwarka,Gujarat
-Gandhinagar,Gujarat
 Gir Somnath,Gujarat
-Jamnagar,Gujarat
-Junagadh,Gujarat
-Kheda,Gujarat
-Kutch,Gujarat
+Kutchh,Gujarat
 Mahisagar,Gujarat
 Mehsana,Gujarat
 Morbi,Gujarat
+Panchmahal,Gujarat
+Sabarkantha,Gujarat
+Amreli,Gujarat
+Anand,Gujarat
+Bharuch,Gujarat
+Bhavnagar,Gujarat
+Gandhinagar,Gujarat
+Jamnagar,Gujarat
+Junagadh,Gujarat
+Kheda,Gujarat
 Narmada,Gujarat
 Navsari,Gujarat
-Panchmahal,Gujarat
 Patan,Gujarat
 Porbandar,Gujarat
 Rajkot,Gujarat
-Sabarkantha,Gujarat
 Surat,Gujarat
 Surendranagar,Gujarat
 Tapi,Gujarat
 Vadodara,Gujarat
 Valsad,Gujarat
+Charkhi Dadri,Haryana
+Gurugram,Haryana
 Ambala,Haryana
 Bhiwani,Haryana
-Charkhi Dadri,Haryana
 Faridabad,Haryana
 Fatehabad,Haryana
-Gurugram,Haryana
 Hisar,Haryana
 Jhajjar,Haryana
 Jind,Haryana
@@ -209,22 +209,25 @@ Rohtak,Haryana
 Sirsa,Haryana
 Sonipat,Haryana
 Yamunanagar,Haryana
+Lahaul & Spiti,Himachal Pradesh
 Bilaspur,Himachal Pradesh
 Chamba,Himachal Pradesh
 Hamirpur,Himachal Pradesh
 Kangra,Himachal Pradesh
 Kinnaur,Himachal Pradesh
 Kullu,Himachal Pradesh
-Lahaul Spiti,Himachal Pradesh
 Mandi,Himachal Pradesh
 Shimla,Himachal Pradesh
 Sirmaur,Himachal Pradesh
 Solan,Himachal Pradesh
 Una,Himachal Pradesh
-Anantnag,Jammu Kashmir
 Bandipora,Jammu Kashmir
 Baramulla,Jammu Kashmir
 Budgam,Jammu Kashmir
+Leh,Jammu Kashmir
+Poonch,Jammu Kashmir
+Shopian,Jammu Kashmir
+Anantnag,Jammu Kashmir
 Doda,Jammu Kashmir
 Ganderbal,Jammu Kashmir
 Jammu,Jammu Kashmir
@@ -233,22 +236,23 @@ Kathua,Jammu Kashmir
 Kishtwar,Jammu Kashmir
 Kulgam,Jammu Kashmir
 Kupwara,Jammu Kashmir
-Leh,Jammu Kashmir
-Poonch,Jammu Kashmir
 Pulwama,Jammu Kashmir
 Rajouri,Jammu Kashmir
 Ramban,Jammu Kashmir
 Reasi,Jammu Kashmir
 Samba,Jammu Kashmir
-Shopian,Jammu Kashmir
 Srinagar,Jammu Kashmir
 Udhampur,Jammu Kashmir
+East Singhbhum,Jharkhand
+Koderma,Jharkhand
+Sahebganj,Jharkhand
+Saraikela Kharsawan,Jharkhand
+West Singhbhum,Jharkhand
 Bokaro,Jharkhand
 Chatra,Jharkhand
 Deoghar,Jharkhand
 Dhanbad,Jharkhand
 Dumka,Jharkhand
-East Singhbhum,Jharkhand
 Garhwa,Jharkhand
 Giridih,Jharkhand
 Godda,Jharkhand
@@ -256,27 +260,23 @@ Gumla,Jharkhand
 Hazaribagh,Jharkhand
 Jamtara,Jharkhand
 Khunti,Jharkhand
-Koderma,Jharkhand
 Latehar,Jharkhand
 Lohardaga,Jharkhand
 Pakur,Jharkhand
 Palamu,Jharkhand
 Ramgarh,Jharkhand
 Ranchi,Jharkhand
-Sahebganj,Jharkhand
-Seraikela Kharsawan,Jharkhand
 Simdega,Jharkhand
-West Singhbhum,Jharkhand
+Bangalore Urban,Karnataka
+Chamarajanagar,Karnataka
+Chikkaballapur,Karnataka
+Chikmagalur,Karnataka
+Vijayapura ,Karnataka
 Bagalkot,Karnataka
 Bangalore Rural,Karnataka
-Bangalore Urban,Karnataka
 Belgaum,Karnataka
 Bellary,Karnataka
 Bidar,Karnataka
-Vijayapura ,Karnataka
-Chamarajanagar,Karnataka
-Chikkaballapur,Karnataka
-Chikkamagaluru,Karnataka
 Chitradurga,Karnataka
 Dakshina Kannada,Karnataka
 Davanagere,Karnataka
@@ -313,6 +313,9 @@ Thrissur,Kerala
 Wayanad,Kerala
 Lakshadweep,Lakshadweep
 Agar Malwa,Madhya Pradesh
+Khandwa,Madhya Pradesh
+Khargone,Madhya Pradesh
+Narsinghpur,Madhya Pradesh
 Alirajpur,Madhya Pradesh
 Anuppur,Madhya Pradesh
 Ashoknagar,Madhya Pradesh
@@ -337,12 +340,9 @@ Indore,Madhya Pradesh
 Jabalpur,Madhya Pradesh
 Jhabua,Madhya Pradesh
 Katni,Madhya Pradesh
-Khandwa,Madhya Pradesh
-Khargone,Madhya Pradesh
 Mandla,Madhya Pradesh
 Mandsaur,Madhya Pradesh
 Morena,Madhya Pradesh
-Narsinghpur,Madhya Pradesh
 Neemuch,Madhya Pradesh
 Panna,Madhya Pradesh
 Raisen,Madhya Pradesh
@@ -364,32 +364,32 @@ Ujjain,Madhya Pradesh
 Umaria,Madhya Pradesh
 Vidisha,Madhya Pradesh
 Ahmednagar,Maharashtra
+Beed,Maharashtra
+Buldhana,Maharashtra
+Gadchiroli,Maharashtra
+Gondiya,Maharashtra
+Mumbai City,Maharashtra
+Palghar,Maharashtra
+Raigarh,Maharashtra
 Akola,Maharashtra
 Amravati,Maharashtra
 Aurangabad,Maharashtra
-Beed,Maharashtra
 Bhandara,Maharashtra
-Buldhana,Maharashtra
 Chandrapur,Maharashtra
 Dhule,Maharashtra
-Gadchiroli,Maharashtra
-Gondia,Maharashtra
 Hingoli,Maharashtra
 Jalgaon,Maharashtra
 Jalna,Maharashtra
 Kolhapur,Maharashtra
 Latur,Maharashtra
-Mumbai City,Maharashtra
 Mumbai Suburban,Maharashtra
 Nagpur,Maharashtra
 Nanded,Maharashtra
 Nandurbar,Maharashtra
 Nashik,Maharashtra
 Osmanabad,Maharashtra
-Palghar,Maharashtra
 Parbhani,Maharashtra
 Pune,Maharashtra
-Raigad,Maharashtra
 Ratnagiri,Maharashtra
 Sangli,Maharashtra
 Satara,Maharashtra
@@ -399,37 +399,36 @@ Thane,Maharashtra
 Wardha,Maharashtra
 Washim,Maharashtra
 Yavatmal,Maharashtra
-Bishnupur,Manipur
-Chandel,Manipur
-Churachandpur,Manipur
-Imphal East,Manipur
-Imphal West,Manipur
 Jiribam,Manipur
 Kakching,Manipur
 Kamjong,Manipur
 Kangpokpi,Manipur
 Noney,Manipur
 Pherzawl,Manipur
+Tengnoupal,Manipur
+Bishnupur,Manipur
+Chandel,Manipur
+Churachandpur,Manipur
+Imphal East,Manipur
+Imphal West,Manipur
 Senapati,Manipur
 Tamenglong,Manipur
-Tengnoupal,Manipur
 Thoubal,Manipur
 Ukhrul,Manipur
-East Garo Hills,Meghalaya
-East Jaintia Hills,Meghalaya
-East Khasi Hills,Meghalaya
 North Garo Hills,Meghalaya
-Ri Bhoi,Meghalaya
-South Garo Hills,Meghalaya
 South West Garo Hills,Meghalaya
 South West Khasi Hills,Meghalaya
+Jaintia Hills,Meghalaya
+East Garo Hills,Meghalaya
+East Khasi Hills,Meghalaya
+Ri Bhoi,Meghalaya
+South Garo Hills,Meghalaya
 West Garo Hills,Meghalaya
-West Jaintia Hills,Meghalaya
 West Khasi Hills,Meghalaya
+Lawangtlai,Mizoram
 Aizawl,Mizoram
 Champhai,Mizoram
 Kolasib,Mizoram
-Lawngtlai,Mizoram
 Lunglei,Mizoram
 Mamit,Mizoram
 Saiha,Mizoram
@@ -445,19 +444,21 @@ Phek,Nagaland
 Tuensang,Nagaland
 Wokha,Nagaland
 Zunheboto,Nagaland
-Angul,Odisha
-Balangir,Odisha
+Anugul,Odisha
 Balasore,Odisha
+Boudh,Odisha
+Jagatsinghpur,Odisha
+Jajpur,Odisha
+Nabarangpur,Odisha
+Sundargarh,Odisha
+Balangir,Odisha
 Bargarh,Odisha
 Bhadrak,Odisha
-Boudh,Odisha
 Cuttack,Odisha
 Debagarh,Odisha
 Dhenkanal,Odisha
 Gajapati,Odisha
 Ganjam,Odisha
-Jagatsinghpur,Odisha
-Jajpur,Odisha
 Jharsuguda,Odisha
 Kalahandi,Odisha
 Kandhamal,Odisha
@@ -467,24 +468,25 @@ Khordha,Odisha
 Koraput,Odisha
 Malkangiri,Odisha
 Mayurbhanj,Odisha
-Nabarangpur,Odisha
 Nayagarh,Odisha
 Nuapada,Odisha
 Puri,Odisha
 Rayagada,Odisha
 Sambalpur,Odisha
 Subarnapur,Odisha
-Sundergarh,Odisha
 Karaikal,Puducherry
 Mahe,Puducherry
 Puducherry,Puducherry
 Yanam,Puducherry
+Fazilka,Punjab
+Sahibzada Ajit Singh Nagar,Punjab
+Pathankot,Punjab
+Shahid Bhagat Singh Nagar,Punjab
 Amritsar,Punjab
 Barnala,Punjab
 Bathinda,Punjab
 Faridkot,Punjab
 Fatehgarh Sahib,Punjab
-Fazilka,Punjab
 Firozpur,Punjab
 Gurdaspur,Punjab
 Hoshiarpur,Punjab
@@ -493,14 +495,15 @@ Kapurthala,Punjab
 Ludhiana,Punjab
 Mansa,Punjab
 Moga,Punjab
-Mohali,Punjab
 Muktsar,Punjab
-Pathankot,Punjab
 Patiala,Punjab
 Rupnagar,Punjab
 Sangrur,Punjab
-Shaheed Bhagat Singh Nagar,Punjab
 Tarn Taran,Punjab
+Chittaurgarh,Rajasthan
+Dholpur,Rajasthan
+Jalor,Rajasthan
+Jhunjhunu,Rajasthan
 Ajmer,Rajasthan
 Alwar,Rajasthan
 Banswara,Rajasthan
@@ -510,18 +513,14 @@ Bharatpur,Rajasthan
 Bhilwara,Rajasthan
 Bikaner,Rajasthan
 Bundi,Rajasthan
-Chittorgarh,Rajasthan
 Churu,Rajasthan
 Dausa,Rajasthan
-Dholpur,Rajasthan
 Dungarpur,Rajasthan
 Ganganagar,Rajasthan
 Hanumangarh,Rajasthan
 Jaipur,Rajasthan
 Jaisalmer,Rajasthan
-Jalore,Rajasthan
 Jhalawar,Rajasthan
-Jhunjhunu,Rajasthan
 Jodhpur,Rajasthan
 Karauli,Rajasthan
 Kota,Rajasthan
@@ -538,6 +537,14 @@ East Sikkim,Sikkim
 North Sikkim,Sikkim
 South Sikkim,Sikkim
 West Sikkim,Sikkim
+Kanchipuram,Tamil Nadu
+Kanyakumari,Tamil Nadu
+Nagapattinam,Tamil Nadu
+Nilgiris,Tamil Nadu
+Thoothukkudi,Tamil Nadu
+Thiruvallur,Tamil Nadu
+Thiruvarur,Tamil Nadu
+Virudhunagar,Tamil Nadu
 Ariyalur,Tamil Nadu
 Chennai,Tamil Nadu
 Coimbatore,Tamil Nadu
@@ -545,14 +552,10 @@ Cuddalore,Tamil Nadu
 Dharmapuri,Tamil Nadu
 Dindigul,Tamil Nadu
 Erode,Tamil Nadu
-Kanchipuram,Tamil Nadu
-Kanyakumari,Tamil Nadu
 Karur,Tamil Nadu
 Krishnagiri,Tamil Nadu
 Madurai,Tamil Nadu
-Nagapattinam,Tamil Nadu
 Namakkal,Tamil Nadu
-Nilgiris,Tamil Nadu
 Perambalur,Tamil Nadu
 Pudukkottai,Tamil Nadu
 Ramanathapuram,Tamil Nadu
@@ -560,39 +563,35 @@ Salem,Tamil Nadu
 Sivaganga,Tamil Nadu
 Thanjavur,Tamil Nadu
 Theni,Tamil Nadu
-Thoothukudi,Tamil Nadu
 Tiruchirappalli,Tamil Nadu
 Tirunelveli,Tamil Nadu
 Tiruppur,Tamil Nadu
-Tiruvallur,Tamil Nadu
 Tiruvannamalai,Tamil Nadu
-Tiruvarur,Tamil Nadu
 Vellore,Tamil Nadu
 Viluppuram,Tamil Nadu
-Virudhunagar,Tamil Nadu
+Jayashankar Bhupalapally,Telangana
+Jogulamba Gadwal,Telangana
+Komarambheem,Telangana
+Mahabubnagar,Telangana
+Medchal,Telangana
+Rangareddy,Telangana
 Adilabad,Telangana
 Bhadradri Kothagudem,Telangana
 Hyderabad,Telangana
 Jagtial,Telangana
 Jangaon,Telangana
-Jayashankar,Telangana
-Jogulamba,Telangana
 Kamareddy,Telangana
 Karimnagar,Telangana
 Khammam,Telangana
-Komaram Bheem,Telangana
 Mahabubabad,Telangana
-Mahbubnagar,Telangana
 Mancherial,Telangana
 Medak,Telangana
-Medchal,Telangana
 Nagarkurnool,Telangana
 Nalgonda,Telangana
 Nirmal,Telangana
 Nizamabad,Telangana
 Peddapalli,Telangana
 Rajanna Sircilla,Telangana
-Ranga Reddy,Telangana
 Sangareddy,Telangana
 Siddipet,Telangana
 Suryapet,Telangana
@@ -601,20 +600,31 @@ Wanaparthy,Telangana
 Warangal Rural,Telangana
 Warangal Urban,Telangana
 Yadadri Bhuvanagiri,Telangana
-Dhalai,Tripura
 Gomati,Tripura
 Khowai,Tripura
-North Tripura,Tripura
 Sepahijala,Tripura
-South Tripura,Tripura
 Unakoti,Tripura
+Dhalai,Tripura
+North Tripura,Tripura
+South Tripura,Tripura
 West Tripura,Tripura
+Amethi,Uttar Pradesh
+Jyotiba Phule Nagar,Uttar Pradesh
+Ayodhya,Uttar Pradesh
+Barabanki,Uttar Pradesh
+Bhadohi,Uttar Pradesh
+Hapur,Uttar Pradesh
+Hathras,Uttar Pradesh
+Kasganj,Uttar Pradesh
+Prayagraj,Uttar Pradesh
+Rae Bareli,Uttar Pradesh
+Sambhal,Uttar Pradesh
+Shamli,Uttar Pradesh
+Shrawasti,Uttar Pradesh
+Siddharth Nagar,Uttar Pradesh
 Agra,Uttar Pradesh
 Aligarh,Uttar Pradesh
-Prayag Raj,Uttar Pradesh
 Ambedkar Nagar,Uttar Pradesh
-Amethi,Uttar Pradesh
-Amroha,Uttar Pradesh
 Auraiya,Uttar Pradesh
 Azamgarh,Uttar Pradesh
 Baghpat,Uttar Pradesh
@@ -622,10 +632,8 @@ Bahraich,Uttar Pradesh
 Ballia,Uttar Pradesh
 Balrampur,Uttar Pradesh
 Banda,Uttar Pradesh
-Barabanki,Uttar Pradesh
 Bareilly,Uttar Pradesh
 Basti,Uttar Pradesh
-Bhadohi,Uttar Pradesh
 Bijnor,Uttar Pradesh
 Budaun,Uttar Pradesh
 Bulandshahr,Uttar Pradesh
@@ -634,7 +642,6 @@ Chitrakoot,Uttar Pradesh
 Deoria,Uttar Pradesh
 Etah,Uttar Pradesh
 Etawah,Uttar Pradesh
-Ayodhya,Uttar Pradesh
 Farrukhabad,Uttar Pradesh
 Fatehpur,Uttar Pradesh
 Firozabad,Uttar Pradesh
@@ -644,16 +651,13 @@ Ghazipur,Uttar Pradesh
 Gonda,Uttar Pradesh
 Gorakhpur,Uttar Pradesh
 Hamirpur,Uttar Pradesh
-Hapur,Uttar Pradesh
 Hardoi,Uttar Pradesh
-Hathras,Uttar Pradesh
 Jalaun,Uttar Pradesh
 Jaunpur,Uttar Pradesh
 Jhansi,Uttar Pradesh
 Kannauj,Uttar Pradesh
 Kanpur Dehat,Uttar Pradesh
 Kanpur Nagar,Uttar Pradesh
-Kasganj,Uttar Pradesh
 Kaushambi,Uttar Pradesh
 Kheri,Uttar Pradesh
 Kushinagar,Uttar Pradesh
@@ -670,53 +674,48 @@ Moradabad,Uttar Pradesh
 Muzaffarnagar,Uttar Pradesh
 Pilibhit,Uttar Pradesh
 Pratapgarh,Uttar Pradesh
-Raebareli,Uttar Pradesh
 Rampur,Uttar Pradesh
 Saharanpur,Uttar Pradesh
-Sambhal,Uttar Pradesh
 Sant Kabir Nagar,Uttar Pradesh
 Shahjahanpur,Uttar Pradesh
-Shamli,Uttar Pradesh
-Shravasti,Uttar Pradesh
-Siddharthnagar,Uttar Pradesh
 Sitapur,Uttar Pradesh
 Sonbhadra,Uttar Pradesh
 Sultanpur,Uttar Pradesh
 Unnao,Uttar Pradesh
 Varanasi,Uttar Pradesh
+Haridwar,Uttarakhand
+Pauri,Uttarakhand
+Tehri Garhwal,Uttarakhand
 Almora,Uttarakhand
 Bageshwar,Uttarakhand
 Chamoli,Uttarakhand
 Champawat,Uttarakhand
 Dehradun,Uttarakhand
-Haridwar,Uttarakhand
 Nainital,Uttarakhand
-Pauri,Uttarakhand
 Pithoragarh,Uttarakhand
 Rudraprayag,Uttarakhand
-Tehri,Uttarakhand
 Udham Singh Nagar,Uttarakhand
 Uttarkashi,Uttarakhand
 Alipurduar,West Bengal
-Bankura,West Bengal
-Birbhum,West Bengal
 Cooch Behar,West Bengal
-Dakshin Dinajpur,West Bengal
 Darjeeling,West Bengal
 Hooghly,West Bengal
 Howrah,West Bengal
-Jalpaiguri,West Bengal
 Jhargram,West Bengal
 Kalimpong,West Bengal
-Kolkata,West Bengal
 Malda,West Bengal
-Murshidabad,West Bengal
-Nadia,West Bengal
-North 24 Parganas,West Bengal
 Paschim Bardhaman,West Bengal
 Paschim Medinipur,West Bengal
 Purba Bardhaman,West Bengal
-Purba Medinipur,West Bengal
 Purulia,West Bengal
+Bankura,West Bengal
+Birbhum,West Bengal
+Dakshin Dinajpur,West Bengal
+Jalpaiguri,West Bengal
+Kolkata,West Bengal
+Murshidabad,West Bengal
+Nadia,West Bengal
+North 24 Parganas,West Bengal
+Purba Medinipur,West Bengal
 South 24 Parganas,West Bengal
 Uttar Dinajpur,West Bengal
