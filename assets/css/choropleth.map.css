@@ -1,0 +1,83 @@
+[data-behaviour~=choropleth-map]{
+  position: relative;
+  margin-top: 100px;
+}
+
+[data-behaviour~=choropleth-map] #map{width:100%;height:100vh;}
+
+[data-behaviour~=choropleth-map] .loader{
+    width:100%;
+    height:100%;
+    background-color: #fff;
+    padding-top:30px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 10000;
+}
+[data-behaviour~=choropleth-map] .loadtext{
+    color:#555;
+    text-align: center;
+}
+[data-behaviour~=choropleth-map] .leaflet-popup-content table {max-width:100%;padding:0 5px;font-size:13px;}
+[data-behaviour~=choropleth-map] table th,[data-behaviour~=choropleth-map] table td {border:1px solid #eee;padding:3px;text-align: center;}
+[data-behaviour~=choropleth-map] .key {
+  	position:absolute;
+   	bottom:20px;
+   	right:10px;
+   	line-height: 18px;
+   	color: #555;
+   	border-radius: 10px;
+  	background: rgba(255,255,255,0.8);
+   	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+   	padding:10px;
+   	max-width:350px;
+}
+[data-behaviour~=choropleth-map] .key i {
+	font-style: normal;
+	display: inline-block;
+	font-size: 13px;
+}
+[data-behaviour~=choropleth-map] .key p {font-size: 13px;}
+
+[data-behaviour~=choropleth-map] .boxed{
+	width:4px;
+	height:4px;
+	border:1px solid #ddd;
+	margin:0 5px;
+}
+
+[data-behaviour~=choropleth-map] .lowest{background-color:#f21202;}
+[data-behaviour~=choropleth-map] .low{background-color:#ef5f21;}
+[data-behaviour~=choropleth-map] .high{background-color:#ede20e;}
+[data-behaviour~=choropleth-map] .highest{background-color:#9bd608;}
+
+[data-behaviour~=choropleth-map] .title{
+	position: absolute;
+	z-index: 500;
+	left:80px;
+	top:2px;
+	width:100%;
+  max-width: 350px;
+	/*background-color:rgba(255,255,255,0.5);*/
+	padding: 0;
+	text-shadow: 1px 1px 1px #303030;
+}
+[data-behaviour~=choropleth-map] .title a,[data-behaviour~=choropleth-map] .title button {
+	margin:17px 0px 10px 10px;
+}
+
+[data-behaviour~=choropleth-map] #close{}
+[data-behaviour~=choropleth-map] .open{
+	color:#fff;
+	font-size:12px;
+}
+[data-behaviour~=choropleth-map] .padded{padding:4px;border:1px solid #aaa;font-size:12px;}
+
+[data-behaviour~=choropleth-map] #info-panel::-webkit-scrollbar { width: 0 !important }
+
+[data-behaviour~=choropleth-map] .statelabel{
+  color:black;
+  font-size: 10px;
+  text-align: center;
+}

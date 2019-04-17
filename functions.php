@@ -1,30 +1,31 @@
 <?php
+
 include( 'lib/lib.php' );
+
 add_theme_support( 'post-thumbnails' );
+
+//Constant changes all the js and css version on the go
+define( 'SOAH_VERSION', '1.0.3' );
+
+
 //Load child stylesheet after parent stylesheet
 add_action('wp_enqueue_scripts', function(){
-  wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), '1.0.0' );
-  wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), '1.0.5' );
 
-  wp_enqueue_script( 'meteor-slides', get_stylesheet_directory_uri().'/assets/js/meteor-slides.js', array('jquery'), '1.0.0', true );
+  // LOAD THE CHILD THEME CSS
+  wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), SOAH_VERSION );
 
-  wp_enqueue_script( 'soah-main', get_stylesheet_directory_uri().'/assets/js/form.js', array('meteor-slides'), '1.0.4', true );
-  // wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?hl=hi', array(), '1.0.0', true );
+  // STYLES FOR THE FORM
+  wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), SOAH_VERSION );
+
+  // MULTIPART FORM
+  wp_enqueue_script( 'meteor-slides', get_stylesheet_directory_uri().'/assets/js/meteor-slides.js', array('jquery'), SOAH_VERSION, true );
+
+  // VALIDATION ON THE FORM
+  wp_enqueue_script( 'soah-main', get_stylesheet_directory_uri().'/assets/js/form.js', array('meteor-slides'), SOAH_VERSION, true );
+
 });
 
-/*
-//Add asyn defer for ReCaptcha
-add_filter( 'script_loader_tag', function( $tag, $handle, $src ){
-  $async_scripts = array( 'recaptcha' );
 
-  if ( in_array( $handle, $async_scripts ) ) {
-        // $src = 'https://www.google.com/recaptcha/api.js';
-        return '<script type="text/javascript" src="' . $src . '" async defer ></script>';
-  }
-
-  return $tag;
-}, 10, 3 );
-*/
 
 //Add google crimson text font
 add_filter( 'sp_list_google_fonts', function( $fonts ){
@@ -36,6 +37,9 @@ add_filter( 'sp_list_google_fonts', function( $fonts ){
   );
 
 } );
+
+
+
 
 //add new column to the admin dashboard
 add_filter( 'manage_reports_posts_columns', function( $columns ){
