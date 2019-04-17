@@ -159,25 +159,7 @@ jQuery(document).ready(function(){
     jQuery('.form-alert').show();
     return false;
   }
-  /*
-  function checkForEmpty( $el, el_type ){
-    if( ( $el.val() == 0 && el_type == 'select' ) || ( $el.val() == "" && el_type == 'text' ) ){
-      console.log('text');
-      var temp = errorMessage( "Required fields are empty." );
-      console.log( temp );
-      return temp;
-    }
-    if( el_type == 'checkbox' ){
-      var $parent = $el.closest('.form-required');
-      var num_checked = $parent.find('input[type="checkbox"]:checked').length;
-
-      if( num_checked <= 0 ){
-        return errorMessage( "Required checkbox fields are empty." );
-      }
-    }
-    return true;
-  }
-  */
+  
 
   function formCheck( $slide ){
 
