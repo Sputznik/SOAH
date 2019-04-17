@@ -194,13 +194,11 @@ jQuery(document).ready(function(){
       }
       //Phone Number validation
       else if( field.name === 'contact-phone' ){
-        numberField = field.value;
-        numberLength = numberField.length;
-        if(numberLength !=10){
+        if( field.value.length !=10 ){
           errorMessage( "Contact number must be a 10 digit number." );
   				flag = false;
         }
-        else if( !( numberField>=6000000000 && numberField<=9999999999 ) ){
+        else if( !( field.value >= 6000000000 && field.value <= 9999999999 ) ){
           errorMessage( "Contact number must be between 6000000000 and 9999999999." );
   				flag = false;
         }
