@@ -28,24 +28,7 @@
 				});
 			}
 
-      // CREATE ELEMENTS ON THE FLY
-      function createElements(){
 
-        var $loader = jQuery( document.createElement( 'div' ) );
-        $loader.addClass( 'loader' );
-        $loader.html( "<h3 class='loadtext'><i class='fa fa-spinner fa-spin'></i> Loading data, please wait..</h3>" );
-        $loader.appendTo( $el );
-
-        var $map = jQuery( document.createElement( 'div' ) );
-        $map.attr('id', 'map');
-        $map.appendTo( $el );
-
-        var $title = jQuery( document.createElement( 'div' ) );
-        $title.addClass('title');
-        $title.html( '<h1>' + atts['title'] + '</h1>' );
-        $title.appendTo( $el );
-
-      }
 
       function drawMap(){
 
@@ -169,9 +152,7 @@
       // INITIALIZE FUNCTION
       function init(){
 
-        // CREATE ALL THE DOM ELEMENTS FIRST
-        createElements();
-
+        
 				getData();
 
 

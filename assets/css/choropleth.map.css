@@ -15,7 +15,7 @@
     left:0;
     z-index: 10000;
 }
-[data-behaviour~=choropleth-map] .loadtext{
+[data-behaviour~=choropleth-map] .loader h3{
     color:#555;
     text-align: center;
 }

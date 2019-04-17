@@ -125,9 +125,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
 
 		ob_start();
-		_e( "<div data-atts='".wp_json_encode( $atts )."' style='margin-top:80px;' data-behaviour='choropleth-map'></div>" );
 
-    _e( "<style>.header3 .affix{ z-index: 1999; }</style>" );
+    include( "templates/map.php" );
 		return ob_get_clean();
 	}
 
