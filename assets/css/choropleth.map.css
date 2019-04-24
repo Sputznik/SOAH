@@ -3,7 +3,9 @@
   margin-top: 100px;
 }
 
-[data-behaviour~=choropleth-map] #map{width:100%;height:100vh;}
+[data-behaviour~=choropleth-map] #map {
+  width:100%;height:100vh;
+}
 
 [data-behaviour~=choropleth-map] .loader{
     width:100%;
@@ -80,4 +82,49 @@
   color:black;
   font-size: 10px;
   text-align: center;
+}
+
+[data-behaviour~=choropleth-map] .map_sidebar_open{
+  position: absolute;
+  z-index: 500;
+  top:10px;
+  right:10px;
+}
+
+[data-behaviour~=choropleth-map] .map_sidebar{
+  position: absolute;
+  z-index: 600;
+  width:40%;
+  background-color: #F5F5F5;
+  height:100vh;
+  top:0;
+  right:0;
+  padding: 15px;
+  border-left: 2px solid #444;
+  transition: all 1.0s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+  transform-origin: center right;
+  display: none;
+  opacity: 0;
+}
+
+[data-behaviour~=choropleth-map] .map_overlay{
+  display: none;
+  position: absolute;
+  z-index: 550;
+  width:100%;
+  background-color: rgba(0,0,0,0.6);
+  height:100vh;
+  opacity: 0;
+  top:0;
+  left:0;
+  transition: all 0.5s ease-in-out;
+}
+
+[data-behaviour~=choropleth-map] .activated{
+  display: block;
+  opacity: 1;
+}
+
+[data-behaviour~=choropleth-map] #map_sidebar_dismiss{
+
 }

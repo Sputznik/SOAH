@@ -20,7 +20,6 @@
 						data = json_data;
 
 
-
 						// RENDER THE MAP IN THE CORRECT DOM
 		        drawMap();
 
@@ -63,7 +62,7 @@
         //FOR DISTRICT POP UPS ON CLICK
         for ( var i = 0; i<data.length; i++ ){
           if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
-            return '<h4>'+data[i]["district"]+'</h4><p>' + data[i]["reports"] + ' incidents reported.</p>';
+            return '<h4>'+data[i]["district"]+', '+data[i]["state"]+'</h4><p>' + data[i]["reports"] + ' incidents reported.</p>';
           }
         }
       }
@@ -130,7 +129,11 @@
         //DISTRICT HIGHLIGHT ON MOUSEOVER
         var layer = e.target;
 
-        layer.setStyle( { fillOpacity: 0.3 } );
+        layer.setStyle( {
+					color:'yellow',
+					weight:3,
+					opacity:0.9
+				} );
         if ( !L.Browser.ie && !L.Browser.opera ) {
           layer.bringToFront();
         }
@@ -140,7 +143,9 @@
           //RESET HIGHLIGHT ON MOUSEOUT
           var layer = e.target;
           layer.setStyle({
-            fillOpacity: 0.6
+            color:'black',
+						weight:1,
+						opacity:0.4
           });
       }
 
@@ -149,10 +154,27 @@
         map.fitBounds(e.target.getBounds());
       }
 
+			$('#map_sidebar_dismiss, .map_overlay').on('click', function () {
+            // hide sidebar
+            $('.map_sidebar').removeClass('activated');
+            // hide overlay
+            $('.map_overlay').removeClass('activated');
+        });
+
+        $('#filter_form_open').on('click', function () {
+						console.log('clicked it');
+            // open sidebar
+            $('.map_sidebar').addClass('activated');
+            // fade in the overlay
+            $('.map_overlay').addClass('activated');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+
       // INITIALIZE FUNCTION
       function init(){
 
-        
+
 				getData();
 
 
