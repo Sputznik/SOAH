@@ -1,4 +1,4 @@
-<div data-atts='<?php _e( wp_json_encode( $atts ) );?>' style='margin-top:80px;' data-behaviour='choropleth-map'>
+<div data-atts='<?php _e( wp_json_encode( $atts ) );?>' style='margin-top:80px;overflow:hidden;' data-behaviour='choropleth-map'>
   <div class="loader">
     <h3><i class='fa fa-spinner fa-spin'></i> Loading data, please wait..</h3>
   </div>
@@ -24,14 +24,18 @@
     <p>Use the form below to fliter the data on the map</p>
     <hr >
     <form>
-      <label>Select State</label>
-      <select></select>
-      <br >
 
-      <label>Select incident category</label>
-      <input type="checkbox"> category name</input>
-      <br >
-      
+      <?php
+
+        echo do_shortcode('[orbit_filter label="Select State" type=tax form=dropdown typeval=locations tax_parent=0 tax_hide_empty=false]');
+
+        echo do_shortcode('[orbit_filter label="Select Report Type" type=tax form=bt_dropdown_checkboxes typeval=report-type tax_hide_empty=false]');
+
+        echo do_shortcode('[orbit_filter label="Select Victims" type=tax form=bt_dropdown_checkboxes typeval=victims tax_hide_empty=false]');
+
+      ?>
+
+
       <button type="submit" class="btn btn-success">
         <i class="fa fa-check"></i>
         <span>Apply Filter</span>

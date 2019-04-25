@@ -14,6 +14,11 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
 	}
 
+  function getStates(){
+    $terms = get_terms( 'locations', array( 'hide_empty' => false ) );
+    print_r( $terms );
+  }
+
   function map_data(){
 
     $data = array();

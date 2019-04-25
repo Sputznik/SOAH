@@ -94,7 +94,8 @@
 [data-behaviour~=choropleth-map] .map_sidebar{
   position: absolute;
   z-index: 600;
-  width:40%;
+  width: 100%;
+  max-width: 350px;
   background-color: #F5F5F5;
   height:100vh;
   top:0;
