@@ -5,13 +5,21 @@
 		return this.each(function() {
 
       var $el 			= jQuery( this ),
+				$form				= $el.find('form'),
 				data 				= [],
         atts  			= $el.data( 'atts' );
 
 
+			$form.on( 'submit', function( ev ){
+				ev.preventDefault();
+
+				getData();
+			});
+
 			function getData(){
 				jQuery.ajax({
 					'url'			: atts['url'],
+					'data'		: $form.serialize(),
 					'error'		: function(){ alert( 'Error has occurred' ); },
 					//'data'		: data,
 					'dataType'	: 'json',
@@ -19,6 +27,7 @@
 
 						data = json_data;
 
+						console.log( data );
 
 						// RENDER THE MAP IN THE CORRECT DOM
 		        drawMap();

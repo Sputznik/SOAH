@@ -14,22 +14,103 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
 	}
 
-  function getStates(){
-    $terms = get_terms( 'locations', array( 'hide_empty' => false ) );
-    print_r( $terms );
+  function getReportCount( $terms = array(), $year = 0 ){
+
+    $query_args = array(
+      'post_type'       => 'reports',
+      'posts_per_page'  =>  -1,
+    );
+
+    // ADD TERM PARAMS
+    if( is_array( $terms ) && count( $terms ) ){
+      $query_args['tax_query'] = array();
+      foreach( $terms as $term ){
+        $temp = array(
+          'taxonomy' =>  $term['taxonomy'],
+          'field'    =>  'name',
+          'terms'    =>  $term['values']
+        );
+        array_push( $query_args['tax_query'], $temp );
+      }
+    }
+
+    // ADD DATE PARAMS
+    if( $year > 0 ){
+      $query_args['date_query'] = array(
+        'year'  => $year
+      );
+    }
+
+    $query = new WP_Query( $query_args );
+
+    return $query->found_posts;
   }
 
   function map_data(){
 
-    $data = array();
-    $terms = get_terms( 'locations', array( 'hide_empty' => false ) );
-    foreach( $terms as $term ){
-      $temp = array(
-        'district'  => $term->name,
-        'reports'   => rand( 0, 100 )
-      );
-      array_push( $data, $temp );
+    $year = 0;
+    if( isset( $_GET['cf_year'] ) ){
+      $year = $_GET['cf_year'];
+    }
 
+    // GET STATE ID IF THE STATE NAME HAS BEEN PASSED
+    $state_id = 0;
+    if( isset( $_GET['tax_locations'] ) ){
+      $stateTerm = get_term_by( 'name', $_GET['tax_locations'], 'locations' );
+      if( isset( $stateTerm->term_id ) && $stateTerm->term_id ){
+        $state_id = $stateTerm->term_id;
+      }
+    }
+
+    // FINAL DATA
+    $data = array();
+
+    // QUERY THE LOCATIONS TABLE
+    $term_query_args = array(
+      'hide_empty'  => false,
+      'taxonomy'    => 'locations',
+      //'number'      => 5
+    );
+    if( $state_id ){
+      $term_query_args['child_of'] = $state_id;
+    }
+    $terms = get_terms( $term_query_args );
+
+    $extra_taxonomies = array('report-type', 'victims');
+
+    // ITERATE THROUGH EACH TERM - LOCATIONS WHICH IS INCLUSIVE OF STATE AND DISTRICTS
+    foreach( $terms as $term ){
+      if( $term->parent ){
+
+        $report_count_tax_args = array(
+          array(
+            'taxonomy'  => 'locations',
+            'values'    => array( $term->name )
+          )
+        );
+
+        // NARROW DOWN THE COUNT BASED ON EXTRA TERMS OF TAXONOMIES THAT MAY BE PASSED
+        foreach( $extra_taxonomies as $taxonomy ){
+          $passed_terms = array();
+          if( isset( $_GET[ 'tax_'.$taxonomy ] ) ){
+            $passed_terms = $_GET[ 'tax_'.$taxonomy ];
+          }
+          if( is_array( $passed_terms ) && count( $passed_terms ) ){
+            array_push( $report_count_tax_args, array(
+              'taxonomy'  => $taxonomy,
+              'values'    => $passed_terms
+            ) );
+          }
+        }
+
+        $report_count = $this->getReportCount( $report_count_tax_args, $year );
+
+        $temp = array(
+          'district'  => $term->name,
+          'reports'   => $report_count > 0 ? $report_count : rand( 0, 100 )
+        );
+        array_push( $data, $temp );
+      }
     }
 
 
