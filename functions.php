@@ -84,70 +84,95 @@ add_filter('manage_reports_posts_custom_column', function( $columns ){
     }
 });
 
-add_action( 'admin_menu', function(){
-  add_menu_page( 'Theme Options', 'Theme Options', 'manage_options', 'soah-settings', 'menu_page', 'dashicons-admin-site' );
-} );
+class SOAH_ADMIN{
 
-
-function menu_page(){
-
-
-
-  /* ADD TAB SCREENS FOR EACH TAXONOMY IN THE SYSTEM */
-  $screens = array();
-  $taxonomies = get_object_taxonomies( 'reports', 'objects' );
-  $i = 0;
-  foreach( $taxonomies as $taxonomy ){
-    $screens[ $taxonomy->name ] = array(
-      'label'   => $taxonomy->label,
-      'tab'     => get_stylesheet_directory().'/lib/taxonomy_translation.php',
-    );
-    if( $i ){
-      $screens[ $taxonomy->name ][ 'action' ] = $taxonomy->name;
-    }
-    else{
-      $first_taxonomy = $taxonomy->name;
-    }
-    $i++;
+  function __construct(){
+    add_action( 'admin_menu', function(){
+      add_menu_page( 'Translations', 'SOAH Options', 'manage_options', 'soah-settings', array( $this, 'translations_page' ), 'dashicons-admin-site' );
+      add_submenu_page( 'soah-settings', 'Import', 'Import Reports', 'manage_options', 'import', array( $this, 'import_page') );
+    } );
   }
 
-  $screens = apply_filters( 'orbit_admin_translations_screens', $screens );
+  function import_page(){
 
-  $active_tab = '';
+    
+    $batch_process = ORBIT_BATCH_PROCESS::getInstance();
 
-  _e( '<div class="wrap">' );
-  _e( '<h1>Theme Translations</h1>' );
-  _e( '<h2 class="nav-tab-wrapper">' );
+    echo $batch_process->plain_shortcode( array(
+      'title'	      => '',
+      'desc'			  => '',
+      'batches'		  => 10,
+      'btn_text' 		=> 'Import CSV',
+      'batch_action'=> 'import_reports',
+      'params'		  => array(
+        'per_page'	=> 200,
+      )
+    ) );
 
-  foreach( $screens as $slug => $screen ){
-    $url =  admin_url( 'admin.php?page='.$_GET['page'] );
-    if( isset( $screen['action'] ) ){
-      $url =  esc_url( add_query_arg( array( 'action' => $screen['action'] ), admin_url( 'admin.php?page='.$_GET['page'] ) ) );
-    }
-
-    $nav_class = "nav-tab";
-
-    if( isset( $screen['action'] ) && isset( $_GET['action'] ) && $screen['action'] == $_GET['action'] ){
-      $nav_class .= " nav-tab-active";
-      $active_tab = $slug;
-    }
-
-    if( ! isset( $screen['action'] ) && ! isset( $_GET['action'] ) ){
-      $nav_class .= " nav-tab-active";
-      $active_tab = $slug;
-    }
-
-    echo '<a href="'.$url.'" class="'.$nav_class.'">'.$screen['label'].'</a>';
   }
 
-  _e( '</h2>' );
+  function translations_page(){
+
+    /* ADD TAB SCREENS FOR EACH TAXONOMY IN THE SYSTEM */
+    $screens = array();
+    $taxonomies = get_object_taxonomies( 'reports', 'objects' );
+    $i = 0;
+    foreach( $taxonomies as $taxonomy ){
+      $screens[ $taxonomy->name ] = array(
+        'label'   => $taxonomy->label,
+        'tab'     => get_stylesheet_directory().'/lib/taxonomy_translation.php',
+      );
+      if( $i ){
+        $screens[ $taxonomy->name ][ 'action' ] = $taxonomy->name;
+      }
+      else{
+        $first_taxonomy = $taxonomy->name;
+      }
+      $i++;
+    }
+
+    $screens = apply_filters( 'orbit_admin_translations_screens', $screens );
+
+    $active_tab = '';
+
+    _e( '<div class="wrap">' );
+    _e( '<h1>Theme Translations</h1>' );
+    _e( '<h2 class="nav-tab-wrapper">' );
+
+    foreach( $screens as $slug => $screen ){
+      $url =  admin_url( 'admin.php?page='.$_GET['page'] );
+      if( isset( $screen['action'] ) ){
+        $url =  esc_url( add_query_arg( array( 'action' => $screen['action'] ), admin_url( 'admin.php?page='.$_GET['page'] ) ) );
+      }
+
+      $nav_class = "nav-tab";
+
+      if( isset( $screen['action'] ) && isset( $_GET['action'] ) && $screen['action'] == $_GET['action'] ){
+        $nav_class .= " nav-tab-active";
+        $active_tab = $slug;
+      }
+
+      if( ! isset( $screen['action'] ) && ! isset( $_GET['action'] ) ){
+        $nav_class .= " nav-tab-active";
+        $active_tab = $slug;
+      }
+
+      echo '<a href="'.$url.'" class="'.$nav_class.'">'.$screen['label'].'</a>';
+    }
+
+    _e( '</h2>' );
 
 
 
-  if( file_exists( $screens[ $active_tab ][ 'tab' ] ) ){
-    include( $screens[ $active_tab ][ 'tab' ] );
+    if( file_exists( $screens[ $active_tab ][ 'tab' ] ) ){
+      include( $screens[ $active_tab ][ 'tab' ] );
+    }
+
+    _e( '</div>' );
+
   }
 
-  _e( '</div>' );
 
 }
+
+new SOAH_ADMIN;
