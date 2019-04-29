@@ -89,13 +89,59 @@ class SOAH_ADMIN{
   function __construct(){
     add_action( 'admin_menu', function(){
       add_menu_page( 'Translations', 'SOAH Options', 'manage_options', 'soah-settings', array( $this, 'translations_page' ), 'dashicons-admin-site' );
-      add_submenu_page( 'soah-settings', 'Import', 'Import Reports', 'manage_options', 'import', array( $this, 'import_page') );
+      //add_submenu_page( 'soah-settings', 'Import', 'Import Reports', 'manage_options', 'import', array( $this, 'import_page') );
+      //add_submenu_page( 'soah-settings', 'Demo', 'Demo', 'manage_options', 'demo', array( $this, 'demo_page') );
     } );
   }
+  /*
+  function demo_page(){
+
+    echo "Demo";
+
+    $arrayCsv = array(
+      array(
+        'post_title',
+        'post_content',
+        'tax_report-type',
+        'tax_locations',
+        'cf_contact-name'
+      ),
+      array(
+        'Sample Post 1',
+        'Not a lot of content',
+        'Blasphemy Laws',
+        'New Delhi',
+        'Samuel Thomas'
+      ),
+      array(
+        'Sample Post 2',
+        'Similar content as above',
+        'Blasphemy Laws',
+        'Noida',
+        'Betty Mary'
+      ),
+    );
+
+    $orbit_csv = ORBIT_CSV::getInstance();
+
+    $headerInfo = $orbit_csv->getHeaderInfo( $arrayCsv );
+
+    $selectedCsv = array_slice( $arrayCsv, 1 );
+    $orbit_csv->importPosts( $selectedCsv, $headerInfo, array( 'post_status' => 'publish', 'post_type'  => 'reports' ) );
+
+
+    echo "<pre>";
+
+    print_r( $headerInfo );
+
+    echo "</pre>";
+
+  }
+
 
   function import_page(){
 
-    
+
     $batch_process = ORBIT_BATCH_PROCESS::getInstance();
 
     echo $batch_process->plain_shortcode( array(
@@ -110,6 +156,7 @@ class SOAH_ADMIN{
     ) );
 
   }
+  */
 
   function translations_page(){
 

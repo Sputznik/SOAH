@@ -6,7 +6,7 @@ class CSV_HELPER extends SOAH_BASE{
 
 	function __construct(){
 
-		/* SAMPLE ACTION HOOK FOR AJAX CALL */
+		/* SAMPLE ACTION HOOK FOR AJAX CALL
     add_action('orbit_batch_action_import_reports', function(){
 
 			$offset = ( $_GET['orbit_batch_step'] - 1 ) * $_GET['per_page'];
@@ -26,10 +26,11 @@ class CSV_HELPER extends SOAH_BASE{
 			echo "<pre>";
 			print_r( $selected_array_csv );
 			echo "</pre>";
-			*/
+
 
 		});
-
+		*/
+		
 		add_action( 'wp_ajax_reset_locations', array( $this, 'reset_locations' ) );
 
 		add_action( 'wp_ajax_reset_reports', array( $this, 'reset_reports' ) );
@@ -78,7 +79,7 @@ class CSV_HELPER extends SOAH_BASE{
 	function slugify( $label ){
 		return preg_replace('/\s+/', '', strtoupper( $label ) );
 	}
-
+	/*
 	function import_reports( $selected_array_csv ){
 
 		$locations_arr = $this->getTermsArr('locations');
@@ -138,7 +139,7 @@ class CSV_HELPER extends SOAH_BASE{
 
 
 	}
-
+	*/
 
 
 
