@@ -78,6 +78,9 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     $extra_taxonomies = array('report-type', 'victims');
 
+
+    $max_count = 0;
+
     // ITERATE THROUGH EACH TERM - LOCATIONS WHICH IS INCLUSIVE OF STATE AND DISTRICTS
     foreach( $terms as $term ){
       if( $term->parent ){
@@ -105,14 +108,23 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
         $report_count = $this->getReportCount( $report_count_tax_args, $year );
 
+        if( $report_count > $max_count ){
+          $max_count = $report_count;
+        }
+
         $temp = array(
           'district'  => $term->name,
-          'reports'   => $report_count > 0 ? $report_count : rand( 0, 100 )
+          'reports'   => $report_count //> 0 ? $report_count : rand( 0, 100 )
         );
         array_push( $data, $temp );
       }
     }
 
+
+    foreach ( $data as $index => $row ) {
+      $data[ $index ]['percentile'] = round( ( $row['reports'] / $max_count ) * 100, 2 );
+      $row_i++;
+    }
 
     //echo "<pre>";
     //print_r( $data );
