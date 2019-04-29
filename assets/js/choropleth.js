@@ -9,14 +9,48 @@
 				data 				= [],
         atts  			= $el.data( 'atts' );
 
-
+			//Filter form submit
 			$form.on( 'submit', function( ev ){
 				ev.preventDefault();
+				console.log('refreshed');
 
 				getData();
+				// hide sidebar
+				$('.map_sidebar').removeClass('activated');
+				// hide overlay
+				$('.map_overlay').removeClass('activated');
 			});
 
+			// HIDE THE LOADER
+			$el.find('.loader').hide();
+
+			//SETUP BASEMAP WITH BLANK DISTRICT LAYER
+			var map = L.map('map').setView( [22.27, 80.37], 5 );
+			var gjLayerDist = L.geoJson();
+			gjLayerDist.addTo(map);
+
+			//var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
+			var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+			var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
+			var hyb = new L.TileLayer(hybUrl, {minZoom: 2, maxZoom: 18, attribution: hybAttrib, opacity:1}).addTo(map);
+			L.control.scale().addTo(map);
+
+			//ADD STATE BOUNDARIES
+			var statelines = {
+				"color":"#000",
+				"weight":2,
+				"opacity":1,
+				"fill":false
+			};
+
+			var gjLayerStates = L.geoJson( geoStates, { style: statelines } );
+			gjLayerStates.addTo(map);
+
+
+
+			//REQUEST FOR DISTRICT WISE DATA
 			function getData(){
+
 				jQuery.ajax({
 					'url'			: atts['url'],
 					'data'		: $form.serialize(),
@@ -29,8 +63,10 @@
 
 						console.log( data );
 
+						//REMOVE DISTRICTS LAYER FOR REFRESH
+						map.removeLayer(gjLayerDist);
 						// RENDER THE MAP IN THE CORRECT DOM
-		        drawMap();
+		        drawDistricts();
 
 					}
 				});
@@ -38,33 +74,21 @@
 
 
 
-      function drawMap(){
-
-        // HIDE THE LOADER
-        $el.find('.loader').hide();
-
-        //SETUP BASEMAP
-        var map = L.map('map').setView( [22.27, 80.37], 5 );
-
-        //var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
-        var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-        var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-        var hyb = new L.TileLayer(hybUrl, {minZoom: 2, maxZoom: 18, attribution: hybAttrib, opacity:1}).addTo(map);
+      function drawDistricts(){
 
         //ADD DISTRICT BOUNDARIES
-        var gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist } );
+        gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
         gjLayerDist.addTo(map);
+				map.fitBounds(gjLayerDist.getBounds());
 
-        //ADD STATE BOUNDARIES
-        var statelines = {
-          "color":"#000",
-          "weight":1,
-          "opacity":1,
-          "fill":false
-        };
+				//ONLY ADD DISTRICTS THAT ARE AVAILABLE IN THE DATA
+				function matchDistricts(feature) {
+					for (var k = 0; k<data.length; k++) {
+						if (feature.properties["DISTRICT"] == data[k]["district"]) return true;
+					}
+					return false;
+				}
 
-        var gjLayerStates = L.geoJson( geoStates, { style: statelines } );
-        gjLayerStates.addTo(map);
       }
 
       function popContent( feature ) {
@@ -77,7 +101,7 @@
       }
 
       function styledist( feature ) {
-
+				//NEEDS TO BE UPDATED ACCORDING TO QUARTILE SYSTEM
 				var color_rules = atts['color_rules'];
 
         //CHOROPLETH COLORS BASED ON RANGE ONLY
@@ -102,20 +126,19 @@
 								}
 							} );
 						}
-
+						return {
+		          fillColor		: color,
+		          weight			: 1,
+		          opacity			: 0.4,
+		          color				: 'black',
+		          dashArray		: '1',
+		          fillOpacity	: 0.8
+		        };
           }
+
         }
 
 				//console.log( color );
-
-        return {
-          fillColor		: color,
-          weight			: 1,
-          opacity			: 0.4,
-          color				: 'black',
-          dashArray		: '1',
-          fillOpacity	: 0.8
-        };
       }
 
       function onEachDist( feature, layer ) {
@@ -171,7 +194,6 @@
         });
 
         $('#filter_form_open').on('click', function () {
-						console.log('clicked it');
             // open sidebar
             $('.map_sidebar').addClass('activated');
             // fade in the overlay
