@@ -49,8 +49,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
   function map_data(){
 
     $year = 0;
-    if( isset( $_GET['cf_year'] ) ){
-      $year = $_GET['cf_year'];
+    if( isset( $_GET['postdate_year'] ) ){
+      $year = $_GET['postdate_year'];
     }
 
     // GET STATE ID IF THE STATE NAME HAS BEEN PASSED

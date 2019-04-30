@@ -27,7 +27,7 @@
 
       <?php
 
-        echo do_shortcode('[orbit_filter label="Which Year" type=cf typeval=year form=dropdown options=2014,2015,2016,2017,2018,2019]');
+        echo do_shortcode('[orbit_filter label="Which Year" type=postdate typeval=year form=dropdown]');
 
         echo do_shortcode('[orbit_filter label="Select State" type=tax form=dropdown typeval=locations tax_parent=0]');
 
