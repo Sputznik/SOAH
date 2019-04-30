@@ -29,7 +29,7 @@
 			//var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
 			var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
 			var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-			var hyb = new L.TileLayer(hybUrl, {minZoom: 2, maxZoom: 18, attribution: hybAttrib, opacity:1}).addTo(map);
+			var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 8, attribution: hybAttrib, opacity:1}).addTo(map);
 			L.control.scale().addTo(map);
 
 			//ADD STATE BOUNDARIES
@@ -94,11 +94,49 @@
 
       }
 
+			// USED INSIDE POP CONTENT
+			function getFormValues( form_name ){
+				var $list = $el.find('form [name="' + form_name + '"]:checked');
+				var total = $list.length;
+				var list_str = "";
+
+				$list.each( function( i ){
+					var $current_report_type = jQuery(this);
+					if( ( i == total-1 ) && ( i != 0 ) ){ list_str += " or "; }
+					else if( ( i < total-1 ) && ( i != 0 ) ){ list_str += ", "; }
+					list_str += $current_report_type.val();
+				});
+				return list_str;
+			}
+
       function popContent( feature ) {
+
         //FOR DISTRICT POP UPS ON CLICK
         for ( var i = 0; i<data.length; i++ ){
           if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
-            return '<h4>'+data[i]["district"]+', '+data[i]["state"]+'</h4><p>' + data[i]["reports"] + ' incidents reported.</p>';
+
+						var content = "<h4>" + data[i]["district"] + ", " + data[i]["state"] + "</h4>";
+
+						content += "<p>" + data[i]["reports"];
+
+						if( data[i]["reports"] == 1 ){ content += " incident"; }
+						else{ content += " incidents"; }
+
+						report_types = getFormValues( 'tax_report-type[]' );
+						year = $el.find('form [name=cf_year]').val();
+						victims = getFormValues( 'tax_victims[]' );
+
+						if( year ){ content += " in <b>" + year +"</b>"; }
+
+						content += " reported";
+
+						if( report_types ){ content += " for <b>" + report_types +"</b>"; }
+
+						if( victims ){ content += " on <b>" + victims + "</b>"; }
+
+						content += " </p>";
+
+            return content;
           }
         }
       }

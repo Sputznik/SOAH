@@ -127,8 +127,13 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     //print_r( $states );
 
+    // ITERATE THROUGH DATA TO CALCULATE PERCENTILE AND ADD STATE INFORMATION
     foreach ( $data as $index => $row ) {
-      $data[ $index ]['percentile'] = round( ( $row['reports'] / $max_count ) * 100, 2 );
+      $data[ $index ]['percentile'] = 0;
+      if( $row['reports'] ){
+        $data[ $index ]['percentile'] = round( ( $row['reports'] / $max_count ) * 100, 2 );
+      }
+
       if( isset( $states[ $row['parent'] ] ) ){
         $data[ $index ]['state'] = $states[ $row['parent'] ];
         unset( $data[ $index ]['parent'] );
