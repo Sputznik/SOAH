@@ -21,9 +21,6 @@
 				$('.map_overlay').removeClass('activated');
 			});
 
-			// HIDE THE LOADER
-			$el.find('.loader').hide();
-
 			//SETUP BASEMAP WITH BLANK DISTRICT LAYER
 			var map = L.map('map').setView( [22.27, 80.37], 5 );
 			var gjLayerDist = L.geoJson();
@@ -51,6 +48,9 @@
 			//REQUEST FOR DISTRICT WISE DATA
 			function getData(){
 
+				// SHOW THE LOADER
+				$el.find('.loader').show();
+
 				jQuery.ajax({
 					'url'			: atts['url'],
 					'data'		: $form.serialize(),
@@ -58,6 +58,9 @@
 					//'data'		: data,
 					'dataType'	: 'json',
 					'success'	: function( json_data ){
+
+						// HIDE THE LOADER
+						$el.find('.loader').hide();
 
 						data = json_data;
 
@@ -112,16 +115,16 @@
 					if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
 
 						// CONDITION IF THE VALUE IS BEYOND THE MIN AND MAX VALUE
-						if ( data[i]["reports"] > color_rules['max']['value'] || data[i]["reports"] > color_rules['min']['value'] ){
+						if ( data[i]["percentile"] >= color_rules['max']['value'] || data[i]["percentile"] <= color_rules['min']['value'] ){
 							color = color_rules['min']['color'];
-							if( data[i]["reports"] > color_rules['max']['value'] ){
+							if( data[i]["percentile"] > color_rules['max']['value'] ){
 								color = color_rules['max']['color'];
 							}
 						}
 						else{
 							// CONDITION WHEN THE VALUE IS BETWEEN THE MIN AND MAX RANGES
 							jQuery.each( color_rules['ranges'], function( i, range ){
-								if ( data[i]["reports"] >= range['min_value'] && data[i]["reports"] <= range['max_value'] ){
+								if ( data[i]["percentile"] >= range['min_value'] && data[i]["percentile"] <= range['max_value'] ){
 									color = range['color'];
 								}
 							} );

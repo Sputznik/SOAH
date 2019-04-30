@@ -78,6 +78,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     $extra_taxonomies = array('report-type', 'victims');
 
+    $states = array();
 
     $max_count = 0;
 
@@ -114,16 +115,28 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
         $temp = array(
           'district'  => $term->name,
+          'parent'    => $term->parent,
           'reports'   => $report_count //> 0 ? $report_count : rand( 0, 100 )
         );
         array_push( $data, $temp );
       }
+      else{
+        $states[ $term->term_id ] = $term->name;
+      }
     }
 
+    //print_r( $states );
 
     foreach ( $data as $index => $row ) {
       $data[ $index ]['percentile'] = round( ( $row['reports'] / $max_count ) * 100, 2 );
-      $row_i++;
+      if( isset( $states[ $row['parent'] ] ) ){
+        $data[ $index ]['state'] = $states[ $row['parent'] ];
+        unset( $data[ $index ]['parent'] );
+      }
+      elseif( isset( $_GET['tax_locations'] ) ){
+        $data[ $index ]['state'] = $_GET['tax_locations'];
+        unset( $data[ $index ]['parent'] );
+      }
     }
 
     //echo "<pre>";
@@ -200,8 +213,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $atts['color_rules'] = array(
       'default' => '#EDE7F6',
       'min'	=> array(
-        'value'	=> 30,
-        'color'	=> '#B39DDB'
+        'value'	=> 1,
+        'color'	=> '#FFF'
       ),
       'max'	=> array(
         'value'	=> 85,
@@ -217,6 +230,11 @@ class CHOROPLETH_MAP extends SOAH_BASE{
           'min_value' => 30,
           'max_value'	=> 59,
           'color'			=> '#7E57C2'
+        ),
+        array(
+          'min_value' => 2,
+          'max_value'	=> 29,
+          'color'			=> '#B39DDB'
         ),
       )
     );
