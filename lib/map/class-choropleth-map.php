@@ -52,21 +52,24 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     $i = 0;
     foreach ( $_GET as $slug => $value ) {
-      if( $i == 0 ){ $url .= "?"; }
-      else{ $url .= "&"; }
+      if( ! in_array( $slug, array( 'tax_locations' ) ) ){
+        if( $i == 0 ){ $url .= "?"; }
+        else{ $url .= "&"; }
 
-      if( is_array( $value ) ){
-        foreach ( $value as $index => $item_value ) {
-          if( $index > 0 ){ $url .= "&"; }
-          $url .= $slug."[]=".$item_value;
+        if( is_array( $value ) ){
+          foreach ( $value as $index => $item_value ) {
+            if( $index > 0 ){ $url .= "&"; }
+            $url .= $slug."[]=".$item_value;
+          }
         }
-      }
-      else{
-        $url .= $slug."=".$value;
-      }
+        else{
+          $url .= $slug."=".$value;
+        }
 
 
-      $i++;
+        $i++;
+      }
+
     }
 
     $year = 0;
@@ -137,7 +140,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         $temp = array(
           'district'  => $term->name,
           'parent'    => $term->parent,
-          'url'       => $url,
+          'url'       => $url."&tax_locations=".$term->name,
           'reports'   => $report_count //> 0 ? $report_count : rand( 0, 100 )
         );
         array_push( $data, $temp );

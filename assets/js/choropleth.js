@@ -125,7 +125,7 @@
 						report_types = getFormValues( 'tax_report-type[]' );
 						year = $el.find('form [name=cf_year]').val();
 						victims = getFormValues( 'tax_victims[]' );
-
+						
 						if( year ){ content += " in <b>" + year +"</b>"; }
 
 						content += " reported";
