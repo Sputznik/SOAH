@@ -155,7 +155,7 @@
 						// CONDITION IF THE VALUE IS BEYOND THE MIN AND MAX VALUE
 						if ( data[i]["percentile"] >= color_rules['max']['value'] || data[i]["percentile"] <= color_rules['min']['value'] ){
 							color = color_rules['min']['color'];
-							if( data[i]["percentile"] > color_rules['max']['value'] ){
+							if( data[i]["percentile"] >= color_rules['max']['value'] ){
 								color = color_rules['max']['color'];
 							}
 						}
