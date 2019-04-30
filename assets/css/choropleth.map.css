@@ -100,7 +100,7 @@
   height:100vh;
   top:0;
   right:0;
-  padding: 15px;
+  padding: 20px;
   border-left: 2px solid #444;
   transition: all 1.0s cubic-bezier(0.945, 0.020, 0.270, 0.665);
   transform-origin: center right;

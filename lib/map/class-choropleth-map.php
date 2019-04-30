@@ -48,6 +48,27 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
   function map_data(){
 
+    $url = site_url('reports');
+
+    $i = 0;
+    foreach ( $_GET as $slug => $value ) {
+      if( $i == 0 ){ $url .= "?"; }
+      else{ $url .= "&"; }
+
+      if( is_array( $value ) ){
+        foreach ( $value as $index => $item_value ) {
+          if( $index > 0 ){ $url .= "&"; }
+          $url .= $slug."[]=".$item_value;
+        }
+      }
+      else{
+        $url .= $slug."=".$value;
+      }
+
+
+      $i++;
+    }
+
     $year = 0;
     if( isset( $_GET['postdate_year'] ) ){
       $year = $_GET['postdate_year'];
@@ -116,6 +137,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         $temp = array(
           'district'  => $term->name,
           'parent'    => $term->parent,
+          'url'       => $url,
           'reports'   => $report_count //> 0 ? $report_count : rand( 0, 100 )
         );
         array_push( $data, $temp );

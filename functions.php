@@ -5,14 +5,14 @@ include( 'lib/lib.php' );
 add_theme_support( 'post-thumbnails' );
 
 //Constant changes all the js and css version on the go
-define( 'SOAH_VERSION', '1.1.1' );
+define( 'SOAH_VERSION', '1.1.2' );
 
 
 //Load child stylesheet after parent stylesheet
 add_action('wp_enqueue_scripts', function(){
 
   // LOAD THE CHILD THEME CSS
-  wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/style.css', array( 'sp-core-style' ), SOAH_VERSION );
+  wp_enqueue_style( 'soah-child', get_stylesheet_directory_uri() .'/assets/css/style.css', array( 'sp-core-style' ), SOAH_VERSION );
 
   // STYLES FOR THE FORM
   wp_enqueue_style( 'soah-fep', get_stylesheet_directory_uri() .'/assets/css/fep.css', array( 'soah-child' ), SOAH_VERSION );

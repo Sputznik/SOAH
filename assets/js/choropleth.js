@@ -115,9 +115,9 @@
         for ( var i = 0; i<data.length; i++ ){
           if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
 
-						var content = "<h4>" + data[i]["district"] + ", " + data[i]["state"] + "</h4>";
+						var content = "<h4><a target='_blank' href='" + data[i]["url"] + "'>" + data[i]["district"] + ", " + data[i]["state"] + "</a></h4>";
 
-						content += "<p>" + data[i]["reports"];
+						content += "<p><a target='_blank' href='" + data[i]["url"] + "'>" + data[i]["reports"];
 
 						if( data[i]["reports"] == 1 ){ content += " incident"; }
 						else{ content += " incidents"; }
@@ -134,7 +134,7 @@
 
 						if( victims ){ content += " on <b>" + victims + "</b>"; }
 
-						content += " </p>";
+						content += " </a></p>";
 
             return content;
           }
