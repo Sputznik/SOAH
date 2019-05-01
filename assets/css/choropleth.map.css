@@ -1,46 +1,56 @@
 [data-behaviour~=choropleth-map]{
   position: relative;
   margin-top: 100px;
+  border: #ddd solid 1px;
 }
 
 [data-behaviour~=choropleth-map] #map {
-  width:100%;height:100vh;
+  width :100%;
+  height:100vh;
 }
 
 [data-behaviour~=choropleth-map] .loader{
-    width:100%;
-    height:100%;
-    background-color: #fff;
-    padding-top:30px;
-    position: absolute;
-    top:0;
-    left:0;
-    z-index: 10000;
+  width           : 100%;
+  height          : 100%;
+  background-color: #fff;
+  padding-top     : 30px;
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  z-index         : 700;
 }
 [data-behaviour~=choropleth-map] .loader h3{
-    color:#555;
-    text-align: center;
+  color:#555;
+  text-align: center;
+  margin-top: 20%;
 }
 [data-behaviour~=choropleth-map] .leaflet-popup-content table {max-width:100%;padding:0 5px;font-size:13px;}
 [data-behaviour~=choropleth-map] table th,[data-behaviour~=choropleth-map] table td {border:1px solid #eee;padding:3px;text-align: center;}
-[data-behaviour~=choropleth-map] .key {
-  	position:absolute;
-   	bottom:20px;
-   	right:10px;
-   	line-height: 18px;
-   	color: #555;
-   	border-radius: 10px;
-  	background: rgba(255,255,255,0.8);
-   	box-shadow: 0 0 15px rgba(0,0,0,0.2);
-   	padding:10px;
-   	max-width:350px;
+[data-behaviour~=choropleth-map] .key{
+  position      : absolute;
+  bottom        : 40px;
+  right         : 10px;
+  line-height   : 18px;
+  color         : #555;
+  background    : rgba(255,255,255,0.2);
+  box-shadow    : 0 0 15px rgba(0,0,0,0.2);
+  padding       : 10px;
+  max-width     : 350px;
+  border-radius : 0;
+  min-width     : 200px;
+  min-height    : 50px;
+  z-index       : 400;
 }
 [data-behaviour~=choropleth-map] .key i {
-	font-style: normal;
-	display: inline-block;
-	font-size: 13px;
+	font-style  : normal;
+	display     : inline-block;
+	font-size   : 13px;
+  width       : 10px;
+  height      : 10px;
+  margin-right: 5px;
+  background  : #000;
 }
-[data-behaviour~=choropleth-map] .key p {font-size: 13px;}
+[data-behaviour~=choropleth-map] .key p {font-size: 12px;}
 
 [data-behaviour~=choropleth-map] .boxed{
 	width:4px;

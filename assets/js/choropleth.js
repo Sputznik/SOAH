@@ -9,41 +9,48 @@
 				data 				= [],
         atts  			= $el.data( 'atts' );
 
+			var map, gjLayerDist, gjLayerStates;
+
 			//Filter form submit
 			$form.on( 'submit', function( ev ){
+
 				ev.preventDefault();
-				console.log('refreshed');
+
+				//console.log('refreshed');
 
 				getData();
+
 				// hide sidebar
 				$('.map_sidebar').removeClass('activated');
+
 				// hide overlay
 				$('.map_overlay').removeClass('activated');
 			});
 
-			//SETUP BASEMAP WITH BLANK DISTRICT LAYER
-			var map = L.map('map').setView( [22.27, 80.37], 5 );
-			var gjLayerDist = L.geoJson();
-			gjLayerDist.addTo(map);
+			function createMap(){
+				//SETUP BASEMAP WITH BLANK DISTRICT LAYER
+				map = L.map('map').setView( [22.27, 80.37], 5 );
+				gjLayerDist = L.geoJson();
+				gjLayerDist.addTo(map);
 
-			//var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
-			var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-			var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-			var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 8, attribution: hybAttrib, opacity:1}).addTo(map);
-			L.control.scale().addTo(map);
+				//var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
+				var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+				var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
+				var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 8, attribution: hybAttrib, opacity:1}).addTo(map);
+				L.control.scale().addTo(map);
 
-			//ADD STATE BOUNDARIES
-			var statelines = {
-				"color":"#000",
-				"weight":2,
-				"opacity":1,
-				"fill":false
-			};
+				//ADD STATE BOUNDARIES
+				var statelines = {
+					"color":"#000",
+					"weight":2,
+					"opacity":1,
+					"fill":false
+				};
 
-			var gjLayerStates = L.geoJson( geoStates, { style: statelines } );
-			gjLayerStates.addTo(map);
+				gjLayerStates = L.geoJson( geoStates, { style: statelines } );
+				gjLayerStates.addTo(map);
 
-
+			}
 
 			//REQUEST FOR DISTRICT WISE DATA
 			function getData(){
@@ -64,10 +71,11 @@
 
 						data = json_data;
 
-						console.log( data );
+						//console.log( data );
 
 						//REMOVE DISTRICTS LAYER FOR REFRESH
 						map.removeLayer(gjLayerDist);
+
 						// RENDER THE MAP IN THE CORRECT DOM
 		        drawDistricts();
 
@@ -81,8 +89,8 @@
 
         //ADD DISTRICT BOUNDARIES
         gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
-        gjLayerDist.addTo(map);
-				map.fitBounds(gjLayerDist.getBounds());
+        gjLayerDist.addTo( map );
+				map.fitBounds( gjLayerDist.getBounds() );
 
 				//ONLY ADD DISTRICTS THAT ARE AVAILABLE IN THE DATA
 				function matchDistricts(feature) {
@@ -95,6 +103,7 @@
       }
 
 			// USED INSIDE POP CONTENT
+			// RETURNS STRING VERSION OF MULTIPLE SELECTED CHECKBOXES
 			function getFormValues( form_name ){
 				var $list = $el.find('form [name="' + form_name + '"]:checked');
 				var total = $list.length;
@@ -125,7 +134,7 @@
 						report_types = getFormValues( 'tax_report-type[]' );
 						year = $el.find('form [name=cf_year]').val();
 						victims = getFormValues( 'tax_victims[]' );
-						
+
 						if( year ){ content += " in <b>" + year +"</b>"; }
 
 						content += " reported";
@@ -141,34 +150,33 @@
         }
       }
 
+			function getColorKey( count ){
+				var color_rules = atts['color_rules'],
+					color 				= color_rules['default'];
+
+				// CONDITION IF THE VALUE IS BEYOND THE MIN AND MAX VALUE
+				if ( count >= color_rules['max']['value'] || count <= color_rules['min']['value'] ){
+					color = color_rules['min']['color'];
+					if( count >= color_rules['max']['value'] ){
+						color = color_rules['max']['color'];
+					}
+				}
+				else{
+					// CONDITION WHEN THE VALUE IS BETWEEN THE MIN AND MAX RANGES
+					jQuery.each( color_rules['ranges'], function( i, range ){
+						if ( count >= range['min_value'] && count <= range['max_value'] ){
+							color = range['color'];
+						}
+					} );
+				}
+				return color;
+			}
+
       function styledist( feature ) {
-				//NEEDS TO BE UPDATED ACCORDING TO QUARTILE SYSTEM
-				var color_rules = atts['color_rules'];
-
-        //CHOROPLETH COLORS BASED ON RANGE ONLY
-        var color = color_rules['default'];
-
 				for ( var i = 0; i<data.length; i++ ){
-
 					if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
-
-						// CONDITION IF THE VALUE IS BEYOND THE MIN AND MAX VALUE
-						if ( data[i]["percentile"] >= color_rules['max']['value'] || data[i]["percentile"] <= color_rules['min']['value'] ){
-							color = color_rules['min']['color'];
-							if( data[i]["percentile"] >= color_rules['max']['value'] ){
-								color = color_rules['max']['color'];
-							}
-						}
-						else{
-							// CONDITION WHEN THE VALUE IS BETWEEN THE MIN AND MAX RANGES
-							jQuery.each( color_rules['ranges'], function( i, range ){
-								if ( data[i]["percentile"] >= range['min_value'] && data[i]["percentile"] <= range['max_value'] ){
-									color = range['color'];
-								}
-							} );
-						}
 						return {
-		          fillColor		: color,
+		          fillColor		: getColorKey( data[i]["percentile"] ),
 		          weight			: 1,
 		          opacity			: 0.4,
 		          color				: 'black',
@@ -176,11 +184,8 @@
 		          fillOpacity	: 0.8
 		        };
           }
-
-        }
-
-				//console.log( color );
-      }
+				}
+			}
 
       function onEachDist( feature, layer ) {
         //CONNECTING TOOLTIP AND POPUPS TO DISTRICTS
@@ -228,29 +233,61 @@
       }
 
 			$('#map_sidebar_dismiss, .map_overlay').on('click', function () {
-            // hide sidebar
-            $('.map_sidebar').removeClass('activated');
-            // hide overlay
-            $('.map_overlay').removeClass('activated');
-        });
+      	// hide sidebar
+        $('.map_sidebar').removeClass('activated');
+        // hide overlay
+        $('.map_overlay').removeClass('activated');
+    	});
 
-        $('#filter_form_open').on('click', function () {
-            // open sidebar
-            $('.map_sidebar').addClass('activated');
-            // fade in the overlay
-            $('.map_overlay').addClass('activated');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-        });
+      $('#filter_form_open').on('click', function () {
+        // open sidebar
+        $('.map_sidebar').addClass('activated');
+        // fade in the overlay
+        $('.map_overlay').addClass('activated');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+      });
+
+			// CREATE COLOR CODED KEYS
+			function createKeys(){
+
+				var $key 			= $el.find(".key"),
+					color_rules = atts['color_rules'];
+
+				addKey( color_rules['max']['color'], "More than " + color_rules['max']['value'] + "%" );
+
+				jQuery.each( color_rules['ranges'], function( i, range ){
+					addKey( range['color'], "Between " + range['min_value'] + "% and " + range['max_value'] + "%" );
+				} );
+
+				addKey( color_rules['min']['color'], "Less than " + color_rules['min']['value'] + "%" );
+
+				function addKey( color, text ){
+					var $p = jQuery( document.createElement( 'p' ) );
+
+					var $icon = jQuery( document.createElement( 'i' ) );
+					$icon.css( { background: color } );
+					$icon.appendTo( $p );
+
+					var $span = jQuery( document.createElement( 'span' ) );
+					$span.html( text );
+					$span.appendTo( $p );
+
+					$p.appendTo( $key );
+				}
+
+			}
 
       // INITIALIZE FUNCTION
       function init(){
 
+				createMap();
 
 				getData();
 
+				createKeys();
 
-      }
+			}
 
       init();
 
