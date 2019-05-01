@@ -99,3 +99,14 @@ add_action('init', function(){
   add_rewrite_rule('^incidents/([^/]+)/?', 'index.php?reports=$matches[1]', 'top');
 	add_rewrite_rule('^incidents', 'index.php?post_type=reports', 'top');
 });
+
+add_filter('term_link', function( $termlink, $term, $taxonomy ){
+
+	if( $taxonomy == 'report-type' || $taxonomy == 'victims' ){
+		$taxonomy .= "[]";
+	}
+
+	$url = site_url('incidents') . "?tax_" . $taxonomy . "=" . $term->name;
+
+	return $url;
+}, 10, 3);
