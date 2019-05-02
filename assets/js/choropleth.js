@@ -9,22 +9,20 @@
 				data 				= [],
         atts  			= $el.data( 'atts' );
 
+			// GLOBAL VARIABLES
 			var map, gjLayerDist, gjLayerStates;
 
 			//Filter form submit
 			$form.on( 'submit', function( ev ){
 
+				// PREVENT DEFAULT EVENT HANDLER
 				ev.preventDefault();
 
-				//console.log('refreshed');
-
+				// GET AJAX DATA IN JSON FORM
 				getData();
 
-				// hide sidebar
-				$('.map_sidebar').removeClass('activated');
-
-				// hide overlay
-				$('.map_overlay').removeClass('activated');
+				// HIDE SIDEBAR
+				hideSidebar();
 			});
 
 			function createMap(){
@@ -62,7 +60,6 @@
 					'url'			: atts['url'],
 					'data'		: $form.serialize(),
 					'error'		: function(){ alert( 'Error has occurred' ); },
-					//'data'		: data,
 					'dataType'	: 'json',
 					'success'	: function( json_data ){
 
@@ -70,8 +67,6 @@
 						$el.find('.loader').hide();
 
 						data = json_data;
-
-						//console.log( data );
 
 						//REMOVE DISTRICTS LAYER FOR REFRESH
 						map.removeLayer(gjLayerDist);
@@ -95,7 +90,7 @@
 				//ONLY ADD DISTRICTS THAT ARE AVAILABLE IN THE DATA
 				function matchDistricts(feature) {
 					for (var k = 0; k<data.length; k++) {
-						if (feature.properties["DISTRICT"] == data[k]["district"]) return true;
+						if ( feature.properties["DISTRICT"] == data[k]["district"] ) return true;
 					}
 					return false;
 				}
@@ -232,21 +227,28 @@
         map.fitBounds(e.target.getBounds());
       }
 
-			$('#map_sidebar_dismiss, .map_overlay').on('click', function () {
-      	// hide sidebar
-        $('.map_sidebar').removeClass('activated');
-        // hide overlay
-        $('.map_overlay').removeClass('activated');
-    	});
+			function hideSidebar(){
+				// hide sidebar
+        $el.find('.map_sidebar').removeClass('activated');
 
-      $('#filter_form_open').on('click', function () {
-        // open sidebar
-        $('.map_sidebar').addClass('activated');
+        // hide overlay
+        $el.find('.map_overlay').removeClass('activated');
+			}
+
+			function showSidebar(){
+				// open sidebar
+        $el.find('.map_sidebar').addClass('activated');
+
         // fade in the overlay
-        $('.map_overlay').addClass('activated');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-      });
+        $el.find('.map_overlay').addClass('activated');
+
+				$el.find('.collapse.in').toggleClass('in');
+        $el.find('a[aria-expanded=true]').attr('aria-expanded', 'false');
+			}
+
+			$el.find('#map_sidebar_dismiss, .map_overlay').on('click', function () { hideSidebar(); });
+
+      $el.find('#filter_form_open').on('click', function () { showSidebar(); });
 
 			// CREATE COLOR CODED KEYS
 			function createKeys(){
@@ -254,12 +256,15 @@
 				var $key 			= $el.find(".key"),
 					color_rules = atts['color_rules'];
 
+				// MAX VALUE
 				addKey( color_rules['max']['color'], "More than " + color_rules['max']['value'] + "%" );
 
+				// BETWEEN RANGES
 				jQuery.each( color_rules['ranges'], function( i, range ){
 					addKey( range['color'], "Between " + range['min_value'] + "% and " + range['max_value'] + "%" );
 				} );
 
+				// MIN VALUE
 				addKey( color_rules['min']['color'], "Less than " + color_rules['min']['value'] + "%" );
 
 				function addKey( color, text ){
