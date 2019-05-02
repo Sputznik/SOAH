@@ -3,6 +3,22 @@
 
 add_filter( 'soah-fep-labels', function( $labels ){
   $labels = array(
+    'add-another' => array(
+      'en'  => 'Add Another',
+      'hi'  => 'एक और'
+    ),
+    'previous' => array(
+      'en'  => 'Previous',
+      'hi'  => 'पिछला'
+    ),
+    'next' => array(
+      'en'  => 'Next',
+      'hi'  => 'अगला'
+    ),
+    'submit' => array(
+      'en'  => 'Submit',
+      'hi'  => 'जमा करें'
+    ),
     'report-form' => array(
       'en'  => 'Report an incident',
       'hi'  => 'किसी घटना की रिपोर्ट करें'

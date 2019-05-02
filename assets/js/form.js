@@ -19,8 +19,85 @@ jQuery(document).ready(function(){
 
   });
 
+  jQuery('[data-behaviour~=multiple-fields]').each( function(){
+    var $el = jQuery( this ),
+      count = 0,
+      field = $el.data('field');
+
+    function init(){
+
+      var $wrapperImage = jQuery( document.createElement('div') );
+      $wrapperImage.addClass('wrapper');
+      $wrapperImage.appendTo( $el );
+
+      var $wrapperButton = jQuery( document.createElement('div') );
+      $wrapperButton.addClass('wrapperButton');
+      $wrapperButton.appendTo( $el );
+
+      createAddButton();
+
+      createSingleField();
+    }
+
+    function getImageInput(){
+      var $input = jQuery( document.createElement('input') );
+      $input.attr( 'type', 'file' );
+      $input.attr( 'placeholder', field['label'] ? field['label'] :  "" );
+      $input.attr( 'name', field['name'] + count );
+      return $input;
+    }
+
+    function getTextBox(){
+      var $input = jQuery( document.createElement('input') );
+      $input.attr( 'type', 'text' );
+      $input.attr( 'placeholder', field['label'] ? field['label'] :  "" );
+      $input.attr( 'name', field['name'] );
+      return $input;
+    }
+
+    function createSingleField(){
+
+      var $parent = jQuery( document.createElement('div') );
+      $parent.addClass('multi-field-wrapper');
+      $parent.appendTo( $el.find('.wrapper') );
+
+      $input = getTextBox();
+
+      switch( field['fields_type'] ){
+        case 'multiple-image':
+          $input = getImageInput();
+          break;
+      }
+
+      $input.appendTo( $parent );
 
 
+    };
+
+    function createAddButton(){
+
+      var $btn = jQuery( document.createElement('button') );
+      $btn.attr( 'type', 'button' );
+      $btn.addClass('add-btn');
+      $btn.html( field['btn_text'] ? field['btn_text'] : 'Add Another');
+      $btn.appendTo( $el.find('.wrapperButton') );
+
+      $btn.click( function(){
+        count++;
+        //checks the total number of file fields
+        var countImage = jQuery('.multi-field-wrapper').length;
+          if( count <= 4 ){
+              createSingleField();
+          }
+      });
+
+    };
+
+    init();
+
+  });
+
+  /*
   //Add multiple image fields
   jQuery('[data-behaviour~=multiple-image]').each( function(){
     var imageCount = 0;     //imagecounter
@@ -47,6 +124,7 @@ jQuery(document).ready(function(){
       $input.attr( 'placeholder', $el2.attr('data-label') );
       $input.attr( 'name', $el2.attr('data-name') + imageCount);
       $input.appendTo( $parent );
+
 
     };
 
@@ -127,6 +205,7 @@ jQuery(document).ready(function(){
     createTextBox();
 
   });
+  */
 
   //change districts when state is changed
   jQuery('select[name=state]').change( function( ev ){

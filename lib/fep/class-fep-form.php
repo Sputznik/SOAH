@@ -194,6 +194,15 @@ class FEP_FORM extends SOAH_BASE{
 	}
 	function display_section( $section, $args ){
 
+		$args = wp_parse_args( $args, array(
+			'prev_text'		=> "Previous",
+			'next_text'		=> "Next",
+			'submit_text'	=> "Submit",
+			'totalSlides'	=> 1,
+			'i'						=> 0
+
+		) );
+
 		echo "<section class='meteor-slide'>";
 		$this->display_inline_section( $section );
 
@@ -201,14 +210,14 @@ class FEP_FORM extends SOAH_BASE{
 		_e( "<ul class='meteor-list meteor-list-inline'>" );
 
 		// HIDE IN THE FIRST PAGE OF THE FORM
-		if( $args['i'] ){ _e( "<li><button data-behaviour='meteor-slide-prev'>Previous</button></li>" ); }
+		if( $args['i'] ){ _e( "<li><button data-behaviour='meteor-slide-prev'>" . $args['prev_text'] . "</button></li>" ); }
 
 		// IN THE LAST FORM, THE TEXT SHOULD CHANGE TO SUBMIT
 		if( $args['i'] != $args['totalSlides'] - 1 ){
-			_e( "<li><button data-behaviour='meteor-slide-next'>Next</button></li>" );
+			_e( "<li><button data-behaviour='meteor-slide-next'>" . $args['next_text'] . "</button></li>" );
 		}
 		else{
-			_e( "<li><button type='submit'>Submit</button></li>" );
+			_e( "<li><button type='submit'>" . $args['submit_text'] ."</button></li>" );
 		}
 
 		_e( "</ul>" );

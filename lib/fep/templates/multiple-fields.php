@@ -1,1 +1,1 @@
-<div class="wrapperLink" data-label="<?php _e( $field['label'] );?>" data-name="<?php _e( $field['name'] );?>" data-behaviour="<?php _e( $field['fields_type'] );?>"></div>
+<div class="wrapperLink" data-field='<?php _e( wp_json_encode( $field ) );?>' data-behaviour="multiple-fields"></div>
