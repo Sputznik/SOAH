@@ -10,6 +10,7 @@ add_filter( 'orbit_post_type_vars', function( $post_types ){
 			'name' 					=> 'Reports',
 			'singular_name' => 'Report',
 		),
+		'rewrite'		=> array('slug' => 'incidents', 'with_front' => false ),
 		'public'		=> true,
 		'supports'	=> array( 'title', 'editor' )
 	);
@@ -73,3 +74,39 @@ add_filter( 'orbit_meta_box_vars', function( $meta_box ){
 	);
 	return $meta_box;
 });
+
+// TO CHANGE THE PERMALINK STRUCTURE OF THE INCIDENT/REPORT
+add_filter('post_type_link', function( $permalink, $post_id, $leavename ){
+
+  $post = get_post( $post_id );
+
+  if( $post->post_type == 'reports' ){
+
+    $rewritecode = array( 'reports' );
+
+    $rewritereplace = array( 'incidents' );
+
+    $permalink = str_replace($rewritecode, $rewritereplace, $permalink);
+
+  }
+
+  return $permalink;
+}, 10, 3);
+
+
+add_action('init', function(){
+
+  add_rewrite_rule('^incidents/([^/]+)/?', 'index.php?reports=$matches[1]', 'top');
+	add_rewrite_rule('^incidents', 'index.php?post_type=reports', 'top');
+});
+
+add_filter('term_link', function( $termlink, $term, $taxonomy ){
+
+	if( $taxonomy == 'report-type' || $taxonomy == 'victims' ){
+		$taxonomy .= "[]";
+	}
+
+	$url = site_url('incidents') . "?tax_" . $taxonomy . "=" . $term->name;
+
+	return $url;
+}, 10, 3);

@@ -3,7 +3,7 @@
 // HANDLES POST SUBMISSION
 $form_success_flag = $this->save();
 
-$lang = $atts['lang'];
+$lang = 'hi'; //$atts['lang'];
 
 /* REPORT TYPES, VICTIMS AND LOCATIONS FROM THE DB */
 $report_types = $this->getOptionsFromTaxonomy( 'report-type', $lang );
@@ -156,14 +156,16 @@ $form_sections = array(
             'type'        => 'multiple-fields',
             'fields_type' => 'multiple-image',
             'label'       => $labels[ 'images-title' ][ $lang ],
-            'name'        => 'files'
+            'name'        => 'files',
+            'btn_text'    => $labels[ 'add-another' ][ $lang ]
           ),
           'links'  => array(
     		    'class'       => 'form-links form-multi-fields',
             'type'        => 'multiple-fields',
             'fields_type' => 'multiple-text',
             'label'       => $labels[ 'links-title' ][ $lang ],
-            'name'        => 'links[]'
+            'name'        => 'links[]',
+            'btn_text'    => $labels[ 'add-another' ][ $lang ]
           ),
         )
 
@@ -191,7 +193,13 @@ if( !$_POST ){
 
   $i = 0;
   foreach ($form_sections as $section) {
-    $this->display_section( $section, array('i' => $i, 'totalSlides' => count( $form_sections ) ) );
+    $this->display_section( $section, array(
+      'i'           => $i,
+      'totalSlides' => count( $form_sections ),
+      'prev_text'		=>  $labels[ 'previous' ][ $lang ],
+			'next_text'		=>  $labels[ 'next' ][ $lang ],
+			'submit_text'	=>  $labels[ 'submit' ][ $lang ],
+    ) );
     $i++;
   }
 

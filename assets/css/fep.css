@@ -61,12 +61,7 @@ form.soah-fep .form-categories ul{
 }
 
 form.soah-fep .form-categories ul li{
-
 	background: #eee;
-	/*
-	margin-right: 20px;
-	margin-bottom: 20px;
-	*/
 	margin: 0;
 	display: block;
 	min-height: 30px;
@@ -74,23 +69,11 @@ form.soah-fep .form-categories ul li{
 	width: 100%;
 }
 
-form.soah-fep .form-multi-fields{
-	max-width: 400px;
-}
+form.soah-fep .form-multi-fields{ max-width: 400px; }
 
-form.soah-fep .form-multi-fields .add-btn{ margin-top: 4px;}
+form.soah-fep .form-multi-fields .add-btn{ margin-top: 5px;}
 
-form.soah-fep .form-multi-fields .multi-image-wrapper{
-	margin-bottom: 8px;
-}
-
-form.soah-fep .form-multi-fields .multi-text-wrapper{
-	margin-bottom: 5px;
-}
-
-
-
-
+form.soah-fep .form-multi-fields .multi-field-wrapper{ margin-bottom: 5px; }
 
 @media( min-width: 768px ){
 	form.soah-fep .grid-2 .section-fields{

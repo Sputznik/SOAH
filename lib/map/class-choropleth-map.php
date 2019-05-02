@@ -48,9 +48,33 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
   function map_data(){
 
+    $url = site_url('reports');
+
+    $i = 0;
+    foreach ( $_GET as $slug => $value ) {
+      if( ! in_array( $slug, array( 'tax_locations' ) ) ){
+        if( $i == 0 ){ $url .= "?"; }
+        else{ $url .= "&"; }
+
+        if( is_array( $value ) ){
+          foreach ( $value as $index => $item_value ) {
+            if( $index > 0 ){ $url .= "&"; }
+            $url .= $slug."[]=".$item_value;
+          }
+        }
+        else{
+          $url .= $slug."=".$value;
+        }
+
+
+        $i++;
+      }
+
+    }
+
     $year = 0;
-    if( isset( $_GET['cf_year'] ) ){
-      $year = $_GET['cf_year'];
+    if( isset( $_GET['postdate_year'] ) ){
+      $year = $_GET['postdate_year'];
     }
 
     // GET STATE ID IF THE STATE NAME HAS BEEN PASSED
@@ -77,6 +101,10 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $terms = get_terms( $term_query_args );
 
     $extra_taxonomies = array('report-type', 'victims');
+
+    $states = array();
+
+    $max_count = 0;
 
     // ITERATE THROUGH EACH TERM - LOCATIONS WHICH IS INCLUSIVE OF STATE AND DISTRICTS
     foreach( $terms as $term ){
@@ -105,14 +133,41 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
         $report_count = $this->getReportCount( $report_count_tax_args, $year );
 
+        if( $report_count > $max_count ){
+          $max_count = $report_count;
+        }
+
         $temp = array(
           'district'  => $term->name,
-          'reports'   => $report_count > 0 ? $report_count : rand( 0, 100 )
+          'parent'    => $term->parent,
+          'url'       => $url."&tax_locations=".$term->name,
+          'reports'   => $report_count //> 0 ? $report_count : rand( 0, 100 )
         );
         array_push( $data, $temp );
       }
+      else{
+        $states[ $term->term_id ] = $term->name;
+      }
     }
 
+    //print_r( $states );
+
+    // ITERATE THROUGH DATA TO CALCULATE PERCENTILE AND ADD STATE INFORMATION
+    foreach ( $data as $index => $row ) {
+      $data[ $index ]['percentile'] = 0;
+      if( $row['reports'] ){
+        $data[ $index ]['percentile'] = round( ( $row['reports'] / $max_count ) * 100, 2 );
+      }
+
+      if( isset( $states[ $row['parent'] ] ) ){
+        $data[ $index ]['state'] = $states[ $row['parent'] ];
+        unset( $data[ $index ]['parent'] );
+      }
+      elseif( isset( $_GET['tax_locations'] ) ){
+        $data[ $index ]['state'] = $_GET['tax_locations'];
+        unset( $data[ $index ]['parent'] );
+      }
+    }
 
     //echo "<pre>";
     //print_r( $data );
@@ -188,8 +243,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $atts['color_rules'] = array(
       'default' => '#EDE7F6',
       'min'	=> array(
-        'value'	=> 30,
-        'color'	=> '#B39DDB'
+        'value'	=> 1,
+        'color'	=> '#FFF'
       ),
       'max'	=> array(
         'value'	=> 85,
@@ -205,6 +260,11 @@ class CHOROPLETH_MAP extends SOAH_BASE{
           'min_value' => 30,
           'max_value'	=> 59,
           'color'			=> '#7E57C2'
+        ),
+        array(
+          'min_value' => 2,
+          'max_value'	=> 29,
+          'color'			=> '#B39DDB'
         ),
       )
     );
