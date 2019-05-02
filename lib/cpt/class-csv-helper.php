@@ -30,11 +30,48 @@ class CSV_HELPER extends SOAH_BASE{
 
 		});
 		*/
-		
+
 		add_action( 'wp_ajax_reset_locations', array( $this, 'reset_locations' ) );
 
 		add_action( 'wp_ajax_reset_reports', array( $this, 'reset_reports' ) );
 
+		add_action( 'wp_ajax_bulk_set_terms', array( $this, 'bulk_set_terms' ) );
+
+	}
+
+	function bulk_set_terms(){
+
+		$count = 0;
+
+		if( isset( $_GET['taxonomy1'] ) && ( isset( $_GET['taxonomy2'] ) ) && ( isset( $_GET['term1'] ) ) && isset( $_GET['term2'] ) ){
+			$query = new WP_Query( array(
+	    	'post_type' 		=> 'reports',
+	      'posts_per_page'=>-1,
+	      'tax_query' 		=> array(
+	        array(
+	          'taxonomy' => $_GET['taxonomy1'],
+	          'field'    => 'slug',
+	          'terms'    => $_GET['term1'],
+	        ),
+	     ) ) );
+
+			while ($query->have_posts()) {
+	    	$count++;
+	      $query->the_post();
+				global $post;
+	      wp_set_object_terms( $post->ID , $_GET['term2'], $_GET['taxonomy2'] );
+	    }
+			wp_reset_query();
+		}
+
+
+
+
+
+    echo "<h1>$count posts have been updated</h1>";
+
+
+		wp_die();
 	}
 
 	function reset_reports(){
