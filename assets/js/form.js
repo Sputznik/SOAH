@@ -242,27 +242,24 @@ jQuery(document).ready(function(){
 
   function formCheck( $slide ){
 
-    var flag 	= true,
-			fields 	= $slide.find(".form-required:not(.hide) input, .form-required select").serializeArray();
+    var flag 	    = true,
+      errorText   = jQuery('.soah-fep').data('error'),
+			fields 	    = $slide.find(".form-required:not(.hide) input, .form-required select").serializeArray();
 
-    // console.log( fields );
+    console.log( errorText );
 
     $.each( fields, function( i, field ){
 			if( !field.value || field.value == "0" ){
-        // if(".form-required:not(.hide) input[type='number']" )
-				errorMessage( "You have missed some required fields." );
+        errorMessage( errorText['missed'] );
 				flag = false;
       }
       //Phone Number validation
       else if( field.name === 'contact-phone' ){
-        if( field.value.length !=10 ){
-          errorMessage( "Contact number must be a 10 digit number." );
+        if( ( field.value.length !=10 ) || !( field.value >= 6000000000 && field.value <= 9999999999 ) ){
+          errorMessage( errorText['contact-number'] );
   				flag = false;
         }
-        else if( !( field.value >= 6000000000 && field.value <= 9999999999 ) ){
-          errorMessage( "Contact number must be between 6000000000 and 9999999999." );
-  				flag = false;
-        }
+
       }
 		});
 
@@ -273,7 +270,7 @@ jQuery(document).ready(function(){
         num_checked = $parent.find('input[type="checkbox"]:checked').length;
 
       if( num_checked <= 0 ){
-        errorMessage( "You have missed some required fields." );
+        errorMessage( errorText['missed'] );
         flag = false;
       }
 
@@ -299,13 +296,15 @@ jQuery(document).ready(function(){
   // VALIDATION ON THE FORM - CHECK FOR CAPTCHA
   jQuery('.soah-fep').on('submit',function(event){
 
+    var errorText   = jQuery('.soah-fep').data('error');
+
     jQuery('.form-alert').hide();
 
     var response      = grecaptcha.getResponse(),
       responseLength  = response.length;
 
     if( responseLength == 0 ){
-      errorMessage( "Please check the captcha to determine you are human" );
+      errorMessage( errorText['captcha'] );
     }
 
   });
