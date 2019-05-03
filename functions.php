@@ -5,7 +5,7 @@ include( 'lib/lib.php' );
 add_theme_support( 'post-thumbnails' );
 
 //Constant changes all the js and css version on the go
-define( 'SOAH_VERSION', '1.1.8' );
+define( 'SOAH_VERSION', '1.1.9' );
 
 
 //Load child stylesheet after parent stylesheet
@@ -93,70 +93,7 @@ class SOAH_ADMIN{
       //add_submenu_page( 'soah-settings', 'Demo', 'Demo', 'manage_options', 'demo', array( $this, 'demo_page') );
     } );
   }
-  /*
-  function demo_page(){
 
-    echo "Demo";
-
-    $arrayCsv = array(
-      array(
-        'post_title',
-        'post_content',
-        'tax_report-type',
-        'tax_locations',
-        'cf_contact-name'
-      ),
-      array(
-        'Sample Post 1',
-        'Not a lot of content',
-        'Blasphemy Laws',
-        'New Delhi',
-        'Samuel Thomas'
-      ),
-      array(
-        'Sample Post 2',
-        'Similar content as above',
-        'Blasphemy Laws',
-        'Noida',
-        'Betty Mary'
-      ),
-    );
-
-    $orbit_csv = ORBIT_CSV::getInstance();
-
-    $headerInfo = $orbit_csv->getHeaderInfo( $arrayCsv );
-
-    $selectedCsv = array_slice( $arrayCsv, 1 );
-    $orbit_csv->importPosts( $selectedCsv, $headerInfo, array( 'post_status' => 'publish', 'post_type'  => 'reports' ) );
-
-
-    echo "<pre>";
-
-    print_r( $headerInfo );
-
-    echo "</pre>";
-
-  }
-
-
-  function import_page(){
-
-
-    $batch_process = ORBIT_BATCH_PROCESS::getInstance();
-
-    echo $batch_process->plain_shortcode( array(
-      'title'	      => '',
-      'desc'			  => '',
-      'batches'		  => 10,
-      'btn_text' 		=> 'Import CSV',
-      'batch_action'=> 'import_reports',
-      'params'		  => array(
-        'per_page'	=> 200,
-      )
-    ) );
-
-  }
-  */
 
   function translations_page(){
 

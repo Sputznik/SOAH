@@ -3,6 +3,18 @@
 
 add_filter( 'soah-fep-labels', function( $labels ){
   $labels = array(
+    'error-missed' => array(
+      'en'  => 'You have missed some required fields.',
+      'hi'  => 'कुछ आवश्यक फ़ील्ड छूट गए हैं'
+    ),
+    'error-contact-number' => array(
+      'en'  => 'Contact number must be a 10 digit number and must be between 6000000000 and 9999999999.',
+      'hi'  => 'संपर्क नंबर मान्य नहीं है'
+    ),
+    'error-captcha' => array(
+      'en'  => 'Please check the captcha to determine you are human.',
+      'hi'  => 'कृपया यह निर्धारित करने के लिए कैप्चा जांचें कि आप मानव हैं।'
+    ),
     'add-another' => array(
       'en'  => 'Add Another',
       'hi'  => 'एक और'

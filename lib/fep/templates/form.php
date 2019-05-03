@@ -178,14 +178,17 @@ $form_sections = array(
       )
     ),
   ),
+);
 
-
-
+$error_messages = array(
+  'captcha'         => $labels[ 'error-captcha' ][ $lang ],
+  'missed'          => $labels[ 'error-missed' ][ $lang ],
+  'contact-number'  => $labels[ 'error-contact-number' ][ $lang ]
 );
 
 echo '<script src="https://www.google.com/recaptcha/api.js?hl='.$lang.'"></script>';
 
-echo "<form class='soah-fep' data-behaviour='meteor-slides' id='featured_upload' method='post' enctype='multipart/form-data'>";
+echo "<form data-error='".wp_json_encode( $error_messages )."' class='soah-fep' data-behaviour='meteor-slides' id='featured_upload' method='post' enctype='multipart/form-data'>";
 if( !$_POST ){
   // BASIC FORM INFORMATION
   echo "<h3>" . $labels[ 'report-form' ][ $lang ] . "</h3>";
