@@ -29,11 +29,12 @@
 [data-behaviour~=choropleth-map] .key{
   position      : absolute;
   bottom        : 40px;
-  right         : 10px;
+  left          : 10px;
   line-height   : 18px;
   color         : #555;
-  background    : rgba(255,255,255,0.2);
+  background    : rgba(255,255,255,0.9);
   box-shadow    : 0 0 15px rgba(0,0,0,0.2);
+  border        : 1px solid #777;
   padding       : 10px;
   max-width     : 350px;
   border-radius : 0;

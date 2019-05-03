@@ -240,7 +240,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
       'url'   => admin_url('admin-ajax.php?action=map_data')
 		), $atts, 'soah_map' );
 
-    $atts['color_rules'] = array(
+    //PURPLE COLOR SCHEME
+    /*$atts['color_rules'] = array(
       'default' => '#EDE7F6',
       'min'	=> array(
         'value'	=> 1,
@@ -265,6 +266,35 @@ class CHOROPLETH_MAP extends SOAH_BASE{
           'min_value' => 2,
           'max_value'	=> 29,
           'color'			=> '#B39DDB'
+        ),
+      )
+    );*/
+    //RED COLOR SCHEME WITH CONTEXTUAL VALUES
+    $atts['color_rules'] = array(
+      'default' => '#EDE7F6',
+      'min'	=> array(
+        'value'	=> 1,
+        'color'	=> '#FFF'
+      ),
+      'max'	=> array(
+        'value'	=> 39,
+        'color'	=> '#5e1914'
+      ),
+      'ranges'  => array(
+        array(
+          'min_value' => 26,
+          'max_value'	=> 38,
+          'color'			=> '#B80F0A'
+        ),
+        array(
+          'min_value' => 11,
+          'max_value'	=> 25,
+          'color'			=> '#ED2939'
+        ),
+        array(
+          'min_value' => 1,
+          'max_value'	=> 10,
+          'color'			=> '#FA8072'
         ),
       )
     );
