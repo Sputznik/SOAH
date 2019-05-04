@@ -81,7 +81,7 @@
 
 
       function drawDistricts(){
-
+				console.log(data);
         //ADD DISTRICT BOUNDARIES
         gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
         gjLayerDist.addTo( map );
@@ -90,7 +90,7 @@
 				//ONLY ADD DISTRICTS THAT ARE AVAILABLE IN THE DATA
 				function matchDistricts(feature) {
 					for (var k = 0; k<data.length; k++) {
-						if ( feature.properties["DISTRICT"] == data[k]["district"] ) return true;
+						if ( feature.properties["DISTRICT"] == data[k]["district"] && feature.properties["ST_NM"] == data[k]["state"]) return true;
 					}
 					return false;
 				}
@@ -150,7 +150,7 @@
 					color 				= color_rules['default'];
 
 				// CONDITION IF THE VALUE IS BEYOND THE MIN AND MAX VALUE
-				if ( count >= color_rules['max']['value'] || count <= color_rules['min']['value'] ){
+				if ( count >= color_rules['max']['value'] || count < color_rules['min']['value'] ){
 					color = color_rules['min']['color'];
 					if( count >= color_rules['max']['value'] ){
 						color = color_rules['max']['color'];
