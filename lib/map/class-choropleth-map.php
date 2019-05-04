@@ -133,9 +133,9 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
         $report_count = $this->getReportCount( $report_count_tax_args, $year );
 
-        if( $report_count > $max_count ){
-          $max_count = $report_count;
-        }
+
+        $max_count += $report_count;
+
 
         $temp = array(
           'district'  => $term->name,
