@@ -156,7 +156,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     foreach ( $data as $index => $row ) {
       $data[ $index ]['percentile'] = 0;
       if( $row['reports'] ){
-        $data[ $index ]['percentile'] = round( ( $row['reports'] / $max_count ) * 100, 2 );
+        $data[ $index ]['percentile'] = ceil( ( $row['reports'] / $max_count ) * 100 );
       }
 
       if( isset( $states[ $row['parent'] ] ) ){
