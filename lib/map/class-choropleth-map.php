@@ -243,27 +243,27 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $atts['color_rules'] = array(
       'default' => '#EDE7F6',
       'min'	=> array(
-        'value'	=> 1,
+        'value'	=> 0,
         'color'	=> '#FFF'
       ),
       'max'	=> array(
-        'value'	=> 85,
+        'value'	=> 75,
         'color'	=> '#311B92'
       ),
       'ranges'  => array(
         array(
-          'min_value' => 60,
-          'max_value'	=> 85,
+          'min_value' => 50,
+          'max_value'	=> 74,
           'color'			=> '#5E35B1'
         ),
         array(
-          'min_value' => 30,
-          'max_value'	=> 59,
+          'min_value' => 26,
+          'max_value'	=> 49,
           'color'			=> '#7E57C2'
         ),
         array(
-          'min_value' => 2,
-          'max_value'	=> 29,
+          'min_value' => 1,
+          'max_value'	=> 25,
           'color'			=> '#B39DDB'
         ),
       )
