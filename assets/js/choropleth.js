@@ -126,7 +126,7 @@
 						if( data[i]["reports"] == 1 ){ content += " incident"; }
 						else{ content += " incidents"; }
 
-						content += "(" + data[i]['percentile'] + ")";
+						content += " (" + data[i]['percentile'] + "%)";
 
 						report_types = getFormValues( 'tax_report-type[]' );
 						year = $el.find('form [name=cf_year]').val();
