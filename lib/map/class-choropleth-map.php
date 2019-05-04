@@ -104,6 +104,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     $states = array();
 
+    $ranges = array();
+
     $max_count = 0;
 
     // ITERATE THROUGH EACH TERM - LOCATIONS WHICH IS INCLUSIVE OF STATE AND DISTRICTS
@@ -133,8 +135,16 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
         $report_count = $this->getReportCount( $report_count_tax_args, $year );
 
+        if( $report_count > $max_count ){
+          $max_count = $report_count;
+        }
 
-        $max_count += $report_count;
+        if( $report_count > 0 ){
+          if( !isset( $ranges[ $report_count ] ) ){
+            $ranges[ $report_count ]  = 0;
+          }
+          $ranges[ $report_count ]++;
+        }
 
 
         $temp = array(
@@ -167,15 +177,65 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         $data[ $index ]['state'] = $_GET['tax_locations'];
         unset( $data[ $index ]['parent'] );
       }
+
+
+
     }
 
-    //echo "<pre>";
-    //print_r( $data );
-    //echo "</pre>";
+    $buckets = $this->getBuckets( $ranges );
+
+    /*
+    $final_data = array(
+      'data'  => $data,
+
+    );
+    */
 
     print_r( wp_json_encode( $data ) );
 
     wp_die();
+  }
+
+  function getBuckets( $ranges, $total_buckets = 4 ){
+
+    $buckets = array();
+
+    // sort array by keys in ascending order
+    ksort( $ranges );
+
+    //echo "<pre>";
+    //print_r( $ranges );
+    //echo "</pre>";
+
+    $bucket_length = floor( count( $ranges ) / $total_buckets );
+
+    //echo $bucket_length;
+
+    $bucket_i = 0;
+    $temp = array();
+    foreach ($ranges as $key => $value) {
+
+      if( $bucket_i == 0 ){
+        $temp['min_value'] = $key;
+        $temp['count'] = 0;
+      }
+
+      $temp['count'] += $value;
+
+      if ( $bucket_i == $bucket_length ) {
+        $temp['max_value'] = $key;
+        array_push( $buckets, $temp );
+        $bucket_i = -1;
+      }
+
+      $bucket_i++;
+    }
+
+    //echo "<pre>";
+    //print_r( $buckets );
+    //echo "</pre>";
+
+    return $buckets;
   }
 
   /** CHECK IF THE CONTENT HAS THE SHORTCODE */
