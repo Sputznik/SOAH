@@ -277,13 +277,13 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         'color'	=> '#FFF'
       ),
       'max'	=> array(
-        'value'	=> 39,
+        'value'	=> 36,
         'color'	=> '#5e1914'
       ),
       'ranges'  => array(
         array(
           'min_value' => 26,
-          'max_value'	=> 38,
+          'max_value'	=> 35,
           'color'			=> '#B80F0A'
         ),
         array(
