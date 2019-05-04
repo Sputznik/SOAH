@@ -66,7 +66,7 @@
 						// HIDE THE LOADER
 						$el.find('.loader').hide();
 
-						data = json_data;
+						data = json_data['data'];
 
 						//REMOVE DISTRICTS LAYER FOR REFRESH
 						map.removeLayer(gjLayerDist);
@@ -74,6 +74,7 @@
 						// RENDER THE MAP IN THE CORRECT DOM
 		        drawDistricts();
 
+						createKeys( json_data['color_rules'] );
 					}
 				});
 			}
@@ -173,7 +174,7 @@
 				for ( var i = 0; i<data.length; i++ ){
 					if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
 						return {
-		          fillColor		: getColorKey( data[i]["percentile"] ),
+		          fillColor		: data[i]['color'], //getColorKey( data[i]["percentile"] ),
 		          weight			: 1,
 		          opacity			: 0.4,
 		          color				: 'black',
@@ -253,21 +254,21 @@
       $el.find('#filter_form_open').on('click', function () { showSidebar(); });
 
 			// CREATE COLOR CODED KEYS
-			function createKeys(){
+			function createKeys( color_rules ){
 
-				var $key 			= $el.find(".key"),
-					color_rules = atts['color_rules'];
+				var $key 			= $el.find(".key");
+					//color_rules = atts['color_rules'];
 
-				// MAX VALUE
-				addKey( color_rules['max']['color'], "More than " + color_rules['max']['value'] + "%" );
+				$key.html('');
+
 
 				// BETWEEN RANGES
 				jQuery.each( color_rules['ranges'], function( i, range ){
-					addKey( range['color'], "Between " + range['min_value'] + "% and " + range['max_value'] + "%" );
+					addKey( range['color'], "Between " + range['min_value'] + " and " + range['max_value'] + " reports" );
 				} );
 
-				// MIN VALUE
-				addKey( color_rules['min']['color'], "Less than " + color_rules['min']['value'] + "%" );
+				// MAX VALUE
+				addKey( color_rules['max']['color'], "More than " + color_rules['max']['value'] + " reports" );
 
 				function addKey( color, text ){
 					var $p = jQuery( document.createElement( 'p' ) );
@@ -292,7 +293,7 @@
 
 				getData();
 
-				createKeys();
+
 
 
 
