@@ -162,8 +162,9 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     //print_r( $states );
 
-    $color_rules = $this->getColorRules( $ranges, array( '#FA8072', '#ED2939', '#B80F0A', '#5e1914', '#555' ) );
+    $color_rules = $this->getColorRules( $ranges, array( '#FA8072', '#ED2939', '#B80F0A', '#5e1914' ) );
 
+    //$this->printArray( $color_rules );
 
     // ITERATE THROUGH DATA TO CALCULATE PERCENTILE AND ADD STATE INFORMATION
     foreach ( $data as $index => $row ) {
@@ -234,17 +235,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     echo "</pre>";
   }
 
-  function getColorRules( $ranges, $colors = array( '#eee', '#999', '#333' ) ){
-
-    //$this->printArray( $ranges );
-
-    // sort array by keys in ascending order
-    ksort( $ranges );
-
-    //$this->printArray( $ranges );
-
-    $total_buckets = count( $colors ) - 1;
-
+  function getBuckets( $ranges, $colors, $total_buckets ){
     $buckets = array();
 
     $bucket_length = floor( count( $ranges ) / ( $total_buckets ) );
@@ -257,6 +248,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     //$this->printArray( $ranges );
 
+    $max_value = 1;
+
     for( $bucket_i = 0; $bucket_i < $total_buckets; $bucket_i++ ){
 
       $temp_ranges = array_slice( $ranges, $bucket_i * $bucket_length, $bucket_length );
@@ -265,10 +258,53 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         $temp = array();
         $temp['min_value'] = $temp_ranges[0];
         $temp['max_value'] = $temp_ranges[ count( $temp_ranges) - 1 ];
+
+        if( $max_value < $temp['max_value'] ){
+          $max_value = $temp['max_value'];
+        }
+
         $temp['color']     = $colors[ $bucket_i ];
-        array_push( $buckets, $temp );
+        if( $temp['min_value'] < $temp['max_value'] ){
+          array_push( $buckets, $temp );
+        }
+
       }
     }
+
+    if( is_array( $buckets ) && !count( $buckets ) ){
+      $min_value = 1;
+      if( $max_value <= $min_value ){
+        $max_value = $min_value + 1;
+      }
+
+      $buckets = array(
+        array(
+          'min_value' => $min_value,
+          'max_value' => $max_value,
+          'color'     => $colors[0]
+        )
+      );
+    }
+
+    return $buckets;
+  }
+
+  function getColorRules( $ranges, $colors = array( '#eee', '#999', '#333' ) ){
+
+    //$this->printArray( $ranges );
+
+    // sort array by keys in ascending order
+    ksort( $ranges );
+
+    //$this->printArray( $ranges );
+
+    $total_buckets = count( $colors ) - 1;
+
+    if( 2 * $total_buckets > count( $ranges ) ){
+      $total_buckets = count( $ranges ) / 2;
+    }
+
+    $buckets = $this->getBuckets( $ranges, $colors, $total_buckets );
 
     $color_rules = array(
       'min' => array(
