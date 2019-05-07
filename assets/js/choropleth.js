@@ -268,7 +268,7 @@
 				} );
 
 				// MAX VALUE
-				addKey( color_rules['max']['color'], "<= " + color_rules['max']['value'] + " reports" );
+				addKey( color_rules['max']['color'], "Equal or more than " + color_rules['max']['value'] + " reports" );
 
 				function addKey( color, text ){
 					var $p = jQuery( document.createElement( 'p' ) );
