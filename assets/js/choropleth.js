@@ -130,9 +130,9 @@
 						content += " (" + data[i]['percentile'] + "%)";
 
 						report_types = getFormValues( 'tax_report-type[]' );
-						year = $el.find('form [name=cf_year]').val();
+						year = $el.find('form [name=postdate_year]').val();
 						victims = getFormValues( 'tax_victims[]' );
-
+						
 						if( year ){ content += " in <b>" + year +"</b>"; }
 
 						content += " reported";
@@ -148,33 +148,12 @@
         }
       }
 
-			function getColorKey( count ){
-				var color_rules = atts['color_rules'],
-					color 				= color_rules['default'];
-
-				// CONDITION IF THE VALUE IS BEYOND THE MIN AND MAX VALUE
-				if ( count >= color_rules['max']['value'] || count < color_rules['min']['value'] ){
-					color = color_rules['min']['color'];
-					if( count >= color_rules['max']['value'] ){
-						color = color_rules['max']['color'];
-					}
-				}
-				else{
-					// CONDITION WHEN THE VALUE IS BETWEEN THE MIN AND MAX RANGES
-					jQuery.each( color_rules['ranges'], function( i, range ){
-						if ( count >= range['min_value'] && count <= range['max_value'] ){
-							color = range['color'];
-						}
-					} );
-				}
-				return color;
-			}
 
       function styledist( feature ) {
 				for ( var i = 0; i<data.length; i++ ){
 					if ( data[i]["district"] == feature.properties["DISTRICT"] ) {
 						return {
-		          fillColor		: data[i]['color'], //getColorKey( data[i]["percentile"] ),
+		          fillColor		: data[i]['color'],
 		          weight			: 1,
 		          opacity			: 0.4,
 		          color				: 'black',

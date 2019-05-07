@@ -384,36 +384,10 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 			'title'	=> 'Map Violence',
       'url'   => admin_url('admin-ajax.php?action=map_data')
 		), $atts, 'soah_map' );
-    
-    //PURPLE COLOR SCHEME
-    /*$atts['color_rules'] = array(
-      'default' => '#EDE7F6',
-      'min'	=> array(
-        'value'	=> 0,
-        'color'	=> '#FFF'
-      ),
-      'max'	=> array(
-        'value'	=> 75,
-        'color'	=> '#311B92'
-      ),
-      'ranges'  => array(
-        array(
-          'min_value' => 50,
-          'max_value'	=> 74,
-          'color'			=> '#5E35B1'
-        ),
-        array(
-          'min_value' => 26,
-          'max_value'	=> 49,
-          'color'			=> '#7E57C2'
-        ),
-        array(
-          'min_value' => 1,
-          'max_value'	=> 25,
-          'color'			=> '#B39DDB'
-        ),
-      )
-    );*/
+
+    // Purple Colors - #B39DDB, #7E57C2, #5E35B1, #311B92
+    // Red Colors - #FA8072, #ED2939, #B80F0A, #5E1914
+
     //RED COLOR SCHEME WITH CONTEXTUAL VALUES
     $atts['color_rules'] = array(
       'default' => '#EDE7F6',
