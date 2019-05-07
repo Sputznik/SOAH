@@ -381,10 +381,10 @@ class CHOROPLETH_MAP extends SOAH_BASE{
   function shortcode( $atts ){
 
 		$atts = shortcode_atts( array(
-			'title'	=> 'A Simple Choropleth Map',
+			'title'	=> 'Map Violence',
       'url'   => admin_url('admin-ajax.php?action=map_data')
 		), $atts, 'soah_map' );
-
+    
     //PURPLE COLOR SCHEME
     /*$atts['color_rules'] = array(
       'default' => '#EDE7F6',
