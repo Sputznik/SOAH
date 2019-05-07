@@ -1,25 +1,63 @@
 jQuery(document).ready(function(){
 
   jQuery('[data-behaviour~=meteor-slides] .form-progress').each( function(){
-    var $progress = jQuery( this );
+    var $progress = jQuery( this ),
+        $form     = $progress.closest( 'form' );
+
+    function updateProgress(){
+
+      var $progressText = $progress.find( "h5" ),
+        $bar            = $progress.find( ".bar" );
+        totalSlidesNum  = totalSlides(),
+        currentSlideNum = getCurrentSlideValue(),
+        progress        = currentSlideNum * 100 / totalSlidesNum;
+
+      $progressText.html( "Step " + currentSlideNum + " of " + totalSlidesNum );
+
+      $bar.css({
+        width: progress + "%"
+      });
+
+      console.log( 'update progress' );
+
+    }
+
+    function getCurrentSlideValue(){
+      var $currentSlide = $form.find( '.meteor-slide.active' );
+      return $currentSlide.data('slide') + 1;
+    }
+
+    function totalSlides(){
+      return $form.find( 'section.meteor-slide' ).length;
+    }
 
     function createElements(){
 
       var $progressText = jQuery( document.createElement( 'h5' ) );
-      $progressText.html( "Step 1 of 2" );
+
       $progressText.appendTo( $progress );
 
       var $progressBar = jQuery( document.createElement( 'div' ) );
-      $progressBar.addClass( 'progress-bar' );
+      $progressBar.addClass( 'fep-progress-bar' );
       $progressBar.appendTo( $progress );
 
       var $bar = jQuery( document.createElement( 'div' ) );
       $bar.addClass( 'bar' );
       $bar.appendTo( $progressBar );
 
+
     }
 
-    createElements();
+    function init(){
+      createElements();
+      updateProgress();
+
+      $form.on('meteor:afterTransition', function( ev ){
+        updateProgress();
+      });
+    }
+
+    init();
 
   });
 

@@ -60,6 +60,9 @@
 				$([document.documentElement, document.body]).animate({
 					scrollTop: $el.offset().top - 100
 				}, 1000);
+
+				$nextSlide.trigger('meteor:afterTransition');
+
 			}
 
 			$el.find('[data-behaviour~=meteor-slide-next]').click( function( ev ){

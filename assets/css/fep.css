@@ -1,3 +1,21 @@
+form[data-behaviour~=meteor-slides] .form-progress{
+	margin-bottom: 50px;
+	position: relative;
+}
+form[data-behaviour~=meteor-slides] .form-progress h5{
+	font-size: 14px;
+}
+form[data-behaviour~=meteor-slides] .form-progress .fep-progress-bar{
+	height: 30px;
+	border: #ddd solid 1px;
+	border-radius: 2px;
+}
+form[data-behaviour~=meteor-slides] .form-progress .fep-progress-bar .bar{
+	height: 100%;
+	background: #036493;
+	width: 0%;
+}
+
 form[data-behaviour~=meteor-slides] input[type=submit],
 form[data-behaviour~=meteor-slides] input[type=button],
 form[data-behaviour~=meteor-slides] button{
