@@ -1,5 +1,28 @@
 jQuery(document).ready(function(){
 
+  jQuery('[data-behaviour~=meteor-slides] .form-progress').each( function(){
+    var $progress = jQuery( this );
+
+    function createElements(){
+
+      var $progressText = jQuery( document.createElement( 'h5' ) );
+      $progressText.html( "Step 1 of 2" );
+      $progressText.appendTo( $progress );
+
+      var $progressBar = jQuery( document.createElement( 'div' ) );
+      $progressBar.addClass( 'progress-bar' );
+      $progressBar.appendTo( $progress );
+
+      var $bar = jQuery( document.createElement( 'div' ) );
+      $bar.addClass( 'bar' );
+      $bar.appendTo( $progressBar );
+
+    }
+
+    createElements();
+
+  });
+
   // Clones all districts from select
   var cloneDistrictElements = jQuery('select[name=district]').clone();
 

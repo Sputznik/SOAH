@@ -3,7 +3,7 @@
 // HANDLES POST SUBMISSION
 $form_success_flag = $this->save();
 
-$lang = 'hi'; //$atts['lang'];
+$lang = $atts['lang'];
 
 /* REPORT TYPES, VICTIMS AND LOCATIONS FROM THE DB */
 $report_types = $this->getOptionsFromTaxonomy( 'report-type', $lang );
@@ -194,6 +194,8 @@ if( !$_POST ){
   echo "<h3>" . $labels[ 'report-form' ][ $lang ] . "</h3>";
   echo "<p class='section-desc'>" . $labels[ 'report-form-desc' ][ $lang ] . "</p>";
 
+  echo "<div class='form-progress'></div>";
+
   $i = 0;
   foreach ($form_sections as $section) {
     $this->display_section( $section, array(
@@ -205,6 +207,8 @@ if( !$_POST ){
     ) );
     $i++;
   }
+
+
 
   echo "<div class='form-alert error'></div>";
   //echo "<input class='submit' name='submit' type='submit' value='Submit Report' />";
