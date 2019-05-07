@@ -39,3 +39,7 @@ button[type=submit],
 .orbit-form-group select{
   padding: 10px 15px;
 }
+
+.leaflet-popup-content{
+  max-width: 300px !important;
+}
