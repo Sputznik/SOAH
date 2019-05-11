@@ -26,20 +26,13 @@
 }
 [data-behaviour~=choropleth-map] .leaflet-popup-content table {max-width:100%;padding:0 5px;font-size:13px;}
 [data-behaviour~=choropleth-map] table th,[data-behaviour~=choropleth-map] table td {border:1px solid #eee;padding:3px;text-align: center;}
-[data-behaviour~=choropleth-map] .key{
+[data-behaviour~=choropleth-map] .map-info{
   position      : absolute;
   bottom        : 40px;
   left          : 10px;
   line-height   : 18px;
   color         : #555;
-  background    : rgba(255,255,255,0.9);
-  box-shadow    : 0 0 15px rgba(0,0,0,0.2);
-  border        : 1px solid #777;
-  padding       : 10px;
-  max-width     : 350px;
-  border-radius : 0;
-  min-width     : 200px;
-  min-height    : 50px;
+
   z-index       : 400;
 }
 [data-behaviour~=choropleth-map] .key i {
@@ -51,7 +44,24 @@
   margin-right: 5px;
   background  : #000;
 }
-[data-behaviour~=choropleth-map] .key p {font-size: 12px;}
+[data-behaviour~=choropleth-map] .map-info p{font-size: 12px;}
+[data-behaviour~=choropleth-map] .map-info p:last-child{ margin: 0;}
+
+[data-behaviour~=choropleth-map] .map-info .context,
+[data-behaviour~=choropleth-map] .map-info .key{
+  background    : rgba(255,255,255,0.9);
+  box-shadow    : 0 0 15px rgba(0,0,0,0.2);
+  border        : 1px solid #777;
+  padding       : 10px;
+  max-width     : 350px;
+  border-radius : 0;
+  min-width     : 200px;
+  min-height    : 50px;
+  margin-bottom : 10px;
+}
+[data-behaviour~=choropleth-map] .map-info .context p{
+  margin: 0;
+}
 
 [data-behaviour~=choropleth-map] .boxed{
 	width:4px;
@@ -103,33 +113,33 @@
 }
 
 [data-behaviour~=choropleth-map] .map_sidebar{
-  position: absolute;
-  z-index: 600;
-  width: 100%;
-  max-width: 350px;
+  position        : absolute;
+  z-index         : 600;
+  width           : 100%;
+  max-width       : 350px;
   background-color: #F5F5F5;
-  height:100vh;
-  top:0;
-  right:0;
-  padding: 20px;
-  border-left: 2px solid #444;
-  transition: all 1.0s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+  height          : 100vh;
+  top             : 0;
+  right           : 0;
+  padding         : 20px;
+  border-left     : 2px solid #444;
+  transition      : all 1.0s cubic-bezier(0.945, 0.020, 0.270, 0.665);
   transform-origin: center right;
-  display: none;
-  opacity: 0;
+  display         : none;
+  opacity         : 0;
 }
 
 [data-behaviour~=choropleth-map] .map_overlay{
-  display: none;
-  position: absolute;
-  z-index: 550;
-  width:100%;
+  display         : none;
+  position        : absolute;
+  z-index         : 550;
+  width           : 100%;
   background-color: rgba(0,0,0,0.6);
-  height:100vh;
-  opacity: 0;
-  top:0;
-  left:0;
-  transition: all 0.5s ease-in-out;
+  height          : 100vh;
+  opacity         : 0;
+  top             : 0;
+  left            : 0;
+  transition      : all 0.5s ease-in-out;
 }
 
 [data-behaviour~=choropleth-map] .activated{
@@ -137,10 +147,13 @@
   opacity: 1;
 }
 
-[data-behaviour~=choropleth-map] #map_sidebar_dismiss{
-
-}
+[data-behaviour~=choropleth-map] #map_sidebar_dismiss{}
 
 [data-behaviour~=choropleth-map] .leaflet-popup-content-wrapper,[data-behaviour~=choropleth-map] .leaflet-popup-tip{
   border-radius: 2px;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+[data-behaviour~=choropleth-map] .leaflet-popup-content-wrapper{
+  padding: 5px;
 }

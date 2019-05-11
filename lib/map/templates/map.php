@@ -3,8 +3,6 @@
 
   <div id="map"></div>
 
-  <div class="title"><h1><?php _e( $atts['title'] );?></h1></div>
-
   <div class="map_sidebar_open">
     <button type="button" id="filter_form_open" class="btn btn-warning btn-lg">
       <i class="fa fa-align-left"></i>
@@ -30,7 +28,14 @@
 
   <div class="map_overlay"></div>
 
-  <div class="key"></div>
+  <div class="map-info">
+    <div class="context"></div>
+    <div class="key"></div>
+  </div>
+
+
+
+
 </div>
 <style>
   .header3 .affix{ z-index: 1999; }

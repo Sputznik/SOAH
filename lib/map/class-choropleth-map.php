@@ -107,6 +107,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $ranges = array();
 
     $max_count = 0;
+    $total_count = 0;
 
     // ITERATE THROUGH EACH TERM - LOCATIONS WHICH IS INCLUSIVE OF STATE AND DISTRICTS
     foreach( $terms as $term ){
@@ -135,9 +136,13 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
         $report_count = $this->getReportCount( $report_count_tax_args, $year );
 
+        // FINDS THE MAX COUNT OF THE REPORTS IN THE DATA SET
         if( $report_count > $max_count ){
           $max_count = $report_count;
         }
+
+        // TOTAL COUNT OF REPORTS
+        $total_count += $report_count;
 
         if( $report_count > 0 ){
           if( !isset( $ranges[ $report_count ] ) ){
@@ -192,8 +197,15 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     //print_r( $buckets );
     //echo "</pre>";
 
+    $context = $this->getContext( $_GET, array(
+      array(
+        'label' => 'Total Reports',
+        'value' => $total_count
+      )
+    ) );
 
     $final_data = array(
+      'context'     => $context,
       'color_rules' => $color_rules,
       'data'        => $data,
 
@@ -203,6 +215,42 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     print_r( wp_json_encode( $final_data ) );
 
     wp_die();
+  }
+
+  function getContext( $data, $appendData = array() ){
+
+    $labels = array(
+      'postdate_year'   => 'Year',
+      'tax_locations'   => 'State',
+      'tax_report-type' => 'Reported',
+      'tax_victims'     => 'Victims'
+    );
+
+    $context = array();
+
+    foreach ( $labels as $key => $text ) {
+      if( isset( $data[ $key ] ) && $data[ $key ] ){
+        array_push( $context, array(
+          'label' => $text,
+          'value' => is_array( $data[ $key ] ) ? implode( ', ', $data[ $key ] ) : $data[ $key ]
+        ));
+      }
+    }
+
+    if( !count( $context ) ){
+      $context = array(
+        array(
+          'label' => "Context",
+          'value' => "India since 2014"
+        )
+      );
+    }
+
+    foreach ( $appendData as $data ) {
+      array_push( $context, $data );
+    }
+
+    return $context;
   }
 
   function getColorKey( $num_data, $color_rules ){
@@ -285,6 +333,10 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         )
       );
     }
+
+    //krsort( $buckets );
+
+    //$this->printArray( $buckets );
 
     return $buckets;
   }

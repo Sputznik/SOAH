@@ -74,7 +74,11 @@
 						// RENDER THE MAP IN THE CORRECT DOM
 		        drawDistricts();
 
+						// CREATE COLOR CODED KEYS
 						createKeys( json_data['color_rules'] );
+
+						// CREATE CONTEXT THAT GIVES MORE INFORMATION
+						createContext( json_data['context'] );
 					}
 				});
 			}
@@ -98,6 +102,7 @@
 
       }
 
+			/*
 			// USED INSIDE POP CONTENT
 			// RETURNS STRING VERSION OF MULTIPLE SELECTED CHECKBOXES
 			function getFormValues( form_name ){
@@ -113,6 +118,7 @@
 				});
 				return list_str;
 			}
+			*/
 
       function popContent( feature ) {
 
@@ -129,17 +135,17 @@
 
 						content += " (" + data[i]['percentile'] + "%)";
 
-						report_types = getFormValues( 'tax_report-type[]' );
-						year = $el.find('form [name=postdate_year]').val();
-						victims = getFormValues( 'tax_victims[]' );
-						
-						if( year ){ content += " in <b>" + year +"</b>"; }
+						//report_types = getFormValues( 'tax_report-type[]' );
+						//year = $el.find('form [name=postdate_year]').val();
+						//victims = getFormValues( 'tax_victims[]' );
+
+						//if( year ){ content += " in <b>" + year +"</b>"; }
 
 						content += " reported";
 
-						if( report_types ){ content += " for <b>" + report_types +"</b>"; }
+						//if( report_types ){ content += " for <b>" + report_types +"</b>"; }
 
-						if( victims ){ content += " on <b>" + victims + "</b>"; }
+						//if( victims ){ content += " on <b>" + victims + "</b>"; }
 
 						content += " </a></p>";
 
@@ -232,22 +238,46 @@
 
       $el.find('#filter_form_open').on('click', function () { showSidebar(); });
 
+			// CREATE A SECTION THAT EXPLAINS THE CONTEXT
+			function createContext( context ){
+				var $context = $el.find(".context");
+
+				// REMOVE THE OLD DATA
+				$context.html('');
+
+				// BETWEEN RANGES
+				jQuery.each( context, function( i, item ){
+					addContextElement( item['label'] + ": <b>" + item['value'] + "</b>" );
+				} );
+
+				function addContextElement( text ){
+					var $p = jQuery( document.createElement( 'p' ) );
+					$p.html( text );
+					$p.appendTo( $context );
+				}
+			}
+
 			// CREATE COLOR CODED KEYS
 			function createKeys( color_rules ){
 
 				var $key 			= $el.find(".key");
-					//color_rules = atts['color_rules'];
 
+				// REMOVE THE OLD DATA
 				$key.html('');
-
 
 				// BETWEEN RANGES
 				jQuery.each( color_rules['ranges'], function( i, range ){
-					addKey( range['color'], "Between " + range['min_value'] + " and " + range['max_value'] + " reports" );
+					if( i == 0 ){
+						addKey( range['color'], "Lowest (<=" + range['max_value'] + " reports)" );
+					}
+					else{
+						addKey( range['color'], "Between " + range['min_value'] + " and " + range['max_value'] + " reports" );
+					}
+
 				} );
 
 				// MAX VALUE
-				addKey( color_rules['max']['color'], "Equal or more than " + color_rules['max']['value'] + " reports" );
+				addKey( color_rules['max']['color'], "Highest (>=" + color_rules['max']['value'] + " reports)" );
 
 				function addKey( color, text ){
 					var $p = jQuery( document.createElement( 'p' ) );
@@ -260,7 +290,7 @@
 					$span.html( text );
 					$span.appendTo( $p );
 
-					$p.appendTo( $key );
+					$p.prependTo( $key );
 				}
 
 			}
