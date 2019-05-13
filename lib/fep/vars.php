@@ -36,8 +36,8 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'किसी घटना की रिपोर्ट करें'
     ),
     'report-form-desc'  => array(
-      'en'  => 'Please use the form below to report an incident of violence and discrimination',
-      'hi'  => 'हिंसा और भेदभाव की घटना की रिपोर्ट करने के लिए कृपया नीचे दिए गए फॉर्म का उपयोग करें'
+      'en'  => 'Please use the form below to report an incident of violence and discrimination. All the required fields are marked with <span class="red">*</span>',
+      'hi'  => 'हिंसा और भेदभाव की घटना की रिपोर्ट करने के लिए कृपया नीचे दिए गए फॉर्म का उपयोग करें। सभी आवश्यक फ़ील्ड <span class="red">*</span> के साथ चिह्नित हैं'
     ),
     'report-title' => array(
       'en'  => 'Give your report a title',
@@ -48,8 +48,8 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'घटना का यथासंभव वर्णन करें'
     ),
     'report-date' => array(
-      'en'  => 'Incident Date (required)',
-      'hi'  => 'घटना दिनांक (आवश्यक)'
+      'en'  => 'Incident Date <span class="red">*</span>',
+      'hi'  => 'घटना दिनांक <span class="red">*</span>'
     ),
     'optional'  => array(
       'en'  => 'This is optional',
@@ -64,16 +64,16 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'कृपया यथासंभव सटीक विवरण दें'
     ),
     'state-title' => array(
-      'en'  => 'Select State (required)',
-      'hi'  => 'राज्य चुनें (आवश्यक)'
+      'en'  => 'Select State <span class="red">*</span>',
+      'hi'  => 'राज्य चुनें <span class="red">*</span>'
     ),
     'state-placeholder' => array(
       'en'  => 'State',
       'hi'  => 'राज्य'
     ),
     'district-title' => array(
-      'en'  => 'Select District (required)',
-      'hi'  => 'जिला चुनें (आवश्यक)'
+      'en'  => 'Select District <span class="red">*</span>',
+      'hi'  => 'जिला चुनें <span class="red">*</span>'
     ),
     'district-placeholder' => array(
       'en'  => 'District',
@@ -84,7 +84,7 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'घटना का पता'
     ),
     'report-type-title' => array(
-      'en'  => 'Categorize the incident as',
+      'en'  => 'Did the incident involve any of the following',
       'hi'  => 'घटना को वर्गीकृत करें'
     ),
     'victims-title' => array(
@@ -92,7 +92,7 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'जो सभी पीड़ित थे'
     ),
     'extra-form-title'  => array(
-      'en'  => 'Additional information',
+      'en'  => 'Additional information (optional)',
       'hi'  => 'अतिरिक्त जानकारी'
     ),
     'extra-form-desc'  => array(
@@ -120,8 +120,8 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'संपर्क नाम'
     ),
     'contact-type-title'  => array(
-      'en'  => 'How should we contact you? (required)',
-      'hi'  => 'हमें कैसे आप से संपर्क करना चाहिए? (आवश्यक)'
+      'en'  => 'How should we contact you? <span class="red">*</span>',
+      'hi'  => 'हमें कैसे आप से संपर्क करना चाहिए? <span class="red">*</span>'
     ),
     'option-phone'  => array(
       'en'  => 'Phone',
@@ -132,12 +132,12 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'ईमेल'
     ),
     'contact-phone-title'  => array(
-      'en'  => 'Contact Phone Number (required)',
-      'hi'  => 'संपर्क फ़ोन नंबर (आवश्यक)'
+      'en'  => 'Contact Phone Number <span class="red">*</span>',
+      'hi'  => 'संपर्क फ़ोन नंबर <span class="red">*</span>'
     ),
     'contact-email-title'  => array(
-      'en'  => 'Contact Email (required)',
-      'hi'  => 'संपर्क ईमेल (आवश्यक)'
+      'en'  => 'Contact Email <span class="red">*</span>',
+      'hi'  => 'संपर्क ईमेल <span class="red">*</span>'
     ),
   );
   return $labels;

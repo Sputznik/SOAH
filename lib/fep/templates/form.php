@@ -241,15 +241,16 @@ else{
   echo "<div style='margin-top:50px;' class='form-alert'>" . $message . "</div>";
 
   // REDIRECT AFTER A DELAY
-  echo "<script>function refreshPage(){ window.location.href = window.location.href;} setTimeout( refreshPage, 5000 );</script>";
+  echo "<script>function refreshPage(){ window.location.href = window.location.href;} setTimeout( refreshPage, 500 );</script>";
 }
 
 echo "</form>";
 ?>
 <style>
+  form.soah-fep span.red{
+    color: red;
+  }
   .lang-switcher{
-
-
     float: right;
     font-size: 14px;
     margin-top: 10px;
