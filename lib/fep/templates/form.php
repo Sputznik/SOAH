@@ -250,14 +250,14 @@ echo "</form>";
   form.soah-fep span.red{
     color: red;
   }
-  .lang-switcher{
+  form.soah-fep .lang-switcher{
     float: right;
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 10px !important;
     margin-left: 10px;
   }
-  .lang-switcher select{
+  form.soah-fep .lang-switcher select{
     padding: 2px !important;
     width: auto !important;
   }
