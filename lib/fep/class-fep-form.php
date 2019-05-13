@@ -228,7 +228,8 @@ class FEP_FORM extends SOAH_BASE{
 	function shortcode( $atts ){
 
 		$atts = shortcode_atts( array(
-			'lang'	=> 'en'
+			'lang'				=> 'en',
+			'redirect_to'	=> ''
 		), $atts, 'soah_fep' );
 
 		if( isset( $_GET['lang'] ) ){

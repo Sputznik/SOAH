@@ -241,7 +241,7 @@ else{
   echo "<div style='margin-top:50px;' class='form-alert'>" . $message . "</div>";
 
   // REDIRECT AFTER A DELAY
-  echo "<script>function refreshPage(){ window.location.href = window.location.href;} setTimeout( refreshPage, 500 );</script>";
+  echo "<script>function refreshPage(){ window.location.href = '" . $atts['redirect_to'] . "';} setTimeout( refreshPage, 500 );</script>";
 }
 
 echo "</form>";
