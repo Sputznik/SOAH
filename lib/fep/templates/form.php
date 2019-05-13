@@ -245,20 +245,3 @@ else{
 }
 
 echo "</form>";
-?>
-<style>
-  form.soah-fep span.red{
-    color: red;
-  }
-  form.soah-fep .lang-switcher{
-    float: right;
-    font-size: 14px;
-    margin-top: 10px;
-    margin-bottom: 10px !important;
-    margin-left: 10px;
-  }
-  form.soah-fep .lang-switcher select{
-    padding: 2px !important;
-    width: auto !important;
-  }
-</style>
