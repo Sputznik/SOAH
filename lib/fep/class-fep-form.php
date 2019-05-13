@@ -231,6 +231,10 @@ class FEP_FORM extends SOAH_BASE{
 			'lang'	=> 'en'
 		), $atts, 'soah_fep' );
 
+		if( isset( $_GET['lang'] ) ){
+			$atts['lang'] = $_GET['lang'];
+		}
+
 		ob_start();
 		include( 'templates/form.php' );
 		return ob_get_clean();

@@ -191,8 +191,27 @@ echo '<script src="https://www.google.com/recaptcha/api.js?hl='.$lang.'"></scrip
 echo "<form data-error='".wp_json_encode( $error_messages )."' class='soah-fep' data-behaviour='meteor-slides' id='featured_upload' method='post' enctype='multipart/form-data'>";
 if( !$_POST ){
   // BASIC FORM INFORMATION
+
+  $this->display_field( array(
+    'class'   => 'lang-switcher',
+    'type'    => 'dropdown',
+    'options' => array(
+      array(
+        'slug'  => 'en',
+        'title' => 'English'
+      ),
+      array(
+        'slug'  => 'hi',
+        'title' => 'Hindi'
+      )
+    ),
+    'selected'  => $lang
+  ) );
+
   echo "<h3>" . $labels[ 'report-form' ][ $lang ] . "</h3>";
   echo "<p class='section-desc'>" . $labels[ 'report-form-desc' ][ $lang ] . "</p>";
+
+
 
   echo "<div class='form-progress'></div>";
 
@@ -226,3 +245,13 @@ else{
 }
 
 echo "</form>";
+?>
+<style>
+  .lang-switcher{
+    padding: 2px;
+    width: auto;
+    float: right;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+</style>
