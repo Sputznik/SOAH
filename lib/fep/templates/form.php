@@ -248,10 +248,16 @@ echo "</form>";
 ?>
 <style>
   .lang-switcher{
-    padding: 2px;
-    width: auto;
+
+
     float: right;
     font-size: 14px;
     margin-top: 10px;
+    margin-bottom: 10px !important;
+    margin-left: 10px;
+  }
+  .lang-switcher select{
+    padding: 2px !important;
+    width: auto !important;
   }
 </style>
