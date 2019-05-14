@@ -1,4 +1,4 @@
-<div data-atts='<?php _e( wp_json_encode( $atts ) );?>' style='margin-top:80px;overflow:hidden;' data-behaviour='choropleth-map'>
+<div data-atts='<?php _e( wp_json_encode( $atts ) );?>' style='overflow:hidden;' data-behaviour='choropleth-map'>
   <div class="loader"><h3><i class='fa fa-spinner fa-spin'></i> Loading data, please wait..</h3></div>
 
   <div id="map"></div>

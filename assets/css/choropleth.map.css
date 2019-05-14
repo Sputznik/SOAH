@@ -1,6 +1,5 @@
 [data-behaviour~=choropleth-map]{
   position: relative;
-  margin-top: 100px;
   border: #ddd solid 1px;
 }
 
