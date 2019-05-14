@@ -397,12 +397,12 @@ jQuery(document).ready(function(){
 
     jQuery('.form-alert').hide();
 
-    var response      = grecaptcha.getResponse(),
-      responseLength  = response.length;
-
-    if( responseLength == 0 ){
-      errorMessage( errorText['captcha'] );
-    }
+    // var response      = grecaptcha.getResponse(),
+    //   responseLength  = response.length;
+    //
+    // if( responseLength == 0 ){
+    //   errorMessage( errorText['captcha'] );
+    // }
 
   });
 

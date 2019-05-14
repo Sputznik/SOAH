@@ -22,12 +22,14 @@ class FEP_FORM extends SOAH_BASE{
 		  //echo "</pre>";
 
 		  $post_id = $this->insertPost( array(
-		  	'post_content'  => isset( $_POST['description'] ) ? $_POST['description'] :  "",
+		  	'post_content'  => ( isset( $_POST['description'] ) && $_POST['description'] ) ? $_POST['description'] :  "Blank Incident Information",
 		    'post_date'     => $_POST['incident-date']
 		  ) );
 
+			//print_r( $post_id );
+
 			// IF POST ID IS NOT VALID THEN RETURN ERROR
-		  if( !$post_id ){ return 0; }
+		  if( !$post_id || is_array( $post_id ) ){ print_r( $post_id );return 0; }
 
 			// SAVE TAXONOMIES
 		  $taxonomies = array(
@@ -60,21 +62,15 @@ class FEP_FORM extends SOAH_BASE{
 
 		$new_post = wp_parse_args( $data, array(
 			'post_title'    => '',
-			'post_content'	=> '',
+			'post_content'	=> 'Blank Report',
 			'post_status'   => 'pending',         // Choose: publish, preview, future, draft, etc.
       'post_type'     => 'reports'
 		) );
 
-		$new_post = array(
-      'post_title'    => isset( $_POST['title'] ) ? $_POST['title'] :  "",
-      'post_content'  => isset( $_POST['description'] ) ? $_POST['description'] :  "",
-      'post_date'     => $_POST['incident-date'],
-      'post_status'   => 'pending',           // Choose: publish, preview, future, draft, etc.
-      'post_type'     => 'reports'            // Use a custom post type if you want to
-    );
+		//print_r( $new_post );
 
-    //save the new post and return its ID
-    $post_id = wp_insert_post( $new_post );
+		//save the new post and return its ID
+    $post_id = wp_insert_post( $new_post, true );
 
 		return $post_id;
 	}

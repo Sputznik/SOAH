@@ -171,22 +171,22 @@ $form_sections = array(
 
       ),
 
-      'recaptcha'  => array(
-        'type'      => 'recaptcha',
-        'label'     => 'Google Recaptcha',
-        'class'     => 'hide-label'
-      )
+      // 'recaptcha'  => array(
+      //   'type'      => 'recaptcha',
+      //   'label'     => 'Google Recaptcha',
+      //   'class'     => 'hide-label'
+      // )
     ),
   ),
 );
 
 $error_messages = array(
-  'captcha'         => $labels[ 'error-captcha' ][ $lang ],
+  // 'captcha'         => $labels[ 'error-captcha' ][ $lang ],
   'missed'          => $labels[ 'error-missed' ][ $lang ],
   'contact-number'  => $labels[ 'error-contact-number' ][ $lang ]
 );
 
-echo '<script src="https://www.google.com/recaptcha/api.js?hl='.$lang.'"></script>';
+// echo '<script src="https://www.google.com/recaptcha/api.js?hl='.$lang.'"></script>';
 
 echo "<form data-error='".wp_json_encode( $error_messages )."' class='soah-fep' data-behaviour='meteor-slides' id='featured_upload' method='post' enctype='multipart/form-data'>";
 if( !$_POST ){
@@ -241,7 +241,9 @@ else{
   echo "<div style='margin-top:50px;' class='form-alert'>" . $message . "</div>";
 
   // REDIRECT AFTER A DELAY
-  echo "<script>function refreshPage(){ window.location.href = '" . $atts['redirect_to'] . "';} setTimeout( refreshPage, 500 );</script>";
+  if( $form_success_flag ){
+    echo "<script>function refreshPage(){ window.location.href = '" . $atts['redirect_to'] . "';} setTimeout( refreshPage, 500 );</script>";
+  }
 }
 
 echo "</form>";
