@@ -43,3 +43,23 @@ button[type=submit],
 .leaflet-popup-content{
   max-width: 300px !important;
 }
+/* Pagination */
+.page-numbers{
+   border: 1px solid #ddd; /* Gray */
+  display: inline-block;
+  text-align: center;
+  padding: 4px;
+  float: left;
+  padding: 8px 16px;
+  color: #000;
+  cursor: pointer;
+}
+a.page-numbers{
+  text-decoration: none;
+  transition: background-color .3s;
+}
+span.current{
+  background-color: #d4474d;
+  color: white;
+}
+a.page-numbers:hover:not(.current) {background-color: #ddd;}
