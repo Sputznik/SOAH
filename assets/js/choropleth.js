@@ -34,8 +34,9 @@
 				//var hybUrl='https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ3VuZWV0bmFydWxhIiwiYSI6IldYQUNyd0UifQ.EtQC56soqWJ-KBQqHwcpuw';
 				var hybUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
 				var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
-				var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 8, attribution: hybAttrib, opacity:1}).addTo(map);
+				var hyb = new L.TileLayer(hybUrl, {minZoom: 5, maxZoom: 10, attribution: hybAttrib, opacity:1}).addTo(map);
 				L.control.scale().addTo(map);
+				map.setMaxBounds(map.getBounds());
 
 				//ADD STATE BOUNDARIES
 				var statelines = {
