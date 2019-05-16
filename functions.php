@@ -5,7 +5,7 @@ include( 'lib/lib.php' );
 add_theme_support( 'post-thumbnails' );
 
 //Constant changes all the js and css version on the go
-define( 'SOAH_VERSION', '1.4.4' ); 
+define( 'SOAH_VERSION', '1.4.4' );
 
 
 //Load child stylesheet after parent stylesheet
@@ -38,7 +38,9 @@ add_filter( 'sp_list_google_fonts', function( $fonts ){
 
 } );
 
-
+add_action( 'orbit_filter_form_header', function( $form ){
+  _e("<p class='small'>Filter this data</p><hr style='margin:10px -18px 20px;'>");
+});
 
 
 //add new column to the admin dashboard
