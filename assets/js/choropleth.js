@@ -110,7 +110,6 @@
 				var $list = $el.find('form [name="' + form_name + '"]:checked');
 				var total = $list.length;
 				var list_str = "";
-
 				$list.each( function( i ){
 					var $current_report_type = jQuery(this);
 					if( ( i == total-1 ) && ( i != 0 ) ){ list_str += " or "; }
@@ -295,6 +294,12 @@
 				}
 
 			}
+
+			// Reset filters on button click
+			jQuery('.reset').click(function(){
+				jQuery('.map_sidebar form').trigger('reset').submit();
+			});
+
 
       // INITIALIZE FUNCTION
       function init(){
