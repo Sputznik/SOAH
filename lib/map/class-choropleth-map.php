@@ -113,6 +113,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     foreach( $terms as $term ){
       if( $term->parent ){
 
+        // changed to term_id because of conflicting/duplicate district names
         $report_count_tax_args = array(
           array(
             'taxonomy'  => 'locations',
