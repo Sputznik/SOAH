@@ -27,7 +27,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
       foreach( $terms as $term ){
         $temp = array(
           'taxonomy' =>  $term['taxonomy'],
-          'field'    =>  'name',
+          'field'    =>  isset( $term['field'] ) ? $term['field'] : 'name',
           'terms'    =>  $term['values']
         );
         array_push( $query_args['tax_query'], $temp );
@@ -113,10 +113,12 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     foreach( $terms as $term ){
       if( $term->parent ){
 
+        // changed to term_id because of conflicting/duplicate district names
         $report_count_tax_args = array(
           array(
             'taxonomy'  => 'locations',
-            'values'    => array( $term->name )
+            'field'     => 'term_id',
+            'values'    => array( $term->term_id )
           )
         );
 

@@ -49,7 +49,10 @@ form.soah-fep label{
 	display: block;
 }
 
-form.soah-fep input[type=text], input[type=number], input[type=email], form.soah-fep textarea, form.soah-fep select{
+form.soah-fep input[type=text],
+form.soah-fep input[type=number],
+form.soah-fep input[type=email],
+form.soah-fep textarea, form.soah-fep select{
 	width: 100%;
 	padding: 10px 15px;
 }
