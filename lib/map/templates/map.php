@@ -23,8 +23,8 @@
       echo do_shortcode('[orbit_filter label="Select Victims" type=tax form=bt_dropdown_checkboxes typeval=victims tax_hide_empty=false]');
     ?>
       <button type="submit" class="btn btn-success"><i class="fa fa-check"></i><span>Apply Filter</span></button>
-      or
-      <button type="button" class="btn btn-danger reset"><i class="fa fa-refresh"></i><span>Reset Filter</span></button>
+      <span class="or-text">or</span>
+      <button type="button" class="btn btn-reset reset">Reset</span></button>
     </form>
     <br/>
 

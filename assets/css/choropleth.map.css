@@ -156,3 +156,20 @@
 [data-behaviour~=choropleth-map] .leaflet-popup-content-wrapper{
   padding: 5px;
 }
+
+[data-behaviour~=choropleth-map] .or-text{
+  font-size: 16px;
+  padding: 0 5px;
+}
+
+
+[data-behaviour~=choropleth-map] .btn-reset{
+  display: inline;
+  min-width: auto;
+  border: none;
+  background: none;
+  font-size: 16px;
+  padding: 0;
+  vertical-align: baseline;
+  text-decoration: underline;
+}
