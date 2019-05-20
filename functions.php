@@ -28,7 +28,7 @@ add_action('wp_enqueue_scripts', function(){
 // Changing excerpt more
 function excerpt_display($more) {
    global $post;
-   return '.. <a href="'. get_permalink($post->ID) . '" class="read-more">Continue reading</a>';
+   return '... <a href="'. get_permalink($post->ID) . '" class="read-more">Continue reading</a>';
 }
 add_filter('excerpt_more', 'excerpt_display');
 
