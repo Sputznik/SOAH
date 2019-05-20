@@ -17,6 +17,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
   function getReportCount( $terms = array(), $year = 0 ){
 
     $query_args = array(
+      'post_status'     => 'publish',
       'post_type'       => 'reports',
       'posts_per_page'  =>  -1,
     );
