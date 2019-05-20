@@ -208,12 +208,16 @@ if( !$_POST ){
     'selected'  => $lang
   ) );
 
+
+
   echo "<h3>" . $labels[ 'report-form' ][ $lang ] . "</h3>";
   echo "<p class='section-desc'>" . $labels[ 'report-form-desc' ][ $lang ] . "</p>";
 
 
 
   echo "<div class='form-progress'></div>";
+
+  wp_nonce_field( 'soah-fep' );
 
   $i = 0;
   foreach ($form_sections as $section) {

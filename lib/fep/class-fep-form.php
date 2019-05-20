@@ -11,6 +11,8 @@ class FEP_FORM extends SOAH_BASE{
 
 		if( $_POST ){
 
+			wp_verify_nonce( $_REQUEST['_wpnonce'], 'soah-fep' );
+
 			// IF REQUIRED FIELDS ARE NOT PRESENT IN $_POST THE RETURN ERROR
 		  $required_fields = array('incident-date', 'state', 'district');
 			foreach( $required_fields as $field ){
