@@ -240,7 +240,7 @@
 
 			// CREATE A SECTION THAT EXPLAINS THE CONTEXT
 			function createContext( context ){
-				var $context = $el.find(".context");
+				var $context = $el.find(".context-info");
 
 				// REMOVE THE OLD DATA
 				$context.html('');

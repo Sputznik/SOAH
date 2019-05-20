@@ -33,7 +33,10 @@
   <div class="map_overlay"></div>
 
   <div class="map-info">
-    <div class="context"></div>
+    <div class="context">
+      <h5>District-wise Reports of Incidents</h5>
+      <div class='context-info'></div>
+    </div>
     <div class="key"></div>
   </div>
 

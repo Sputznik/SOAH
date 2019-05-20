@@ -243,8 +243,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     if( !count( $context ) ){
       $context = array(
         array(
-          'label' => "Context",
-          'value' => "India since 2014"
+          'label' => "India",
+          'value' => "since 2014"
         )
       );
     }
