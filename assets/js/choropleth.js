@@ -133,7 +133,7 @@
 						if( data[i]["reports"] == 1 ){ content += " incident"; }
 						else{ content += " incidents"; }
 
-						content += " (" + data[i]['percentile'] + "%)";
+						//content += " (" + data[i]['percentile'] + "%)";
 
 						//report_types = getFormValues( 'tax_report-type[]' );
 						//year = $el.find('form [name=postdate_year]').val();
@@ -268,7 +268,7 @@
 				// BETWEEN RANGES
 				jQuery.each( color_rules['ranges'], function( i, range ){
 					if( i == 0 ){
-						addKey( range['color'], "Lowest (<=" + range['max_value'] + " reports)" );
+						addKey( range['color'], "Lowest" );
 					}
 					else{
 						addKey( range['color'], "Between " + range['min_value'] + " and " + range['max_value'] + " reports" );
@@ -277,7 +277,7 @@
 				} );
 
 				// MAX VALUE
-				addKey( color_rules['max']['color'], "Highest (>=" + color_rules['max']['value'] + " reports)" );
+				addKey( color_rules['max']['color'], "Highest" );
 
 				function addKey( color, text ){
 					var $p = jQuery( document.createElement( 'p' ) );
