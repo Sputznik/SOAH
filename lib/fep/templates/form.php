@@ -246,7 +246,7 @@ else{
 
   // REDIRECT AFTER A DELAY
   if( $form_success_flag ){
-    echo "<script>function refreshPage(){ window.location.href = '" . $atts['redirect_to'] . "';} setTimeout( refreshPage, 500 );</script>";
+    //echo "<script>function refreshPage(){ window.location.href = '" . $atts['redirect_to'] . "';} setTimeout( refreshPage, 500 );</script>";
   }
 }
 

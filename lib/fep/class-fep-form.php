@@ -10,7 +10,7 @@ class FEP_FORM extends SOAH_BASE{
 	function save(){
 
 		if( $_POST ){
-
+			echo "<pre>";print_r( $_POST );echo "</pre>"; wp_die();
 			wp_verify_nonce( $_REQUEST['_wpnonce'], 'soah-fep' );
 
 			// IF REQUIRED FIELDS ARE NOT PRESENT IN $_POST THE RETURN ERROR
