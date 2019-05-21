@@ -31,8 +31,11 @@
   left          : 10px;
   line-height   : 18px;
   color         : #555;
-
   z-index       : 400;
+}
+[data-behaviour~=choropleth-map] .map-info h5{
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 [data-behaviour~=choropleth-map] .key i {
 	font-style  : normal;
@@ -43,7 +46,7 @@
   margin-right: 5px;
   background  : #000;
 }
-[data-behaviour~=choropleth-map] .map-info p{font-size: 12px;}
+[data-behaviour~=choropleth-map] .map-info p{font-size: 12px;margin-bottom: 0;}
 [data-behaviour~=choropleth-map] .map-info p:last-child{ margin: 0;}
 
 [data-behaviour~=choropleth-map] .map-info .context,
@@ -172,4 +175,21 @@
   padding: 0;
   vertical-align: baseline;
   text-decoration: underline;
+}
+
+
+@media( max-width:768px ){
+  [data-behaviour~=choropleth-map] #map{
+    height: calc( 100vh - 100px );
+  }
+  [data-behaviour~=choropleth-map] .map-info{
+    bottom: 35px;
+    left: 5px;
+  }
+
+  [data-behaviour~=choropleth-map] .map-info .context,
+  [data-behaviour~=choropleth-map] .map-info .key{
+    padding: 5px;
+    margin-bottom: 5px;
+  }
 }
