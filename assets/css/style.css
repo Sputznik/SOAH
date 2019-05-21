@@ -63,3 +63,16 @@ span.current{
   color: white;
 }
 a.page-numbers:hover:not(.current) {background-color: #ddd;}
+
+/* USED IN FEP AND EXPORT FORM */
+.grid-col2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  ..grid-col2{
+		grid-template-columns: 1fr;
+	}
+}
