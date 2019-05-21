@@ -10,7 +10,7 @@ add_filter( 'orbit_post_type_vars', function( $post_types ){
 			'name' 					=> 'Reports',
 			'singular_name' => 'Report',
 		),
-		'rewrite'		=> array('slug' => 'incidents', 'with_front' => false ),
+		//'rewrite'		=> array('slug' => 'incidents', 'with_front' => false ),
 		'public'		=> true,
 		'supports'	=> array( 'title', 'editor' )
 	);
@@ -80,7 +80,7 @@ add_filter('post_type_link', function( $permalink, $post_id, $leavename ){
 
   $post = get_post( $post_id );
 
-  if( $post->post_type == 'reports' ){
+  if( $post->post_type == 'reports' && $post->post_status == 'publish' ){
 
     $rewritecode = array( 'reports' );
 
