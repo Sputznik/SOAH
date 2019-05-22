@@ -18,25 +18,28 @@
 
 <?php
 
-  $batch_process = ORBIT_BATCH_PROCESS::getInstance();
-
-  echo $batch_process->plain_shortcode( array(
-    'title'	      => 'Please wait as the CSV is being exported.',
-    'desc'			  => '',
-    'batches'		  => 1,
-    'btn_text' 		=> 'Export CSV',
-    'batch_action'=> 'soah_export',
-    'params'		  => array(
-      'file_slug' => 'soah'
-    )
-  ) );
-
-
   if( $_POST ){
 
-    echo "<pre>";
-    print_r( $_POST );
-    echo "</pre>";
+    $orbit_util = ORBIT_UTIL::getInstance();
+
+    $batch_params = $orbit_util->paramsToString( $_POST );
+
+    if( isset( $batch_params['tax'] ) ){
+      $batch_params['tax'] = urlencode( $batch_params['tax'] );
+    }
+
+    $batch_params['file_slug'] = 'sam';//time();
+
+    $batch_process = ORBIT_BATCH_PROCESS::getInstance();
+
+    echo $batch_process->plain_shortcode( array(
+      'title'	      => 'Please wait as the CSV is being exported.',
+      'desc'			  => '',
+      'batches'		  => 2,
+      'btn_text' 		=> 'Export CSV',
+      'batch_action'=> 'soah_export',
+      'params'		  => $batch_params
+    ) );
 
   }
 

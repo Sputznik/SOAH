@@ -16,6 +16,7 @@ class CSV_HELPER extends SOAH_BASE{
     add_action('orbit_batch_action_soah_export', function(){
 
 			$orbit_csv = ORBIT_CSV::getInstance();
+			$orbit_util = ORBIT_UTIL::getInstance();
 
       // GET PARAMETERS
 			$step = $_GET['orbit_batch_step'];
@@ -35,15 +36,23 @@ class CSV_HELPER extends SOAH_BASE{
 
 			// ADD HEADER ROW FOR THE FIRST BATCH REQUEST ONLY
 			if( $step == 1 ){
-				echo "<p>Header Row has been added in the CSV file</p>";
 				$orbit_csv->addHeaderToCSV( $file_slug, $header );
 			}
 
 			$query_args = array(
-				'posts_per_page' => 3,
+				'posts_per_page' => 1000,
 				'post_type'			 => 'reports',
-				'post_status'		 => 'publish'
+				'post_status'		 => 'publish',
+				'paged'					 => $_GET['orbit_batch_step']
 			);
+
+			if( isset( $_GET['tax'] ) && ( !empty( $_GET['tax'] ) ) ){
+				$query_args['tax_query'] = $orbit_util->getTaxQueryParams( $_GET['tax'] );
+			}
+
+			if( isset( $_GET['date'] ) && ( !empty( $_GET['date'] ) ) ){
+				$query_args['date_query'] = $orbit_util->getDateQueryParams( $_GET['date'] );
+			}
 
 			$orbit_csv->exportPosts( $file_slug, $headerInfo, $query_args );
 
