@@ -23,7 +23,7 @@
   echo $batch_process->plain_shortcode( array(
     'title'	      => 'Please wait as the CSV is being exported.',
     'desc'			  => '',
-    'batches'		  => 3,
+    'batches'		  => 2,
     'btn_text' 		=> 'Export CSV',
     'batch_action'=> 'soah_export',
     'params'		  => array(

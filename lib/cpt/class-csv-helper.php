@@ -22,22 +22,86 @@ class CSV_HELPER extends SOAH_BASE{
 			$file_slug = $_GET['file_slug'];
 
 			$header = array(
-				//'post_ID',
+				'post_id',
 				'post_title',
+				'post_content',
+				'post_date',
 				'tax_locations',
 				'tax_report-type',
 				'tax_victims'
 			);
 
-			print_r( $orbit_csv->getHeaderInfo( array( $header ) ) );
+			$headerInfo = $orbit_csv->getHeaderInfo( array( $header ) );
 
 			// ADD HEADER ROW FOR THE FIRST BATCH REQUEST ONLY
 			if( $step == 1 ){
 				echo "<p>Header Row has been added in the CSV file</p>";
 				$orbit_csv->addHeaderToCSV( $file_slug, $header );
+
+
 			}
 
+			$this->addReportsToCSV( $file_slug, $headerInfo );
+
+
 		});
+
+
+	}
+
+	function addReportsToCSV( $file_slug, $headerInfo ){
+
+		$orbit_csv = ORBIT_CSV::getInstance();
+
+		$the_query = new WP_Query( array(
+			'posts_per_page' => 3,
+			'post_type'			 => 'reports',
+			'post_status'		=> 'publish'
+		) );
+
+		print_r( $headerInfo );
+
+		if ( $the_query->have_posts() ) {
+      while ( $the_query->have_posts() ) {
+				$the_query->the_post();
+
+				$row = array();
+
+				global $post;
+
+				// ACCUMULATING ALL POST INFORMATION
+				foreach( $headerInfo['post_info'] as $slug => $value ){
+					if( $slug == 'post_id' ){
+						$slug = 'ID';
+					}
+
+					if( isset( $post->$slug ) ){ $row[ $value ] = $post->$slug; }
+				}
+
+				// ACCUMULATING ALL TAXONOMY RELATED INFORMATION
+				foreach( $headerInfo['tax_info'] as $taxonomy => $value ){
+					$terms = wp_get_post_terms( get_the_ID(), $taxonomy );
+					$term_names_arr = array();
+					if( is_array( $terms ) && count( $terms ) ){
+						foreach ( $terms as $term ){
+	            array_push( $term_names_arr, $term->name );
+	          }
+					}
+					$row[ $value ] = implode( ',', $term_names_arr );
+	      }
+
+				$orbit_csv->addRowToCSV( $file_slug, $row );
+
+				echo "<pre>";
+				print_r( $row );
+				echo "</pre>";
+
+				echo "<br>";
+
+			}
+			wp_reset_postdata();
+		}
+
 
 
 	}
