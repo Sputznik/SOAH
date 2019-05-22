@@ -12,6 +12,34 @@ class CSV_HELPER extends SOAH_BASE{
 
 		add_action( 'wp_ajax_bulk_set_terms', array( $this, 'bulk_set_terms' ) );
 
+		/* ACTION HOOK FOR AJAX CALL - import terms */
+    add_action('orbit_batch_action_soah_export', function(){
+
+			$orbit_csv = ORBIT_CSV::getInstance();
+
+      // GET PARAMETERS
+			$step = $_GET['orbit_batch_step'];
+			$file_slug = $_GET['file_slug'];
+
+			$header = array(
+				//'post_ID',
+				'post_title',
+				'tax_locations',
+				'tax_report-type',
+				'tax_victims'
+			);
+
+			print_r( $orbit_csv->getHeaderInfo( array( $header ) ) );
+
+			// ADD HEADER ROW FOR THE FIRST BATCH REQUEST ONLY
+			if( $step == 1 ){
+				echo "<p>Header Row has been added in the CSV file</p>";
+				$orbit_csv->addHeaderToCSV( $file_slug, $header );
+			}
+
+		});
+
+
 	}
 
 	function export_shortcode( $atts ){
@@ -22,6 +50,8 @@ class CSV_HELPER extends SOAH_BASE{
 		include( 'templates/export.php' );
 		return ob_get_clean();
 	}
+
+
 
 	function bulk_set_terms(){
 
