@@ -15,10 +15,7 @@ class CSV_HELPER extends SOAH_BASE{
 		/* ACTION HOOK FOR AJAX CALL - import terms */
     add_action('orbit_batch_action_soah_export', function(){
 
-			$orbit_csv = ORBIT_CSV::getInstance();
-			$orbit_util = ORBIT_UTIL::getInstance();
-
-      // GET PARAMETERS
+			// GET PARAMETERS
 			$step = $_GET['orbit_batch_step'];
 			$file_slug = $_GET['file_slug'];
 
@@ -32,6 +29,8 @@ class CSV_HELPER extends SOAH_BASE{
 				'tax_victims'
 			);
 
+			$orbit_csv = ORBIT_CSV::getInstance();
+
 			$headerInfo = $orbit_csv->getHeaderInfo( array( $header ) );
 
 			// ADD HEADER ROW FOR THE FIRST BATCH REQUEST ONLY
@@ -39,26 +38,56 @@ class CSV_HELPER extends SOAH_BASE{
 				$orbit_csv->addHeaderToCSV( $file_slug, $header );
 			}
 
-			$query_args = array(
-				'posts_per_page' => 1000,
-				'post_type'			 => 'reports',
-				'post_status'		 => 'publish',
-				'paged'					 => $_GET['orbit_batch_step']
-			);
-
-			if( isset( $_GET['tax'] ) && ( !empty( $_GET['tax'] ) ) ){
-				$query_args['tax_query'] = $orbit_util->getTaxQueryParams( $_GET['tax'] );
-			}
-
-			if( isset( $_GET['date'] ) && ( !empty( $_GET['date'] ) ) ){
-				$query_args['date_query'] = $orbit_util->getDateQueryParams( $_GET['date'] );
-			}
+			// GET QUERY ARGS
+			$query_args = $this->queryArgs( $params, $_GET['posts_per_page'], $_GET['orbit_batch_step'] );
 
 			$orbit_csv->exportPosts( $file_slug, $headerInfo, $query_args );
 
 		});
 
 
+	}
+
+	// WRAPPER FUNCTION TO WPDB QUERY FOR REPORTS
+	function queryArgs( $params, $posts_per_page, $paged = 1 ){
+
+		$orbit_util = ORBIT_UTIL::getInstance();
+
+		$query_args = array(
+			'posts_per_page' => $posts_per_page,
+			'post_type'			 => 'reports',
+			'post_status'		 => 'publish',
+			'paged'					 => $paged
+		);
+
+		if( isset( $params['tax'] ) && ( !empty( $params['tax'] ) ) ){
+			$query_args['tax_query'] = $orbit_util->getTaxQueryParams( $params['tax'] );
+		}
+
+		if( isset( $params['date'] ) && ( !empty( $params['date'] ) ) ){
+			$query_args['date_query'] = $orbit_util->getDateQueryParams( $params['date'] );
+		}
+
+		return $query_args;
+
+	}
+
+	// WRAPPER FUNCTION FOR OBRIT BATCH PROCESS
+	function batchProcess( $atts ){
+		$batch_process = ORBIT_BATCH_PROCESS::getInstance();
+		echo $batch_process->plain_shortcode( $atts );
+	}
+
+	// RETURNS THE ABSOLUTE PATH AND URL OF A FILE IN THE WP CONTENTS DIRECTORY
+	function getFilePath( $file_slug ){
+		$orbit_csv = ORBIT_CSV::getInstance();
+    return $orbit_csv->getFilePath( $file_slug );
+	}
+
+	// CONVERT THE GET OR PAST PARAMS INTO STRING FORMAT THAT CAN BE RECONVERTED LATER
+	function paramsToString( $params ){
+		$orbit_util = ORBIT_UTIL::getInstance();
+		return $orbit_util->paramsToString( $params );
 	}
 
 	function export_shortcode( $atts ){

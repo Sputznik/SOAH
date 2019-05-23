@@ -72,7 +72,24 @@ a.page-numbers:hover:not(.current) {background-color: #ddd;}
 }
 
 @media screen and (max-width: 768px) {
-  ..grid-col2{
+  .grid-col2{
 		grid-template-columns: 1fr;
 	}
+}
+
+
+/* USED IN EXPORT MODAL */
+[data-behaviour~=export-modal] .result,
+[data-behaviour~=export-modal] .logs-container,
+[data-behaviour~=export-modal] button{
+  display: none !important;
+}
+
+[data-behaviour~=export-modal] .progress-title{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+[data-behaviour~=export-modal] .progress-desc{
+  margin-bottom: 20px;
 }

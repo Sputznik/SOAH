@@ -406,4 +406,29 @@ jQuery(document).ready(function(){
 
   });
 
+  // USED IN EXPORT PAGE
+  jQuery('[data-behaviour~=export-modal]').each( function(){
+
+    var $modal = jQuery( this ),
+      csv_file = $modal.data('csv');
+
+    // SHOW MODAL ON LOAD
+    $modal.modal('show');
+
+    // OPEN A NEW WINDOW WITH THE URL OF THE CSV FILE
+    function downloadCSV(){
+      var win = window.open(csv_file, '_blank');
+      win.focus();
+    }
+
+    // HANDLE WHEN ALL THE PROCESSING IS DONE
+    $modal.on('orbit_batch_process:complete', function(){
+      downloadCSV();
+
+      // HIDE MODAL WHEN EVERYTHING IS DONE
+      $modal.modal('hide');
+    });
+
+  });
+
 });

@@ -14,35 +14,55 @@
     <p></p>
     <p><button class="btn btn-default" type="submit">Download</button></p>
   </form>
-
-
+</div>
 <?php
 
-  if( $_POST ){
+  if( $_POST ):
 
-    $orbit_util = ORBIT_UTIL::getInstance();
+    // KEEP THE NAME OF THE FILE DYNAMIC
+    $file_slug = 'mv-data-'.time();
 
-    $batch_params = $orbit_util->paramsToString( $_POST );
+    // NEED TO PASS THIS INFORMATION TO THE MODAL TO DOWNLOAD WHEN THE PROCESS IS COMPLETED
+    $filePath = $this->getFilePath( $file_slug );
 
-    if( isset( $batch_params['tax'] ) ){
-      $batch_params['tax'] = urlencode( $batch_params['tax'] );
-    }
+    // HAS TWO ITEMS IN THE ARRAY: TAX AND DATE
+    $batch_params = $this->paramsToString( $_POST );
 
-    $batch_params['file_slug'] = 'sam';//time();
+    // NEEDS BATCH PARAMS TO CREATE THE QUERY ARGS
+    $posts_per_page = 100;
+    $query_args = $this->queryArgs( $batch_params, $posts_per_page ); // GET THE QUERY ARGS
+    $the_query = new WP_Query( $query_args );
+    $total_posts = $the_query->found_posts;                 // TOTAL NUMBER OF POSTS FOUND IN THE QUERY ARGS PASSED
+    $batches = (int) ( $total_posts / $posts_per_page );    // DYNAMICALLY CREATE THE NUMBER OF BATCHES
 
-    $batch_process = ORBIT_BATCH_PROCESS::getInstance();
+    // KEEPING THE CONTENTS URL SAFE SO THAT WE DON'T LOOSE ANY INFORMATION DURING THE TRANSFER
+    if( isset( $batch_params['tax'] ) ){ $batch_params['tax'] = urlencode( $batch_params['tax'] ); }
 
-    echo $batch_process->plain_shortcode( array(
-      'title'	      => 'Please wait as the CSV is being exported.',
-      'desc'			  => '',
-      'batches'		  => 2,
-      'btn_text' 		=> 'Export CSV',
-      'batch_action'=> 'soah_export',
-      'params'		  => $batch_params
-    ) );
-
-  }
+    // ADDING THE FILE SLUG INTO THE PARMAETERS THAT NEEDS TO BE PASSED
+    $batch_params['file_slug'] = $file_slug;
+    $batch_params['posts_per_page'] = $posts_per_page;
+  ?>
 
 
-?>
-</div>
+  <div id="modal-batch-process" class="modal fade" tabindex="-1" role="dialog" data-behaviour="export-modal" data-csv="<?php _e( $filePath['url'] );?>">
+  	<div class="modal-dialog" role="document">
+  		<div class="modal-content">
+  			<div class="modal-body">
+        <?php
+
+          // PROGRESS BAR TO SHOW THE BATCH PROCESSING OF EXPORTING POSTS INTO A CSV FILE
+          $this->batchProcess( array(
+            'result'      => '',
+            'title'	      => 'Please wait as the CSV is being exported.',
+            'desc'			  => 'Make sure that your popups are enabled for this url or the browser will stop the download',
+            'batches'		  => $batches,
+            'btn_text' 		=> 'Export CSV',
+            'batch_action'=> 'soah_export',
+            'params'		  => $batch_params
+          ) );
+        ?>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+<?php endif;?>
