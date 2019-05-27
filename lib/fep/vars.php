@@ -108,11 +108,11 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'समाचार लेख के लिंक'
     ),
     'contact-form-title'  => array(
-      'en'  => 'Your Contact Information',
+      'en'  => 'Contact Information',
       'hi'  => 'संपर्क जानकारी'
     ),
     'contact-form-desc'  => array(
-      'en'  => 'This information will be kept private and will only be needed for verification',
+      'en'  => 'Information of only the submitter of this report is required. It will be kept private and will only be needed for verification',
       'hi'  => 'यह जानकारी निजी रखी जाएगी और केवल सत्यापन के लिए आवश्यक होगी'
     ),
     'contact-name-title'  => array(
