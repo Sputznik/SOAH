@@ -406,6 +406,29 @@ jQuery(document).ready(function(){
 
   });
 
+  // PREVENT FUTURE DATE FROM BEING ADDED
+  jQuery('input[type=date]').each( function(){
+    var $el = jQuery( this );
+
+    function getMaxDate(){
+      var dtToday = new Date();
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+
+      if(month < 10)
+        month = '0' + month.toString();
+      if(day < 10)
+        day = '0' + day.toString();
+
+      return year + '-' + month + '-' + day;
+    }
+
+    $el.attr( 'max', getMaxDate() );
+
+  });
+
   // USED IN EXPORT PAGE
   jQuery('[data-behaviour~=export-modal]').each( function(){
 
