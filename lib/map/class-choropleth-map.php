@@ -220,6 +220,30 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     wp_die();
   }
 
+  function getColorText( $color ){
+
+    switch( $color ){
+      /*
+      case '#FFF':
+        return 'Lowest';
+      */
+      
+      case '#5e1914':
+        return 'Highest';
+
+      case '#FA8072':
+        return 'Lowest';
+
+      case '#ED2939':
+        return 'Mid Range';
+
+      case '#B80F0A':
+        return 'Upper Mid Range';
+
+    }
+    return 'Default';
+  }
+
   function getContext( $data, $appendData = array() ){
 
     $labels = array(
@@ -314,7 +338,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
           $max_value = $temp['max_value'];
         }
 
-        $temp['color']     = $colors[ $bucket_i ];
+        $temp['color']   = $colors[ $bucket_i ];
+        $temp['text']    = $this->getColorText( $temp['color'] );
         if( $temp['min_value'] < $temp['max_value'] ){
           array_push( $buckets, $temp );
         }
@@ -332,7 +357,8 @@ class CHOROPLETH_MAP extends SOAH_BASE{
         array(
           'min_value' => $min_value,
           'max_value' => $max_value,
-          'color'     => $colors[0]
+          'color'     => $colors[0],
+          'text'      => $this->getColorText( $colors[0] )
         )
       );
     }
@@ -344,7 +370,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     return $buckets;
   }
 
-  function getColorRules( $ranges, $colors = array( '#eee', '#999', '#333' ) ){
+  function getColorRules( $ranges, $colors ){
 
     //$this->printArray( $ranges );
 
@@ -364,11 +390,13 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $color_rules = array(
       'min' => array(
         'value' => $buckets[ 0 ]['min_value'],
-        'color' => '#FFF'
+        'color' => '#FFF',
+        'text'  => $this->getColorText( '#FFF' )
       ),
       'max'	=> array(
         'value'	=> $buckets[ count( $buckets ) - 1 ]['max_value'],
-        'color'	=> $colors[ count( $colors ) - 1 ]
+        'color'	=> $colors[ count( $colors ) - 1 ],
+        'text'  => $this->getColorText( $colors[ count( $colors ) - 1 ] )
       ),
       'ranges'  => $buckets
     );

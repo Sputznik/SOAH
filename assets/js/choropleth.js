@@ -267,17 +267,14 @@
 
 				// BETWEEN RANGES
 				jQuery.each( color_rules['ranges'], function( i, range ){
-					if( i == 0 ){
-						addKey( range['color'], "Lowest" );
-					}
-					else{
-						addKey( range['color'], "Between " + range['min_value'] + " and " + range['max_value'] + " reports" );
-					}
+
+					addKey( range['color'], range['text'] );
+
 
 				} );
 
 				// MAX VALUE
-				addKey( color_rules['max']['color'], "Highest" );
+				addKey( color_rules['max']['color'], color_rules['max']['text'] );
 
 				function addKey( color, text ){
 					var $p = jQuery( document.createElement( 'p' ) );
