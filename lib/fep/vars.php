@@ -108,7 +108,7 @@ add_filter( 'soah-fep-labels', function( $labels ){
       'hi'  => 'समाचार लेख के लिंक'
     ),
     'contact-form-title'  => array(
-      'en'  => 'Contact Information',
+      'en'  => 'Your Contact Information',
       'hi'  => 'संपर्क जानकारी'
     ),
     'contact-form-desc'  => array(
