@@ -25,11 +25,13 @@ class CSV_HELPER extends SOAH_BASE{
 				'post_content',
 				'post_date',
 				'tax_locations',
-				'tax_report-type',
-				'tax_victims'
+				'tax_report-type[]',
+				'tax_victims[]'
 			);
 
 			$orbit_csv = ORBIT_CSV::getInstance();
+
+			$header = $orbit_csv->prepareHeaderForExport( $header );
 
 			$headerInfo = $orbit_csv->getHeaderInfo( array( $header ) );
 
