@@ -1,11 +1,20 @@
 <div class="" style="max-width:650px; margin-left:auto; margin-right:auto;">
-  <form method="POST">
+  <form method="POST" class="soah-export">
     <h3>Download Reports</h3>
     <hr>
+    <div class="box">
+      <h3>Select Date Range</h3>
+      <p class='section-desc'>To filter accurate details within a date range</p>
+      <div class="grid-col2">
+      <?php
+        echo do_shortcode('[orbit_filter label="From" type=postdate typeval=after form=date]');
+        echo do_shortcode('[orbit_filter label="To" type=postdate typeval=before form=date]');
+      ?>
+      </div>
+    </div>
     <div class="grid-col2">
     <?php
-      echo do_shortcode('[orbit_filter label="Which Year" type=postdate typeval=year form=dropdown]');
-      echo do_shortcode('[orbit_filter label="Select State" type=tax form=dropdown typeval=locations tax_parent=0 tax_hide_empty=false]');
+      echo do_shortcode('[orbit_filter label="Select State" type=tax form=bt_dropdown_checkboxes typeval=locations tax_parent=0 tax_hide_empty=false]');
       echo do_shortcode('[orbit_filter label="Select Report Type" type=tax form=bt_dropdown_checkboxes typeval=report-type tax_hide_empty=false]');
       echo do_shortcode('[orbit_filter label="Select Victims" type=tax form=bt_dropdown_checkboxes typeval=victims tax_hide_empty=false]');
     ?>

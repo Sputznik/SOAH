@@ -56,24 +56,13 @@ form.soah-fep textarea, form.soah-fep select{
 	width: 100%;
 	padding: 10px 15px;
 }
-form.soah-fep input[type=date]{
-	padding: 5px 15px;
-}
 
-form.soah-fep h3{
-	margin-bottom: 20px;
-}
 
-form.soah-fep .section-desc{
-	margin-bottom: 30px;
-}
 
-form.soah-fep .box{
-	border: #eee solid 1px;
-	padding: 20px;
-	margin-bottom: 30px;
-	background: #fcfcfc;
-}
+
+
+
+
 
 form.soah-fep .form-categories ul{
 	display: grid;
