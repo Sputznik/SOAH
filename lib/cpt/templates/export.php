@@ -31,7 +31,7 @@
   if( $_GET && isset( $_GET['download'] ) && $_GET['download'] == '1' ):
 
     // KEEP THE NAME OF THE FILE DYNAMIC
-    $file_slug = 'sammv-data-'.time();
+    $file_slug = 'mv-data-'.time();
 
     // NEED TO PASS THIS INFORMATION TO THE MODAL TO DOWNLOAD WHEN THE PROCESS IS COMPLETED
     $filePath = $this->getFilePath( $file_slug );
