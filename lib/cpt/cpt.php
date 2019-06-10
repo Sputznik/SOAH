@@ -39,6 +39,12 @@ add_filter( 'orbit_taxonomy_vars', function( $taxonomies ){
 		'post_types'	=> array( 'reports' )
 	);
 
+	$taxonomies['meta-info']	= array(
+		'label'			=> 'Meta Information',
+		'slug' 			=> 'meta-info',
+		'post_types'	=> array( 'reports' )
+	);
+
 	return $taxonomies;
 
 } );

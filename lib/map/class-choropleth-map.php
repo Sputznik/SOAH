@@ -101,7 +101,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     }
     $terms = get_terms( $term_query_args );
 
-    $extra_taxonomies = array('report-type', 'victims');
+    $extra_taxonomies = array('report-type', 'victims', 'meta-info' );
 
     $states = array();
 
@@ -227,7 +227,7 @@ class CHOROPLETH_MAP extends SOAH_BASE{
       case '#FFF':
         return 'Lowest';
       */
-      
+
       case '#5e1914':
         return 'Highest';
 

@@ -26,7 +26,8 @@ class CSV_HELPER extends SOAH_BASE{
 				'post_date',
 				'tax_locations',
 				'tax_report-type[]',
-				'tax_victims[]'
+				'tax_victims[]',
+				'tax_meta-info[]'
 			);
 
 			$orbit_csv = ORBIT_CSV::getInstance();
@@ -41,7 +42,14 @@ class CSV_HELPER extends SOAH_BASE{
 			}
 
 			// GET QUERY ARGS
-			$query_args = $this->queryArgs( $params, $_GET['posts_per_page'], $_GET['orbit_batch_step'] );
+			$query_args = $this->queryArgs( $_GET, $_GET['posts_per_page'], $_GET['orbit_batch_step'] );
+
+			/*
+			echo "<pre>";
+			print_r( $_GET );
+			print_r( $query_args );
+			echo "</pre>";
+			*/
 
 			$orbit_csv->exportPosts( $file_slug, $headerInfo, $query_args );
 
