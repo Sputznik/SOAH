@@ -5,7 +5,7 @@
 
   <div class="map_sidebar_open">
     <button type="button" id="filter_form_open" class="btn btn-warning btn-lg">
-      <i class="fa fa-align-left"></i>
+      <i class="fa fa-filter"></i>
       <span>Filter Map</span>
     </button>
   </div>
@@ -34,11 +34,17 @@
   <div class="map_overlay"></div>
 
   <div class="map-info">
-    <div class="context">
-      <h5>District-wise Reports</h5>
-      <div class='context-info'></div>
+    <button type="button" class="btn info-btn">
+      <i class="fa fa-info"></i>
+    </button>
+    <div class='map-box'>
+      <button class='close-btn'>&times;</button>
+      <div class="context">
+        <h5>District-wise Reports</h5>
+        <div class='context-info'></div>
+      </div>
+      <div class="key"></div>
     </div>
-    <div class="key"></div>
   </div>
 
 </div>

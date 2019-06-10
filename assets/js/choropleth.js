@@ -51,6 +51,19 @@
 
 			}
 
+			function mapInfo(){
+
+				var $map_info = $el.find('.map-info');
+
+				$map_info.find('.info-btn').click( function(){
+					$map_info.addClass('map-info-open');
+				});
+
+				$map_info.find('.close-btn').click( function(){
+					$map_info.removeClass('map-info-open');
+				});
+			}
+
 			//REQUEST FOR DISTRICT WISE DATA
 			function getData(){
 
@@ -103,22 +116,7 @@
 
       }
 
-			/*
-			// USED INSIDE POP CONTENT
-			// RETURNS STRING VERSION OF MULTIPLE SELECTED CHECKBOXES
-			function getFormValues( form_name ){
-				var $list = $el.find('form [name="' + form_name + '"]:checked');
-				var total = $list.length;
-				var list_str = "";
-				$list.each( function( i ){
-					var $current_report_type = jQuery(this);
-					if( ( i == total-1 ) && ( i != 0 ) ){ list_str += " or "; }
-					else if( ( i < total-1 ) && ( i != 0 ) ){ list_str += ", "; }
-					list_str += $current_report_type.val();
-				});
-				return list_str;
-			}
-			*/
+
 
       function popContent( feature ) {
 
@@ -133,19 +131,7 @@
 						if( data[i]["reports"] == 1 ){ content += " incident"; }
 						else{ content += " incidents"; }
 
-						//content += " (" + data[i]['percentile'] + "%)";
-
-						//report_types = getFormValues( 'tax_report-type[]' );
-						//year = $el.find('form [name=postdate_year]').val();
-						//victims = getFormValues( 'tax_victims[]' );
-
-						//if( year ){ content += " in <b>" + year +"</b>"; }
-
 						content += " reported";
-
-						//if( report_types ){ content += " for <b>" + report_types +"</b>"; }
-
-						//if( victims ){ content += " on <b>" + victims + "</b>"; }
 
 						content += " </a></p>";
 
@@ -305,7 +291,7 @@
 
 				getData();
 
-
+				mapInfo();
 
 
 
