@@ -5,7 +5,7 @@ include( 'lib/lib.php' );
 add_theme_support( 'post-thumbnails' );
 
 //Constant changes all the js and css version on the go
-define( 'SOAH_VERSION', '1.7.1' );
+define( 'SOAH_VERSION', '1.7.2' );
 
 
 //Load child stylesheet after parent stylesheet
