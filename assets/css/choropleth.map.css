@@ -260,18 +260,31 @@
     border-radius: 30px;
     display: block;
   }
+  [data-behaviour~=choropleth-map] .map_overlay{
+    position: fixed;
+  }
 
+  [data-behaviour~=choropleth-map] .map_sidebar{
+    position: fixed;
+    width: 90%;
+    max-height: 450px;
+    overflow-y: scroll;
+    right: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+  }
+  [data-behaviour~=choropleth-map] .leaflet-control-attribution{
+    display: none;
+  }
 }
 
 @media( max-height:600px ){
   [data-behaviour~=choropleth-map] #map{
     height: calc( 100vh - 100px );
   }
-  /*
-  [data-behaviour~=choropleth-map] .map_sidebar{
-    overflow-y: scroll;
-  }
-  */
+
 }
 
 [data-behaviour~=choropleth-map] [data-behaviour~=bt-dropdown-checkboxes] ul.dropdown-menu{
