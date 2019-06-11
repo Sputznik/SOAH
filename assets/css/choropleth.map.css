@@ -267,17 +267,17 @@
 
   [data-behaviour~=choropleth-map] .map_sidebar{
     position: fixed;
-    width: calc(100% - 40px);
+    width: calc(100% - 10px);
     max-height: calc(100% - 100px);
     overflow-y: scroll;
     right: auto;
     left: 50%;
-    top: 50%;
+    top: calc(50% + 20px);
     transform: translate(-50%, -50%);
     border: none;
     z-index: 1001;
   }
-  
+
 }
 
 @media( max-height:600px ){
