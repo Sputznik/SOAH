@@ -262,22 +262,22 @@
   }
   [data-behaviour~=choropleth-map] .map_overlay{
     position: fixed;
+    z-index: 1000;
   }
 
   [data-behaviour~=choropleth-map] .map_sidebar{
     position: fixed;
-    width: 90%;
-    max-height: 450px;
+    width: calc(100% - 40px);
+    max-height: calc(100% - 100px);
     overflow-y: scroll;
     right: auto;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border: none;
+    z-index: 1001;
   }
-  [data-behaviour~=choropleth-map] .leaflet-control-attribution{
-    display: none;
-  }
+  
 }
 
 @media( max-height:600px ){
