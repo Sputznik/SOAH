@@ -16,8 +16,8 @@ class CSV_HELPER extends SOAH_BASE{
     add_action('orbit_batch_action_soah_export', function(){
 
 			// GET PARAMETERS
-			$step = $_GET['orbit_batch_step'];
-			$file_slug = $_GET['file_slug'];
+			$step = $_REQUEST['orbit_batch_step'];
+			$file_slug = $_REQUEST['file_slug'];
 
 			$header = array(
 				'post_id',
@@ -42,14 +42,7 @@ class CSV_HELPER extends SOAH_BASE{
 			}
 
 			// GET QUERY ARGS
-			$query_args = $this->queryArgs( $_GET, $_GET['posts_per_page'], $_GET['orbit_batch_step'] );
-
-			/*
-			echo "<pre>";
-			print_r( $_GET );
-			print_r( $query_args );
-			echo "</pre>";
-			*/
+			$query_args = $this->queryArgs( $_REQUEST, $_REQUEST['posts_per_page'], $_REQUEST['orbit_batch_step'] );
 
 			$orbit_csv->exportPosts( $file_slug, $headerInfo, $query_args );
 

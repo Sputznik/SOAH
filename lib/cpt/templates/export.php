@@ -68,6 +68,7 @@
 
           // PROGRESS BAR TO SHOW THE BATCH PROCESSING OF EXPORTING POSTS INTO A CSV FILE
           $this->batchProcess( array(
+            'ajax_method' => 'POST',
             'result'      => '',
             'title'	      => 'Total Reports: '.$total_posts.'. Please wait as the CSV is being exported.',
             'desc'			  => 'Make sure that your popups are enabled for this url or the browser will stop the download. Do not press the back button until the export completes.',
