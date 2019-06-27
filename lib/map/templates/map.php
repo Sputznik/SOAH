@@ -17,8 +17,9 @@
     <hr >
     <form>
     <?php
-      echo do_shortcode('[orbit_filter label="Which Year" type=postdate typeval=year form=dropdown]');
-      echo do_shortcode('[orbit_filter label="Select State" type=tax form=dropdown typeval=locations tax_parent=0 tax_hide_empty=false]');
+      echo do_shortcode('[orbit_filter label="From" type=postdate typeval=after form=date]');
+      echo do_shortcode('[orbit_filter label="To" type=postdate typeval=before form=date]');
+      echo do_shortcode('[orbit_filter label="Select State" type=tax form=bt_dropdown_checkboxes typeval=locations tax_parent=0 tax_hide_empty=false]');
       echo do_shortcode('[orbit_filter label="Select Report Type" type=tax form=bt_dropdown_checkboxes typeval=report-type tax_hide_empty=false]');
       echo do_shortcode('[orbit_filter label="Select Victims" type=tax form=bt_dropdown_checkboxes typeval=victims tax_hide_empty=false]');
       echo do_shortcode('[orbit_filter label="Verified" type=tax form=checkbox typeval="meta-info" tax_hide_empty=false]');
