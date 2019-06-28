@@ -36,7 +36,6 @@
 				var hybAttrib = 'ESRI World Light Gray | Map data © <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors & <a href="http://datameet.org" target="_blank">Data{Meet}</a>';
 				var hyb = new L.TileLayer(hybUrl, {minZoom: 4, maxZoom: 10, attribution: hybAttrib, opacity:1}).addTo(map);
 				L.control.scale().addTo(map);
-				map.setMaxBounds(map.getBounds());
 
 				//ADD STATE BOUNDARIES
 				var statelines = {
@@ -48,6 +47,8 @@
 
 				gjLayerStates = L.geoJson( geoStates, { style: statelines } );
 				gjLayerStates.addTo(map);
+
+				map.setMaxBounds( gjLayerStates.getBounds() );
 
 			}
 
@@ -105,7 +106,6 @@
         gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
         gjLayerDist.addTo( map );
 
-				console.log('hello');
 
 				//map.fitBounds( gjLayerDist.getBounds() );
 
