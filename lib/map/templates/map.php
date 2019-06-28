@@ -16,14 +16,24 @@
     <p>Use the form below to fliter the data on the map</p>
     <hr >
     <form>
-    <?php
-      echo do_shortcode('[orbit_filter label="From" type=postdate typeval=after form=date]');
-      echo do_shortcode('[orbit_filter label="To" type=postdate typeval=before form=date]');
-      echo do_shortcode('[orbit_filter label="Select State" type=tax form=bt_dropdown_checkboxes typeval=locations tax_parent=0 tax_hide_empty=false]');
-      echo do_shortcode('[orbit_filter label="Select Report Type" type=tax form=bt_dropdown_checkboxes typeval=report-type tax_hide_empty=false]');
-      echo do_shortcode('[orbit_filter label="Select Victims" type=tax form=bt_dropdown_checkboxes typeval=victims tax_hide_empty=false]');
-      echo do_shortcode('[orbit_filter label="Verified" type=tax form=checkbox typeval="meta-info" tax_hide_empty=false]');
-    ?>
+      <div class="grid-col2">
+        <?php
+          echo do_shortcode('[orbit_filter label="Select State" type=tax form=bt_dropdown_checkboxes typeval=locations tax_parent=0 tax_hide_empty=false]');
+        ?>
+      </div>
+      <div class="grid-col2">
+        <?php
+          echo do_shortcode('[orbit_filter label="Select Victims" type=tax form=bt_dropdown_checkboxes typeval=victims tax_hide_empty=false]');
+          echo do_shortcode('[orbit_filter label="Select Report Type" type=tax form=bt_dropdown_checkboxes typeval=report-type tax_hide_empty=false]');
+        ?>
+      </div>
+      <div class="grid-col2">
+        <?php
+          echo do_shortcode('[orbit_filter label="From" type=postdate typeval=after form=date]');
+          echo do_shortcode('[orbit_filter label="To" type=postdate typeval=before form=date]');
+          echo do_shortcode('[orbit_filter label="Verified" type=tax form=checkbox typeval="meta-info" tax_hide_empty=false]');
+        ?>
+      </div>
       <button type="submit" class="btn btn-success"><i class="fa fa-check"></i><span>Apply Filter</span></button>
       <span class="or-text">or</span>
       <button type="button" class="btn btn-reset reset">Reset</span></button>

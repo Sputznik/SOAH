@@ -291,3 +291,7 @@
   max-height: 180px;
   width: 100%;
 }
+
+[data-behaviour~=choropleth-map] .map_sidebar{
+  max-width: 450px;
+}
