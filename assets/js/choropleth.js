@@ -27,7 +27,7 @@
 
 			function createMap(){
 				//SETUP BASEMAP WITH BLANK DISTRICT LAYER
-				map = L.map('map').setView( [22.27, 80.37], 4 );
+				map = L.map('map'); //.setView( [22.27, 80.37], 4 );
 				gjLayerDist = L.geoJson();
 				gjLayerDist.addTo(map);
 
@@ -101,6 +101,8 @@
 
 
       function drawDistricts(){
+
+				map.setView( [22.27, 80.37], 4 );
 
         //ADD DISTRICT BOUNDARIES
         gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
