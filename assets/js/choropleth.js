@@ -100,11 +100,14 @@
 
 
       function drawDistricts(){
-				console.log(data);
+
         //ADD DISTRICT BOUNDARIES
         gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
         gjLayerDist.addTo( map );
-				map.fitBounds( gjLayerDist.getBounds() );
+
+				console.log('hello');
+
+				//map.fitBounds( gjLayerDist.getBounds() );
 
 				//ONLY ADD DISTRICTS THAT ARE AVAILABLE IN THE DATA
 				function matchDistricts(feature) {
