@@ -13,7 +13,7 @@
   <div class="map_sidebar">
     <button type="button" id="map_sidebar_dismiss" class="btn btn-danger"><i class="fa fa-arrow-right"></i><span>Hide this</span></button>
     <h3>Filter Map</h3>
-    <p>Use the form below to fliter the data on the map</p>
+    <p>Use the form below to filter the data on the map</p>
     <hr >
     <form>
       <div class="grid-col2">
