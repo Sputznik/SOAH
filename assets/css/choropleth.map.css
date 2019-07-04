@@ -295,3 +295,52 @@
 [data-behaviour~=choropleth-map] .map_sidebar{
   max-width: 450px;
 }
+
+/*Icons for mobile only */
+#icon-holder { display: none; }
+@media( max-width: 767px ){
+  .map-icon.btn{
+    padding: 0;
+  }
+  #icon-holder > li{
+    padding: 0 2px;
+  }
+  #icon-holder{
+    display: block;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    z-index: 400;
+    bottom: 40px;
+    right: 6px;
+  }
+  #icon-holder .map-icon{
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    opacity: 0.8;
+  }
+  .map-icon.info{
+    background: #000;
+  }
+  .map-icon.filter{
+    background: #ffa500;
+  }
+  .map-icon.scroll{
+    background: #286090;
+  }
+  .map-icon:hover{
+    color: #fff;
+  }
+
+  /* Hide filter and info button on small screens */
+  #filter_form_open ,
+  [data-behaviour~=choropleth-map] .map-info .info-btn{
+    display: none;
+  }
+}

@@ -55,9 +55,16 @@
 			function mapInfo(){
 
 				var $map_info = $el.find('.map-info');
+				var $m_info = $el.find('#icon-holder');
 
+				//Map Info button for desktop
 				$map_info.find('.info-btn').click( function(){
 					$map_info.addClass('map-info-open');
+				});
+
+				// Map Info button for mobile
+				$m_info.find('#m-info').click( function(){
+					$map_info.toggleClass('map-info-open');
 				});
 
 				$map_info.find('.close-btn').click( function(){
@@ -227,7 +234,7 @@
 
 			$el.find('#map_sidebar_dismiss, .map_overlay').on('click', function () { hideSidebar(); });
 
-      $el.find('#filter_form_open').on('click', function () { showSidebar(); });
+      $el.find('#filter_form_open , #m-filter').on('click', function () { showSidebar(); });
 
 			// CREATE A SECTION THAT EXPLAINS THE CONTEXT
 			function createContext( context ){
@@ -288,6 +295,11 @@
 				jQuery('.map_sidebar form').trigger('reset').submit();
 			});
 
+			// Scroll to bottom button for mobile only
+			jQuery('#m-scrollBtn').click( function(){
+				$('html, body').animate({ scrollTop: jQuery('#map-end').offset().top + jQuery('#map-end').height()}, 1200 );
+					return false;
+			});
 
       // INITIALIZE FUNCTION
       function init(){
