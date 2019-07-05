@@ -57,13 +57,14 @@
       <div class="key"></div>
     </div>
   </div>
-  <ul class="list-inline" id="icon-holder">
+  <!-- Map Icons -->
+  <!-- <ul class="list-inline" id="icon-holder">
     <li><a class="map-icon btn info" id="m-info"><i class="fa fa-info"></i></a></li>
     <li><a class="map-icon btn filter" id="m-filter"><i class="fa fa-filter"></i></a></li>
     <li><a class="map-icon btn scroll" id="m-scrollBtn"><i class="fa fa-arrow-down"></i></a></li>
-  </ul>
+  </ul> -->
 </div>
-<div id="map-end"></div>
+<!-- <div id="map-end"></div> -->
 
 <style>
   .header3 .affix{ z-index: 1999; }

@@ -297,7 +297,7 @@
 }
 
 /*Icons for mobile only */
-#icon-holder { display: none; }
+/* #icon-holder { display: none; }
 @media( max-width: 767px ){
   .map-icon.btn{
     padding: 0;
@@ -336,11 +336,11 @@
   }
   .map-icon:hover{
     color: #fff;
-  }
+  } */
 
   /* Hide filter and info button on small screens */
-  #filter_form_open ,
+  /* #filter_form_open ,
   [data-behaviour~=choropleth-map] .map-info .info-btn{
     display: none;
   }
-}
+} */
