@@ -6,9 +6,9 @@ class CSV_HELPER extends SOAH_BASE{
 
 		add_shortcode( 'soah_export', array( $this, 'export_shortcode' ) );
 
-		add_action( 'wp_ajax_reset_locations', array( $this, 'reset_locations' ) );
+		//add_action( 'wp_ajax_reset_locations', array( $this, 'reset_locations' ) );
 
-		add_action( 'wp_ajax_reset_reports', array( $this, 'reset_reports' ) );
+		//add_action( 'wp_ajax_reset_reports', array( $this, 'reset_reports' ) );
 
 		add_action( 'wp_ajax_bulk_set_terms', array( $this, 'bulk_set_terms' ) );
 
