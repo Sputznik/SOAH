@@ -201,12 +201,8 @@
 
 
 @media( max-width:768px ){
-  [data-behaviour~=choropleth-map] #map{
-    height: calc( 100vh - 100px );
-  }
-  [data-behaviour~=choropleth-map] .map_sidebar_open{
-    top: 60%;
-  }
+  [data-behaviour~=choropleth-map] #map{ height: calc( 100vh - 160px ); }
+  [data-behaviour~=choropleth-map] .map_sidebar_open{ top: 60%; }
   #filter_form_open{
     border-radius: 30px;
     /*min-width: 0;*/
