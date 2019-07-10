@@ -101,7 +101,7 @@ add_filter('post_type_link', function( $permalink, $post_id, $leavename ){
 
 
 add_action('init', function(){
-
+	add_rewrite_rule('^incidents/page/([^/]+)/?', 'index.php?post_type=reports&paged=$matches[1]', 'top');
   add_rewrite_rule('^incidents/([^/]+)/?', 'index.php?reports=$matches[1]', 'top');
 	add_rewrite_rule('^incidents', 'index.php?post_type=reports', 'top');
 });
