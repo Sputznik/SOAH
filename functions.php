@@ -172,3 +172,39 @@ class SOAH_ADMIN{
 }
 
 new SOAH_ADMIN;
+
+
+add_action( 'orbit_query_heading', function( $query_atts ){
+
+  $searchFlag = false;
+
+  $orbit_wp = ORBIT_WP::getInstance();
+
+  $url = $orbit_wp->getCurrentURL();
+
+  if( isset( $query_atts['post_type'] ) && in_array( 'reports', $query_atts['post_type'] ) && ( strpos( $url, '/incidents' ) !== false ) ){
+
+    $orbit_wp = ORBIT_WP::getInstance();
+
+    $posts = $orbit_wp->get_post_ids( $query_atts );
+
+    $total_posts = count( $posts );
+
+    if( isset( $_GET ) && count( $_GET ) ){ $searchFlag = true; }
+
+    $total_count_title = 'Total <b>' . $total_posts . '</b> reports available';
+
+    if( $searchFlag ){ $total_count_title = 'Total <b>' . $total_posts . '</b> reports found for your query'; }
+
+    _e( '<div class="orbit-query-heading">' );
+
+    _e('<h3>' . $total_count_title . '</h3>');
+
+    _e('<hr>');
+
+    _e( '</div>' );
+  }
+
+
+
+} );

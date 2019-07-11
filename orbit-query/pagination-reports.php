@@ -1,5 +1,6 @@
 <?php if($atts['pagination'] != '0'):?>
 <?php
+  
 
   $paged = ( get_query_var('orbit-paged')) ? get_query_var('orbit-paged') : 1;
 
