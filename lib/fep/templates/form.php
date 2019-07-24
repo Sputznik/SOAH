@@ -202,7 +202,7 @@ if( !$_POST ){
       ),
       array(
         'slug'  => 'hi',
-        'title' => 'Hindi'
+        'title' => 'हिंदी'
       )
     ),
     'selected'  => $lang
