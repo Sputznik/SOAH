@@ -105,11 +105,15 @@
 				});
 			}
 
+			function drawDistricts(){
 
+				var zoomLevel = 4;
+				var window_width = jQuery( window ).width();
+				if( window_width > 768 ){
+					zoomLevel = 5;
+				}
 
-      function drawDistricts(){
-
-				map.setView( [22.27, 80.37], 4 );
+				map.setView( [22.27, 80.37], zoomLevel );
 
         //ADD DISTRICT BOUNDARIES
         gjLayerDist = L.geoJson( geodist, { style: styledist, onEachFeature: onEachDist, filter: matchDistricts } );
