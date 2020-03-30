@@ -23,6 +23,8 @@ add_action('wp_enqueue_scripts', function(){
   // VALIDATION ON THE FORM
   wp_enqueue_script( 'soah-main', get_stylesheet_directory_uri().'/assets/js/form.js', array('meteor-slides'), SOAH_VERSION, true );
 
+  ORBIT_SEARCH::getInstance()->enqueue_assets();
+
   // BATCH PROCESS ENQUEUE ASSETS
   $batch_process = ORBIT_BATCH_PROCESS::getInstance();
   $batch_process->enqueue_assets();
