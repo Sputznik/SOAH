@@ -10,6 +10,31 @@ class CSV_HELPER extends SOAH_BASE{
 
 		//add_action( 'wp_ajax_reset_reports', array( $this, 'reset_reports' ) );
 
+		add_filter( 'orbit_csv_export_row', function( $slug ){
+			$term_names_arr = array();
+			$orbit_wp = ORBIT_WP::getInstance();
+			$terms    = $orbit_wp->get_post_terms( get_the_ID(), 'locations' );
+			//echo "Terms";
+			//print_r( $terms );
+			if ( is_array( $terms ) && count( $terms ) ) {
+				foreach ( $terms as $term ) {
+					if( $slug == 'state' && $term->parent == 0 ){
+						array_push( $term_names_arr, $term->name );
+					}
+					elseif( $slug == 'district' && $term->parent > 0 ){
+						array_push( $term_names_arr, $term->name );
+					}
+				}
+			}
+
+
+			//echo "<pre>";
+			//print_r( $term_names_arr );
+			//echo "<pre>";
+
+			return implode(',', $term_names_arr);
+		} );
+
 		add_action( 'wp_ajax_bulk_set_terms', array( $this, 'bulk_set_terms' ) );
 
 		/* ACTION HOOK FOR AJAX CALL - import terms */
@@ -25,6 +50,8 @@ class CSV_HELPER extends SOAH_BASE{
 				'post_content',
 				'post_date',
 				'tax_locations',
+				'state',
+				'district',
 				'tax_report-type[]',
 				'tax_victims[]',
 				'tax_meta-info[]'
@@ -35,6 +62,8 @@ class CSV_HELPER extends SOAH_BASE{
 			$header = $orbit_csv->prepareHeaderForExport( $header );
 
 			$headerInfo = $orbit_csv->getHeaderInfo( array( $header ) );
+
+			//print_r( $headerInfo );
 
 			// ADD HEADER ROW FOR THE FIRST BATCH REQUEST ONLY
 			if( $step == 1 ){

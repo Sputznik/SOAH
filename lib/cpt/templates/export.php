@@ -46,7 +46,8 @@
     $query_args = $this->queryArgs( $batch_params, $posts_per_page );   // GET THE QUERY ARGS
     $the_query = new WP_Query( $query_args );
     $total_posts = $the_query->found_posts;                 // TOTAL NUMBER OF POSTS FOUND IN THE QUERY ARGS PASSED
-    $batches = (int) ( $total_posts / $posts_per_page );    // DYNAMICALLY CREATE THE NUMBER OF BATCHES
+    $batches = (int) ceil( $total_posts / $posts_per_page );  // DYNAMICALLY CREATE THE NUMBER OF BATCHES
+    //$batches = (int) ( $total_posts / $posts_per_page );
     if( !$batches ){ $batches = 1; }                        // MINIMUM SHOULD BE 1
 
     //echo $total_posts;
