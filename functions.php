@@ -184,6 +184,10 @@ add_action( 'orbit_query_heading', function( $query_atts ){
 
   $url = $orbit_wp->getCurrentURL();
 
+  if( !is_array( $query_atts['post_type'] ) ){
+    $query_atts['post_type'] = array( $query_atts['post_type'] );
+  }
+
   if( isset( $query_atts['post_type'] ) && in_array( 'reports', $query_atts['post_type'] ) && ( strpos( $url, '/incidents' ) !== false ) ){
 
     $orbit_wp = ORBIT_WP::getInstance();
