@@ -77,7 +77,6 @@ class CHOROPLETH_MAP extends SOAH_BASE{
     $query_args['date_query'] = $orbit_util->getDateQueryParams( $params_string['date'] );
 
     $query = new WP_Query( $query_args );
-
     return $query->found_posts;
   }
 
