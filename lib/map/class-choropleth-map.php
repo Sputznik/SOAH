@@ -78,7 +78,9 @@ class CHOROPLETH_MAP extends SOAH_BASE{
 
     $query = new WP_Query( $query_args );
 
-    return $query->found_posts;
+
+    return 0;
+    //return $query->found_posts;
   }
 
   // THIS SECTION IS CREATING A URL THAT WILL DISPLAY THE LIST OF INCIDENTS
