@@ -73,6 +73,10 @@ class CSV_HELPER extends SOAH_BASE{
 			// GET QUERY ARGS
 			$query_args = $this->queryArgs( $_REQUEST, $_REQUEST['posts_per_page'], $_REQUEST['orbit_batch_step'] );
 
+			//ORBIT_UTIL::getInstance()->test( $_REQUEST );
+
+			//ORBIT_UTIL::getInstance()->test( $query_args );
+
 			$orbit_csv->exportPosts( $file_slug, $headerInfo, $query_args );
 
 		});

@@ -10,7 +10,7 @@ class FEP_FORM extends SOAH_BASE{
 	function save(){
 
 		if( $_POST ){
-			
+
 			wp_verify_nonce( $_REQUEST['_wpnonce'], 'soah-fep' );
 
 			// IF REQUIRED FIELDS ARE NOT PRESENT IN $_POST THE RETURN ERROR
@@ -183,7 +183,8 @@ class FEP_FORM extends SOAH_BASE{
 			default:
 				$field['class'] = isset( $field['class'] ) ? $field['class']." form-field" : "form-field";
 				echo "<div class='".$field['class']."'>";
-				echo "<label>".$field['label']."</label>";
+				$label = isset( $field['label'] ) ? $field['label'] : '';
+				echo "<label>$label</label>";
 				include( "templates/" . $field['type'] . ".php" );
 				echo "</div>";
 		}

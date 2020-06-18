@@ -195,6 +195,7 @@ if( !$_POST ){
   $this->display_field( array(
     'class'   => 'lang-switcher',
     'type'    => 'dropdown',
+		'name'		=> 'lang',
     'options' => array(
       array(
         'slug'  => 'en',

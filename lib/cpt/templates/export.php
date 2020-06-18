@@ -53,7 +53,7 @@
     //echo $total_posts;
 
     // KEEPING THE CONTENTS URL SAFE SO THAT WE DON'T LOOSE ANY INFORMATION DURING THE TRANSFER
-    if( isset( $batch_params['tax'] ) ){ $batch_params['tax'] = urlencode( $batch_params['tax'] ); }
+    //if( isset( $batch_params['tax'] ) ){ $batch_params['tax'] = urlencode( $batch_params['tax'] ); }
 
     // ADDING THE FILE SLUG INTO THE PARMAETERS THAT NEEDS TO BE PASSED
     $batch_params['file_slug'] = $file_slug;
